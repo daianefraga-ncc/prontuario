@@ -114,6 +114,7 @@
 
   /* ---------- estrutura ---------- */
   .app { display: flex; min-height: 100vh; }
+  @media (min-width: 821px) { .app { background: linear-gradient(to right, var(--surface-2) 250px, transparent 250px); } }
   .sidebar { width: 250px; flex-shrink: 0; background: var(--surface-2); border-right: 1px solid var(--line); display: flex; flex-direction: column; padding: 22px 14px 16px; position: sticky; top: 0; height: 100vh; }
   .sidebar-logo { display: block; width: 100%; max-width: 180px; height: auto; margin: 0 6px 22px; }
   .nav { display: flex; flex-direction: column; gap: 3px; flex: 1; overflow-y: auto; }
@@ -169,8 +170,8 @@
   .hero-quote .quote::after { content: ""; display: block; width: 44px; border-top: 1px solid var(--ink-faint); margin-top: 12px; }
 
   /* ---------- listas ---------- */
-  .tabs { display: inline-flex; gap: 4px; background: var(--sunken); padding: 4px; border-radius: 10px; margin-bottom: 14px; }
-  .tab { border: 0; background: transparent; padding: 7px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--ink-soft); cursor: pointer; }
+  .tabs { display: inline-flex; max-width: 100%; overflow-x: auto; gap: 4px; background: var(--sunken); padding: 4px; border-radius: 10px; margin-bottom: 14px; }
+  .tab { white-space: nowrap; border: 0; background: transparent; padding: 7px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--ink-soft); cursor: pointer; }
   .tab.active { background: var(--accent); color: var(--on-accent); }
   .empty { text-align: center; padding: 26px 12px; color: var(--ink-soft); }
   .empty .icon { width: 34px; height: 34px; color: var(--ink-faint); margin-bottom: 8px; }
@@ -225,6 +226,149 @@
   .loading { color: var(--ink-faint); font-size: 12.5px; padding: 12px 0; }
 
   /* ---------- responsivo ---------- */
+
+  /* ================= ETAPA 2: casos e mapa ================= */
+  .page-actions { display: flex; align-items: center; gap: 10px; margin-right: 6px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .stat-sm { min-height: 0; padding: 14px 16px; gap: 2px; }
+  .stat-sm .stat-num { font-size: 24px; margin-top: 2px; }
+  .stat-sm .link-btn { margin-top: 6px; color: var(--ink); }
+  .layout-side { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 18px; align-items: start; }
+  .side-col { display: flex; flex-direction: column; gap: 16px; }
+  .toolbar { display: flex; gap: 10px; align-items: center; margin: 16px 0 14px; flex-wrap: wrap; }
+  .toolbar .searchbar { flex: 1; min-width: 220px; padding: 3px 12px; }
+  .toolbar select.input { width: auto; padding: 9px 12px; }
+  .table-wrap { overflow-x: auto; }
+  table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th { text-align: left; font-size: 11.5px; font-weight: 600; color: var(--ink-soft); padding: 10px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  .tbl td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .tbl tbody tr { cursor: pointer; }
+  .tbl tbody tr:hover { background: var(--surface-2); }
+  .tbl tr:last-child td { border-bottom: 0; }
+  .name-cell { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .avatar-sm { width: 32px; height: 32px; font-size: 11.5px; }
+  .chip-status { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+  .st-em_acompanhamento { background: var(--tint-green); color: var(--accent-strong); }
+  .st-em_avaliacao { background: var(--tint-sky); color: var(--icon-sky); }
+  .st-encerrado { background: var(--sunken); color: var(--ink-faint); }
+  .st-atencao { background: var(--tint-sand); color: var(--gold-ink); }
+  :root[data-theme="dark"] .st-em_acompanhamento { color: var(--icon-green); }
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600; background: var(--sunken); color: var(--ink-soft); margin: 2px 4px 2px 0; }
+  .tag-hip { background: var(--tint-sky); color: var(--icon-sky); }
+  .tag-conf { background: var(--tint-lilac); color: var(--icon-lilac); }
+  .tag-obs { background: var(--tint-sand); color: var(--gold-ink); }
+  .menu-btn { width: 32px; height: 32px; border-radius: 8px; border: 0; background: none; cursor: pointer; color: var(--ink-soft); font-size: 18px; line-height: 1; }
+  .menu-btn:hover { background: var(--sunken); }
+  .row-menu { position: absolute; right: 8px; z-index: 20; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); padding: 6px; min-width: 190px; }
+  .row-menu button { display: block; width: 100%; text-align: left; padding: 8px 10px; border: 0; background: none; border-radius: 8px; cursor: pointer; font-size: 13px; }
+  .row-menu button:hover { background: var(--sunken); }
+  .row-menu .danger { color: var(--danger); }
+  .donut-wrap { display: flex; align-items: center; gap: 16px; }
+  .legend { display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; flex: 1; }
+  .legend div { display: flex; align-items: center; gap: 8px; }
+  .legend i { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend b { margin-left: auto; }
+  .pend { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+  .pend:last-child { border-bottom: 0; }
+  .pend .icon { width: 18px; height: 18px; margin-top: 2px; }
+  .pend b { display: block; font-size: 13px; font-weight: 600; }
+  .pend span { font-size: 12px; color: var(--ink-faint); }
+  .pend-red .icon { color: var(--danger); } .pend-gold .icon { color: var(--gold); } .pend-sky .icon { color: var(--icon-sky); }
+  .shortcuts { display: grid; grid-template-columns: repeat(3, 1fr) 1.1fr; gap: 14px; margin-top: 18px; }
+  .shortcut { display: flex; flex-direction: column; gap: 6px; }
+  .shortcut h4 { font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .shortcut p { margin: 0 0 8px; font-size: 12px; color: var(--ink-soft); flex: 1; }
+  .quote-card { background: var(--tint-green); border-radius: var(--radius); padding: 20px; display: flex; align-items: center; }
+
+  /* modal de formulário */
+  .modal-lg { max-width: 760px; }
+  .check-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 16px; }
+  .check { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+  .check input { width: 16px; height: 16px; accent-color: var(--accent); }
+  .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-faint); margin: 18px 0 10px; }
+  .tag-editor-row { display: grid; grid-template-columns: 1fr 190px 36px; gap: 8px; margin-bottom: 8px; }
+  .photo-pick { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+  .photo-lg { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; background: var(--sunken); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; color: var(--ink-soft); border: 1px solid var(--line); }
+
+  /* mapa */
+  .case-head { display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; margin-bottom: 16px; }
+  .case-photo { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; background: var(--tint-sand); display: inline-flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; color: var(--gold-ink); }
+  .case-name { font-size: 21px; font-weight: 600; }
+  .case-meta { color: var(--ink-soft); font-size: 13px; margin: 2px 0 8px; }
+  .case-facts { display: flex; gap: 28px; margin-top: 10px; flex-wrap: wrap; }
+  .case-facts div { font-size: 12.5px; }
+  .case-facts b { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-faint); font-weight: 700; }
+  .ctabs { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 2px; }
+  .ctab { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); font-weight: 600; font-size: 13px; cursor: pointer; white-space: nowrap; color: var(--ink); }
+  .ctab.active { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .ov-grid { display: grid; grid-template-columns: 1.35fr 1fr 250px; gap: 16px; }
+  .ov-grid-2 { display: grid; grid-template-columns: 1.35fr 1fr 250px; gap: 16px; margin-top: 16px; }
+  .dom-map { display: grid; grid-template-columns: 1fr 190px 1fr; gap: 10px; align-items: center; }
+  .dom-col { display: flex; flex-direction: column; gap: 8px; }
+  .dom-pill { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: 10px; font-size: 12px; }
+  .dom-pill b { display: block; font-size: 12px; font-weight: 600; }
+  .dom-pill span { font-size: 12px; color: var(--ink-soft); }
+  .dom-pill .icon { width: 16px; height: 16px; }
+  .dom-off { opacity: .45; }
+  .timeline { position: relative; padding-left: 18px; }
+  .timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; border-left: 1px solid var(--line-strong); }
+  .tl-item { position: relative; padding: 0 0 14px; }
+  .tl-item::before { content: ""; position: absolute; left: -17px; top: 5px; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .tl-item.c-escola::before { background: var(--icon-sky); } .tl-item.c-casa::before, .tl-item.c-familia::before { background: var(--gold); } .tl-item.c-outro::before { background: var(--ink-faint); }
+  .tl-top { display: flex; justify-content: space-between; gap: 8px; font-size: 13px; font-weight: 600; }
+  .tl-top span { font-weight: 500; font-size: 11.5px; color: var(--ink-faint); white-space: nowrap; }
+  .tl-sub { font-size: 12px; color: var(--ink-soft); }
+  .qa { display: flex; flex-direction: column; gap: 8px; }
+  .qa .btn { justify-content: flex-start; }
+  .step { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; font-size: 13px; }
+  .step input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--accent); }
+  .step small { display: block; color: var(--ink-faint); font-size: 11.5px; }
+  .step.done span { text-decoration: line-through; color: var(--ink-faint); }
+  .reg { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; background: var(--surface); }
+  .reg-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .reg-head .date { font-weight: 700; font-size: 13px; }
+  .reg-text { white-space: pre-wrap; font-size: 13.5px; color: var(--ink); }
+  .reg-actions { display: flex; gap: 12px; margin-top: 8px; }
+  .dom-toggle { display: flex; flex-wrap: wrap; gap: 6px; }
+  .dom-toggle label { padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; cursor: pointer; user-select: none; }
+  .dom-toggle input { display: none; }
+  .dom-toggle input:checked + span { color: var(--accent-strong); }
+  .dom-toggle label.on { background: var(--tint-green); border-color: var(--accent); color: var(--accent-strong); }
+  .plan-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .plan-item { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+  .plan-item:last-child { border-bottom: 0; }
+  .plan-item .x { margin-left: auto; border: 0; background: none; color: var(--ink-faint); cursor: pointer; font-size: 16px; }
+  .plan-add { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .plan-add .input { flex: 1; min-width: 120px; }
+  .doc-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .doc-row:last-child { border-bottom: 0; }
+  .doc-editor { width: 100%; min-height: 380px; font-size: 13.5px; line-height: 1.6; }
+  .note { font-size: 12px; color: var(--ink-soft); background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 10px; padding: 10px 12px; }
+  .ai-btn { color: var(--accent-strong); border-color: var(--accent-soft); background: var(--tint-green); }
+  @media (max-width: 1180px) {
+    .layout-side { grid-template-columns: 1fr; }
+    .shortcuts { grid-template-columns: 1fr 1fr; }
+    .ov-grid, .ov-grid-2 { grid-template-columns: 1fr 1fr; }
+    .plan-cols { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 820px) {
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .shortcuts, .ov-grid, .ov-grid-2 { grid-template-columns: 1fr; }
+    .case-head { grid-template-columns: auto 1fr; }
+    .case-head > .btn { grid-column: 1 / -1; }
+    .dom-map { grid-template-columns: 1fr; }
+    .check-grid { grid-template-columns: 1fr; }
+    .tag-editor-row { grid-template-columns: 1fr 36px; }
+    .tag-editor-row select { grid-column: 1 / 2; }
+    .page-actions .btn span { display: none; }
+    .hide-sm { display: none; }
+    .topbar { flex-wrap: wrap; }
+    .topbar > div:first-child { flex: 1 1 100%; order: 2; }
+    .topbar-actions { order: 1; width: 100%; justify-content: flex-end; }
+    #trocaCaso { min-width: 0 !important; max-width: 58vw; }
+    .main, .layout-side > div, .card { min-width: 0; }
+  }
+
   @media (max-width: 1180px) {
     .grid-5 { grid-template-columns: repeat(3, 1fr); }
     .grid-3 { grid-template-columns: 1fr 1fr; }
@@ -333,6 +477,7 @@
         <div class="page-sub" id="pageSub"></div>
       </div>
       <div class="topbar-actions" style="position:relative">
+        <div class="page-actions" id="pageActions"></div>
         <button type="button" class="icon-btn" id="bellBtn" aria-label="Notificações">
           <svg class="icon" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg>
           <span class="badge-dot" id="bellBadge" hidden>0</span>
@@ -617,6 +762,8 @@
     $("pageTitle").innerHTML = esc(n.title) + (n.locked && !isVerified() ? ' <span style="color:var(--ink-faint)">' + icon("lock") + "</span>" : "");
     $("pageSub").textContent = n.sub;
     renderNav();
+    $("pageActions").innerHTML = "";
+    document.querySelectorAll(".row-menu").forEach(function (m) { m.remove(); });
     window.scrollTo(0, 0);
     var fn = PAGES[state.route] || PAGES.inicio;
     fn($("view"));
@@ -644,7 +791,7 @@
         "</section>" +
 
         '<section class="grid-5" style="margin-bottom:18px">' +
-          stat("t-green", "users", "Meus casos", '<span id="stCasos">–</span>', '<span id="stCasosSub">Carregando…</span>', "Novo caso", "plus", "casos") +
+          stat("t-green", "users", "Meus casos", '<span id="stCasos">–</span>', '<span id="stCasosSub">Carregando…</span>', "Novo caso", "plus", "@novocaso") +
           stat("t-sand", "calendar", "Compromissos de hoje", '<span id="stHoje">–</span>', '<span id="stHojeSub">Carregando…</span>', "Ver compromissos", "", "#compromissos") +
           stat("t-sky", "search", "Pesquisas recentes", '<span id="stPesq">–</span>', "Suas últimas buscas no NCC.", "Pesquisar no NCC", "", "pesquisa") +
           stat("t-rose", "folder", "Meu acervo profissional", isVerified() ? "0" : icon("lock"), isVerified() ? "Seus instrumentos e materiais privados." : "Disponível após a verificação profissional.", isVerified() ? "Gerenciar acervo" : "Saiba mais", "", "acervo") +
@@ -657,8 +804,8 @@
             '<div id="contList"><div class="loading">Carregando…</div></div></div>' +
           '<div class="card" id="compromissos"><div class="card-head"><h3 class="card-title">Próximos compromissos</h3></div><div id="compList"><div class="loading">Carregando…</div></div></div>' +
           '<div class="card"><div class="card-head"><h3 class="card-title">Ferramentas rápidas</h3></div><div class="tools">' +
-            tool("doc", "Criar registro", "Anotações e observações", "casos") +
-            tool("userplus", "Adicionar criança", "Novo acompanhamento", "casos") +
+            tool("doc", "Criar registro", "Anotações e observações", "@registro") +
+            tool("userplus", "Adicionar criança", "Novo acompanhamento", "@novocaso") +
             tool("search", "Pesquisar no NCC", "Comportamentos e temas", "pesquisa") +
             tool("cap", "Novo projeto", "Projeto acadêmico", "projetos") +
           "</div></div>" +
@@ -666,7 +813,10 @@
 
       $("homeSearch").onsubmit = function (e) { e.preventDefault(); goSearch($("homeQ").value.trim()); };
       v.querySelectorAll("[data-chip]").forEach(function (b) { b.onclick = function () { goSearch(b.getAttribute("data-chip")); }; });
-      v.querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { var g = b.getAttribute("data-go"); if (g.charAt(0) === "#") { var el = $(g.slice(1)); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); } else location.hash = g; }; });
+      v.querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { var g = b.getAttribute("data-go");
+        if (g === "@novocaso") { casoForm(null, function (c) { toast("Caso criado."); location.hash = "mapa?caso=" + c.id; }); return; }
+        if (g === "@registro") { sessionStorage.setItem("ncc-novo", "1"); escolherCaso("Novo registro", "registros"); return; }
+        if (g.charAt(0) === "#") { var el = $(g.slice(1)); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); } else location.hash = g; }; });
 
       var contTipo = "caso";
       $("contTabs").onclick = function (e) {
@@ -748,6 +898,598 @@
     }
   };
 
+
+  /* ================= ETAPA 2: MEUS CASOS + MAPA DE ACOMPANHAMENTO ================= */
+  Object.assign(I, {
+    heart: '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+    puzzle: '<path d="M10 3h4v3a2 2 0 1 0 4 0h0v4h-3a2 2 0 1 0 0 4h3v4h-4v-3a2 2 0 1 0-4 0v3H6v-4h3a2 2 0 1 0 0-4H6V6h4z"/>',
+    moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+    family: '<circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="7" r="2.5"/><circle cx="12" cy="13" r="2"/><path d="M3 20a4 4 0 0 1 8 0M13 20a4 4 0 0 1 8 0"/>',
+    school: '<path d="M3 21h18M5 21V10l7-5 7 5v11"/><path d="M10 21v-5h4v5"/>',
+    social: '<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M2 20a6 6 0 0 1 12 0M10 20a6 6 0 0 1 12 0"/>',
+    wave: '<path d="M3 12h2l2-5 3 10 3-12 3 9 2-2h3"/>',
+    bolt: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    alert: '<path d="M12 3l10 18H2z"/><path d="M12 10v5"/><circle cx="12" cy="18" r=".6" fill="currentColor"/>',
+    sprout: '<path d="M12 21v-9"/><path d="M12 12c0-4 3-7 8-7 0 4-3 7-8 7z"/><path d="M12 14c0-3-2.5-5.5-7-5.5 0 3 2.5 5.5 7 5.5z"/>',
+    check: '<path d="M5 12l5 5L20 7"/>',
+    edit: '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/>',
+    trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+    upload: '<path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/>',
+    printer: '<path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/>',
+    sparkle: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17l.7 1.8L21.5 19.5l-1.8.7L19 22l-.7-1.8-1.8-.7 1.8-.7z"/>',
+    list: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1"/><circle cx="4.5" cy="12" r="1"/><circle cx="4.5" cy="18" r="1"/>',
+    target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>',
+    clip: '<path d="M21 11l-8.5 8.5a5 5 0 0 1-7-7L14 4a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 7"/>',
+    filter: '<path d="M4 5h16l-6 8v6l-4-2v-4z"/>',
+    child: '<circle cx="12" cy="7" r="3.5"/><path d="M5 21a7 7 0 0 1 14 0"/>'
+  });
+
+  var DOMINIOS = [
+    { k: "desenvolvimento", l: "Desenvolvimento", ic: "sprout", t: "green" },
+    { k: "regulacao_emocional", l: "Regulação emocional", ic: "heart", t: "rose" },
+    { k: "funcoes_executivas", l: "Funções executivas", ic: "puzzle", t: "sand" },
+    { k: "sono", l: "Sono", ic: "moon", t: "sky" },
+    { k: "estresse", l: "Estresse", ic: "bolt", t: "sand", inv: true },
+    { k: "familia", l: "Família", ic: "family", t: "lilac" },
+    { k: "escola", l: "Escola", ic: "school", t: "sky" },
+    { k: "socializacao", l: "Socialização", ic: "social", t: "sand" },
+    { k: "sensorial_motor", l: "Sensorial e motor", ic: "wave", t: "green" },
+    { k: "adversidades", l: "Adversidades", ic: "alert", t: "rose", inv: true }
+  ];
+  function domLabel(k) { for (var i = 0; i < DOMINIOS.length; i++) if (DOMINIOS[i].k === k) return DOMINIOS[i].l; return k; }
+  var STATUS = { em_avaliacao: "Em avaliação", em_acompanhamento: "Em acompanhamento", encerrado: "Encerrado", atencao: "Atenção" };
+  var CONTEXTOS = { atendimento: "Atendimento", casa: "Casa", escola: "Escola", familia: "Família", outro: "Outro" };
+  var TIPO_DOC = { relatorio_familia: "Relatório para a família", relatorio_escola: "Relatório para a escola", relatorio_equipe: "Relatório para a equipe", anexo: "Anexo" };
+  var DIAS_ATENCAO = 20;
+
+  function diasDesde(iso) { if (!iso) return 0; return Math.floor((Date.now() - new Date(iso).getTime()) / 86400000); }
+  function statusEfetivo(c) {
+    if (c.status !== "encerrado" && diasDesde(c.ultimo_registro_em || c.created_at) > DIAS_ATENCAO) return "atencao";
+    return c.status;
+  }
+  function idadeTexto(nasc, curto) {
+    if (!nasc) return "";
+    var n = parseDate(nasc), h = new Date();
+    var meses = (h.getFullYear() - n.getFullYear()) * 12 + (h.getMonth() - n.getMonth());
+    if (h.getDate() < n.getDate()) meses--;
+    if (meses < 0) return "";
+    var a = Math.floor(meses / 12), m = meses % 12;
+    if (curto) return a >= 1 ? a + (a === 1 ? " ano" : " anos") : m + (m === 1 ? " mês" : " meses");
+    return (a ? a + (a === 1 ? " ano" : " anos") : "") + (a && m ? " e " : "") + (m ? m + (m === 1 ? " mês" : " meses") : (a ? "" : "0 meses"));
+  }
+  function fmtData(d) { if (!d) return "—"; var x = parseDate(d); return String(x.getDate()).padStart(2, "0") + "/" + String(x.getMonth() + 1).padStart(2, "0") + "/" + x.getFullYear(); }
+  function fmtDataHora(ts) { if (!ts) return "—"; var x = new Date(ts); return String(x.getDate()).padStart(2, "0") + "/" + String(x.getMonth() + 1).padStart(2, "0") + "/" + x.getFullYear(); }
+  function chipStatus(s) { return '<span class="chip-status st-' + s + '">' + esc(STATUS[s] || s) + "</span>"; }
+  function tagHtml(e) {
+    var cls = e.tipo === "confirmado" ? "tag-conf" : e.tipo === "observacao" ? "tag-obs" : "tag-hip";
+    return '<span class="tag ' + cls + '">' + esc(e.texto) + (e.tipo === "hipotese" || !e.tipo ? " (hipótese)" : "") + "</span>";
+  }
+  function fail(res, msg) { if (res && res.error) { toast((msg || "Não foi possível salvar") + ": " + res.error.message); return true; } return false; }
+  function aiErro(err, data) {
+    var code = (data && data.error) || "";
+    if (code === "limit_reached") return "Você atingiu o limite mensal de gerações de IA.";
+    if (code === "server_misconfigured") return "A IA ainda não foi configurada pelo administrador.";
+    return "Não foi possível gerar com a IA agora. Tente novamente em instantes.";
+  }
+  function invokeIA(body) {
+    return sb.functions.invoke("ncc-ia", { body: body }).then(function (res) {
+      if (res.error) {
+        var ctx = res.error.context;
+        if (ctx && typeof ctx.json === "function") return ctx.json().then(function (p) { throw new Error(aiErro(null, p)); }, function () { throw new Error(aiErro()); });
+        throw new Error(aiErro());
+      }
+      if (!res.data || !res.data.texto) throw new Error(aiErro(null, res.data));
+      return res.data.texto;
+    });
+  }
+  function signedUrl(path) {
+    if (!path) return Promise.resolve(null);
+    return sb.storage.from("ncc-arquivos").createSignedUrl(path, 3600).then(function (r) { return r.data ? r.data.signedUrl : null; }, function () { return null; });
+  }
+  function donut(segs, size, stroke, centerHtml) {
+    var total = segs.reduce(function (a, s) { return a + s.v; }, 0), r = (size - stroke) / 2, c = 2 * Math.PI * r, off = 0, out = "";
+    if (!total) out = '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="var(--sunken)" stroke-width="' + stroke + '"/>';
+    segs.forEach(function (s) {
+      if (!s.v) return;
+      var len = c * s.v / total, gap = segs.filter(function (x) { return x.v; }).length > 1 ? 3 : 0;
+      out += '<circle cx="' + size / 2 + '" cy="' + size / 2 + '" r="' + r + '" fill="none" stroke="' + s.c + '" stroke-width="' + stroke + '" stroke-dasharray="' + Math.max(len - gap, 0.1) + " " + c + '" stroke-dashoffset="' + (-off) + '" transform="rotate(-90 ' + size / 2 + " " + size / 2 + ')"/>';
+      off += len;
+    });
+    return '<div style="position:relative;width:' + size + "px;height:" + size + 'px;flex-shrink:0"><svg width="' + size + '" height="' + size + '" aria-hidden="true">' + out + '</svg><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">' + centerHtml + "</div></div>";
+  }
+  function registrarAtividade(tipo, ref, titulo, sub) {
+    sb.from("atividade_recente").delete().eq("tipo", tipo).eq("ref_id", String(ref)).then(function () {
+      sb.from("atividade_recente").insert({ owner_id: state.user.id, tipo: tipo, ref_id: String(ref), titulo: titulo, subtitulo: sub || null }).then(function () {});
+    });
+  }
+
+  /* ---------- modal genérico ---------- */
+  function openModal(title, bodyHtml, opts) {
+    opts = opts || {};
+    var ov = document.createElement("div");
+    ov.className = "overlay";
+    ov.innerHTML = '<div class="modal ' + (opts.lg ? "modal-lg" : "") + '" role="dialog" aria-modal="true"><div class="modal-head"><h3>' + esc(title) + '</h3><button type="button" class="icon-btn" data-x aria-label="Fechar">' + icon("plus") + '</button></div><form novalidate><div class="modal-body">' + bodyHtml + '</div><div class="modal-foot">' + (opts.foot || '<button type="button" class="btn" data-x>Cancelar</button><button type="submit" class="btn btn-primary">' + esc(opts.ok || "Salvar") + "</button>") + "</div></form></div>";
+    ov.querySelector("[data-x] .icon").style.transform = "rotate(45deg)";
+    document.body.appendChild(ov);
+    function close() { ov.remove(); }
+    ov.addEventListener("click", function (e) { if (e.target === ov || e.target.closest("[data-x]")) close(); });
+    var form = ov.querySelector("form");
+    form.onsubmit = function (e) { e.preventDefault(); if (opts.onSubmit) opts.onSubmit(form, close); };
+    var first = form.querySelector("input:not([type=hidden]):not([type=checkbox]),textarea,select"); if (first) setTimeout(function () { first.focus(); }, 50);
+    return { el: ov, form: form, close: close };
+  }
+  function fval(form, name) { var el = form.querySelector('[name="' + name + '"]'); return el ? (el.type === "checkbox" ? el.checked : el.value.trim()) : ""; }
+
+  /* ---------- formulário do caso (novo / editar) ---------- */
+  function casoForm(c, onSaved) {
+    c = c || { status: "em_avaliacao", etiquetas: [], dominios_ativos: DOMINIOS.map(function (d) { return d.k; }) };
+    var etq = (c.etiquetas || []).slice();
+    var body =
+      '<div class="photo-pick"><span class="photo-lg" id="cfPhoto">' + esc(initials(c.nome)) + '</span><div><label class="btn" style="cursor:pointer">' + icon("upload") + ' Foto da criança<input type="file" id="cfFile" accept="image/*" hidden></label><div class="hint" style="margin:6px 0 0">Opcional. Fica em armazenamento privado.</div></div></div>' +
+      '<div class="field"><label>Nome da criança *</label><input class="input" name="nome" required value="' + esc(c.nome || "") + '"></div>' +
+      '<div class="form-row"><div class="field"><label>Data de nascimento</label><input class="input" type="date" name="data_nascimento" value="' + esc(c.data_nascimento || "") + '"></div>' +
+      '<div class="field"><label>Série / ano escolar</label><input class="input" name="serie_escolar" placeholder="Ex.: 2º ano EF" value="' + esc(c.serie_escolar || "") + '"></div></div>' +
+      '<div class="form-row"><div class="field"><label>Escola</label><input class="input" name="escola" value="' + esc(c.escola || "") + '"></div>' +
+      '<div class="field"><label>Status</label><select class="input" name="status">' + ["em_avaliacao", "em_acompanhamento", "encerrado"].map(function (s) { return '<option value="' + s + '"' + (c.status === s ? " selected" : "") + ">" + STATUS[s] + "</option>"; }).join("") + "</select></div></div>" +
+      '<div class="form-row"><div class="field"><label>Responsáveis</label><input class="input" name="responsaveis" placeholder="Ex.: Ana e Pedro Souza" value="' + esc(c.responsaveis || "") + '"></div>' +
+      '<div class="field"><label>Contato dos responsáveis</label><input class="input" name="contato_responsavel" placeholder="Telefone ou e-mail" value="' + esc(c.contato_responsavel || "") + '"></div></div>' +
+      '<div class="field"><label>Principal motivo do acompanhamento</label><input class="input" name="principal_motivo" placeholder="Ex.: Dificuldade de atenção na escola" value="' + esc(c.principal_motivo || "") + '"></div>' +
+      '<div class="section-label">Marcadores clínicos</div><p class="hint" style="margin-top:-4px">Nem toda profissão pode diagnosticar: tudo o que não tiver diagnóstico confirmado (com laudo) fica marcado como <b>hipótese</b>.</p>' +
+      '<div id="cfTags"></div><button type="button" class="link-btn" id="cfAddTag">' + icon("plus") + " Adicionar marcador</button>" +
+      '<div class="section-label">Domínios acompanhados</div><div class="check-grid">' + DOMINIOS.map(function (d) { return '<label class="check"><input type="checkbox" name="dom_' + d.k + '"' + ((c.dominios_ativos || []).indexOf(d.k) >= 0 ? " checked" : "") + "> " + esc(d.l) + "</label>"; }).join("") + "</div>" +
+      '<div class="section-label">Combinados</div>' +
+      '<label class="check" style="margin-bottom:8px"><input type="checkbox" name="relatorio_escola_solicitado"' + (c.relatorio_escola_solicitado ? " checked" : "") + "> A escola solicitou um relatório</label>" +
+      '<label class="check"><input type="checkbox" name="consentimento_lgpd"' + (c.consentimento_lgpd ? " checked" : "") + "> Os responsáveis autorizaram o registro e o tratamento dos dados da criança (LGPD)</label>" +
+      '<div class="field" style="margin-top:10px"><label>Observações gerais</label><textarea class="input" name="observacoes" rows="2">' + esc(c.observacoes || "") + "</textarea></div>";
+    var m = openModal(c.id ? "Editar dados do caso" : "Novo caso", body, { lg: true, ok: c.id ? "Salvar" : "Criar caso", onSubmit: submit });
+    var fotoFile = null;
+    if (c.foto_path) signedUrl(c.foto_path).then(function (u) { if (u) $("cfPhoto").outerHTML = '<img class="photo-lg" id="cfPhoto" src="' + u + '" alt="">'; });
+    $("cfFile").onchange = function () {
+      fotoFile = this.files[0] || null; if (!fotoFile) return;
+      if (fotoFile.size > 8 * 1024 * 1024) { toast("A foto deve ter até 8 MB."); fotoFile = null; return; }
+      var rd = new FileReader(); rd.onload = function () { $("cfPhoto").outerHTML = '<img class="photo-lg" id="cfPhoto" src="' + rd.result + '" alt="">'; }; rd.readAsDataURL(fotoFile);
+    };
+    function drawTags() {
+      $("cfTags").innerHTML = etq.map(function (e, i) {
+        return '<div class="tag-editor-row"><input class="input" data-ti="' + i + '" value="' + esc(e.texto) + '" placeholder="Ex.: TDAH, Dificuldade nas transições"><select class="input" data-tt="' + i + '">' +
+          [["hipotese", "Hipótese"], ["observacao", "Característica observada"], ["confirmado", "Diagnóstico confirmado (laudo)"]].map(function (o) { return '<option value="' + o[0] + '"' + ((e.tipo || "hipotese") === o[0] ? " selected" : "") + ">" + o[1] + "</option>"; }).join("") +
+          '</select><button type="button" class="menu-btn" data-td="' + i + '" aria-label="Remover">×</button></div>';
+      }).join("");
+    }
+    drawTags();
+    $("cfAddTag").onclick = function () { etq.push({ texto: "", tipo: "hipotese" }); drawTags(); };
+    $("cfTags").oninput = function (e) { var i = e.target.getAttribute("data-ti"); if (i != null) etq[+i].texto = e.target.value; };
+    $("cfTags").onchange = function (e) { var i = e.target.getAttribute("data-tt"); if (i != null) etq[+i].tipo = e.target.value; };
+    $("cfTags").onclick = function (e) { var i = e.target.getAttribute("data-td"); if (i != null) { etq.splice(+i, 1); drawTags(); } };
+
+    function submit(form, close) {
+      var nome = fval(form, "nome"); if (!nome) { toast("Informe o nome da criança."); return; }
+      var row = {
+        nome: nome, data_nascimento: fval(form, "data_nascimento") || null, serie_escolar: fval(form, "serie_escolar") || null,
+        escola: fval(form, "escola") || null, status: fval(form, "status"), responsaveis: fval(form, "responsaveis") || null,
+        contato_responsavel: fval(form, "contato_responsavel") || null, principal_motivo: fval(form, "principal_motivo") || null,
+        etiquetas: etq.filter(function (e) { return (e.texto || "").trim(); }).map(function (e) { return { texto: e.texto.trim(), tipo: e.tipo || "hipotese" }; }),
+        dominios_ativos: DOMINIOS.filter(function (d) { return fval(form, "dom_" + d.k); }).map(function (d) { return d.k; }),
+        relatorio_escola_solicitado: fval(form, "relatorio_escola_solicitado"), consentimento_lgpd: fval(form, "consentimento_lgpd"),
+        observacoes: fval(form, "observacoes") || null
+      };
+      if (row.consentimento_lgpd && !c.consentimento_lgpd) row.consentimento_em = todayIso();
+      var btn = form.querySelector("[type=submit]"); btn.disabled = true;
+      var p = c.id ? sb.from("casos").update(row).eq("id", c.id).select().maybeSingle()
+        : sb.from("casos").insert(Object.assign({ owner_id: state.user.id, ultimo_registro_em: new Date().toISOString() }, row)).select().maybeSingle();
+      p.then(function (res) {
+        if (fail(res)) { btn.disabled = false; return; }
+        var saved = res.data;
+        if (!fotoFile) { close(); onSaved(saved); return; }
+        var ext = (fotoFile.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+        var path = state.user.id + "/casos/" + saved.id + "/foto-" + Date.now() + "." + ext;
+        sb.storage.from("ncc-arquivos").upload(path, fotoFile, { upsert: true, contentType: fotoFile.type }).then(function (up) {
+          if (up.error) { toast("Caso salvo, mas a foto não foi enviada: " + up.error.message); close(); onSaved(saved); return; }
+          if (c.foto_path) sb.storage.from("ncc-arquivos").remove([c.foto_path]);
+          sb.from("casos").update({ foto_path: path }).eq("id", saved.id).select().maybeSingle().then(function (r2) { close(); onSaved(r2.data || saved); });
+        });
+      });
+    }
+  }
+
+  function escolherCaso(titulo, destino) {
+    sb.from("casos").select("id,nome,status").order("nome").then(function (res) {
+      var rows = (res.data || []).filter(function (c) { return c.status !== "encerrado"; });
+      if (!rows.length) { toast("Cadastre um caso primeiro."); location.hash = "casos"; return; }
+      var m = openModal(titulo, '<div class="field"><label>Criança</label><select class="input" name="caso">' + rows.map(function (c) { return '<option value="' + c.id + '">' + esc(c.nome) + "</option>"; }).join("") + "</select></div>", {
+        ok: "Continuar", onSubmit: function (form, close) { close(); location.hash = "mapa?caso=" + fval(form, "caso") + (destino ? "&aba=" + destino : ""); }
+      });
+    });
+  }
+
+  /* ---------- alertas no sino (casos sem registro há mais de 20 dias) ---------- */
+  function sincronizarAlertas() {
+    Promise.all([
+      sb.from("casos").select("id,nome,status,ultimo_registro_em,created_at"),
+      sb.from("notificacoes").select("link,created_at").gte("created_at", new Date(Date.now() - DIAS_ATENCAO * 86400000).toISOString())
+    ]).then(function (r) {
+      var casos = r[0].data || [], recentes = (r[1].data || []).map(function (n) { return n.link; });
+      var novas = casos.filter(function (c) { return statusEfetivo(c) === "atencao" && recentes.indexOf("mapa?caso=" + c.id) < 0; }).map(function (c) {
+        return { owner_id: state.user.id, titulo: "Retorno sem registro há " + diasDesde(c.ultimo_registro_em || c.created_at) + " dias", texto: c.nome + " — o caso entrou em Atenção.", link: "mapa?caso=" + c.id };
+      });
+      if (novas.length) sb.from("notificacoes").insert(novas).then(loadNotifs);
+    });
+  }
+
+  /* ================= PÁGINA: MEUS CASOS ================= */
+  var casosUI = { aba: "todos", busca: "", ordem: "recentes" };
+  PAGES.casos = function (v) {
+    $("pageActions").innerHTML = '<button type="button" class="btn btn-primary" id="novoCasoBtn">' + icon("plus") + "<span>Novo caso</span></button>";
+    $("novoCasoBtn").onclick = function () { casoForm(null, function (c) { toast("Caso criado."); location.hash = "mapa?caso=" + c.id; }); };
+    v.innerHTML = '<div class="loading">Carregando casos…</div>';
+    var ini = new Date(); ini = ini.getFullYear() + "-" + String(ini.getMonth() + 1).padStart(2, "0") + "-01";
+    Promise.all([
+      sb.from("casos").select("*").order("updated_at", { ascending: false }),
+      sb.from("avaliacoes").select("id,caso_id,instrumento,data").eq("status", "em_andamento"),
+      sb.from("plano_itens").select("id,texto,data_prevista,hora,caso_id,casos(nome)").eq("tipo", "passo").eq("concluido", false).gte("data_prevista", todayIso()).order("data_prevista").limit(4),
+      sb.from("registros").select("id", { count: "exact", head: true }).gte("data", ini)
+    ]).then(function (r) {
+      var casos = r[0].data || [], avsPend = r[1].data || [], prox = r[2].data || [], regMes = r[3].count || 0;
+      casos.forEach(function (c) { c._st = statusEfetivo(c); });
+      var nome = {}; casos.forEach(function (c) { nome[c.id] = c.nome; });
+      var pend = [];
+      avsPend.forEach(function (a) { if (nome[a.caso_id]) pend.push({ cls: "pend-red", ic: "alert", t: "Avaliação pendente", s: nome[a.caso_id] + " · " + a.instrumento, go: "mapa?caso=" + a.caso_id + "&aba=avaliacoes" }); });
+      casos.filter(function (c) { return c._st === "atencao"; }).forEach(function (c) { pend.push({ cls: "pend-gold", ic: "clock", t: "Retorno sem registro há " + diasDesde(c.ultimo_registro_em || c.created_at) + " dias", s: c.nome, go: "mapa?caso=" + c.id + "&aba=registros" }); });
+      casos.filter(function (c) { return c.relatorio_escola_solicitado && c.status !== "encerrado"; }).forEach(function (c) { pend.push({ cls: "pend-sky", ic: "doc", t: "Relatório para a escola", s: c.nome, go: "mapa?caso=" + c.id + "&aba=documentos" }); });
+      var cnt = { em_acompanhamento: 0, em_avaliacao: 0, encerrado: 0, atencao: 0 };
+      casos.forEach(function (c) { cnt[c._st]++; });
+
+      v.innerHTML =
+        '<div class="layout-side"><div>' +
+          '<div class="grid-4">' +
+            statSm("t-green", "users", "Total de casos", casos.length, "Ver todos", "todos") +
+            statSm("t-sand", "doc", "Registros neste mês", regMes, "Ver casos", "em_acompanhamento") +
+            statSm("t-sky", "list", "Avaliações em andamento", avsPend.length, "Ver avaliações", "#pendencias") +
+            statSm("t-rose", "alert", "Atenções e pendências", pend.length, "Ver pendências", "#pendencias") +
+          "</div>" +
+          '<div class="toolbar"><div class="searchbar">' + icon("search") + '<input id="cBusca" placeholder="Buscar por nome, idade, escola, marcador, tema ou observação…" value="' + esc(casosUI.busca) + '"></div>' +
+            '<select class="input" id="cOrdem"><option value="recentes">Mais recentes</option><option value="nome">Nome (A–Z)</option><option value="idade">Idade</option><option value="atualizacao">Última atualização</option></select></div>' +
+          '<div class="tabs" id="cTabs">' + [["todos", "Todos", casos.length], ["em_acompanhamento", "Em acompanhamento", cnt.em_acompanhamento], ["em_avaliacao", "Em avaliação", cnt.em_avaliacao], ["atencao", "Atenção", cnt.atencao], ["encerrado", "Encerrados", cnt.encerrado]].map(function (t) { return '<button type="button" class="tab' + (casosUI.aba === t[0] ? " active" : "") + '" data-aba="' + t[0] + '">' + t[1] + " (" + t[2] + ")</button>"; }).join("") + "</div>" +
+          '<div class="card" style="padding:6px 10px"><div class="table-wrap" style="position:relative"><table class="tbl"><thead><tr><th>Nome</th><th>Idade</th><th class="hide-sm">Principal motivo</th><th class="hide-sm">Última atualização</th><th>Status</th><th style="text-align:right">Ações</th></tr></thead><tbody id="cRows"></tbody></table></div></div>' +
+        "</div>" +
+        '<div class="side-col">' +
+          '<div class="card"><h3 class="card-title" style="margin-bottom:14px">Meu trabalho em números</h3><div class="donut-wrap">' +
+            donut([{ v: cnt.em_acompanhamento, c: "var(--accent)" }, { v: cnt.em_avaliacao, c: "var(--icon-sky)" }, { v: cnt.atencao, c: "var(--gold)" }, { v: cnt.encerrado, c: "var(--line-strong)" }], 120, 16, '<b style="font-size:24px;line-height:1">' + casos.length + '</b><span style="font-size:11px;color:var(--ink-soft)">casos</span>') +
+            '<div class="legend">' + [["Em acompanhamento", cnt.em_acompanhamento, "var(--accent)"], ["Em avaliação", cnt.em_avaliacao, "var(--icon-sky)"], ["Atenção", cnt.atencao, "var(--gold)"], ["Encerrados", cnt.encerrado, "var(--line-strong)"]].map(function (l) { return '<div><i style="background:' + l[2] + '"></i>' + l[0] + "<b>" + l[1] + "</b></div>"; }).join("") + "</div></div></div>" +
+          '<div class="card"><h3 class="card-title" style="margin-bottom:8px">Próximas atividades</h3>' + (prox.length ? prox.map(function (p) { var d = parseDate(p.data_prevista); return '<button type="button" class="list-item" data-go="mapa?caso=' + p.caso_id + '&aba=plano"><span class="date-box"><b>' + d.getDate() + "</b><span>" + MES[d.getMonth()] + '</span></span><span class="list-main"><span class="list-title">' + esc(p.texto) + '</span><span class="list-sub">' + esc((p.casos && p.casos.nome) || "") + (p.hora ? " · " + esc(p.hora) : "") + "</span></span></button>"; }).join("") : '<p class="hint" style="margin:6px 0 0">Nenhuma atividade com data. Adicione próximos passos no Plano de cada caso.</p>') + "</div>" +
+          '<div class="card" id="pendencias"><h3 class="card-title" style="margin-bottom:8px">Atenções e pendências</h3>' + (pend.length ? pend.map(function (p) { return '<div class="pend ' + p.cls + '" data-go="' + p.go + '">' + icon(p.ic) + "<div><b>" + esc(p.t) + "</b><span>" + esc(p.s) + "</span></div></div>"; }).join("") : '<p class="hint" style="margin:6px 0 0">Nenhuma pendência. Tudo em dia!</p>') + "</div>" +
+        "</div></div>" +
+        '<div class="shortcuts">' +
+          '<div class="card shortcut"><h4>' + icon("search") + 'Recursos para seus casos</h4><p>Encontre conteúdos, estudos e ferramentas relacionados aos seus acompanhamentos.</p><button type="button" class="btn" data-go="pesquisa">Pesquisar no NCC</button></div>' +
+          '<div class="card shortcut"><h4>' + icon("list") + 'Adicionar avaliação</h4><p>Registre resultados de instrumentos e organize suas avaliações.</p><button type="button" class="btn" id="scAval">Nova avaliação</button></div>' +
+          '<div class="card shortcut"><h4>' + icon("chart") + 'Gerar relatório</h4><p>Crie relatórios para a família, a escola ou a equipe multidisciplinar.</p><button type="button" class="btn" id="scRel">Novo relatório</button></div>' +
+          '<div class="quote-card"><div class="quote">Cada caso é único.<br>A ciência te ajuda a enxergar mais possibilidades.</div></div>' +
+        "</div>";
+
+      $("cOrdem").value = casosUI.ordem;
+      function draw() {
+        var q = casosUI.busca.toLowerCase();
+        var rows = casos.filter(function (c) {
+          if (casosUI.aba !== "todos" && c._st !== casosUI.aba) return false;
+          if (!q) return true;
+          var hay = [c.nome, c.escola, c.principal_motivo, c.serie_escolar, c.responsaveis, c.observacoes, idadeTexto(c.data_nascimento, true), (c.etiquetas || []).map(function (e) { return e.texto; }).join(" ")].join(" ").toLowerCase();
+          return hay.indexOf(q) >= 0;
+        });
+        rows.sort(function (a, b) {
+          if (casosUI.ordem === "nome") return a.nome.localeCompare(b.nome, "pt-BR");
+          if (casosUI.ordem === "idade") return String(b.data_nascimento || "").localeCompare(String(a.data_nascimento || ""));
+          if (casosUI.ordem === "atualizacao") return String(b.ultimo_registro_em || "").localeCompare(String(a.ultimo_registro_em || ""));
+          return String(b.created_at).localeCompare(String(a.created_at));
+        });
+        $("cRows").innerHTML = rows.length ? rows.map(function (c) {
+          return '<tr data-caso="' + c.id + '"><td><span class="name-cell"><span class="avatar avatar-sm">' + esc(initials(c.nome)) + "</span>" + esc(c.nome) + "</span></td><td>" + esc(idadeTexto(c.data_nascimento, true) || "—") + '</td><td class="hide-sm">' + esc(c.principal_motivo || "—") + '</td><td class="hide-sm">' + fmtDataHora(c.ultimo_registro_em || c.updated_at) + "</td><td>" + chipStatus(c._st) + '</td><td style="text-align:right"><button type="button" class="menu-btn" data-menu="' + c.id + '" aria-label="Ações">⋯</button></td></tr>';
+        }).join("") : '<tr><td colspan="6"><div class="empty">' + icon("users") + "<strong>" + (casos.length ? "Nenhum caso encontrado." : "Nenhuma criança cadastrada ainda.") + "</strong><p>" + (casos.length ? "Tente outra busca ou outra aba." : "Comece cadastrando o primeiro acompanhamento.") + "</p>" + (casos.length ? "" : '<button type="button" class="btn btn-primary" id="emptyNovo">' + icon("plus") + " Novo caso</button>") + "</div></td></tr>";
+        var en = $("emptyNovo"); if (en) en.onclick = $("novoCasoBtn").onclick;
+      }
+      draw();
+      $("cBusca").oninput = function () { casosUI.busca = this.value; draw(); };
+      $("cOrdem").onchange = function () { casosUI.ordem = this.value; draw(); };
+      $("cTabs").onclick = function (e) { var t = e.target.closest("[data-aba]"); if (!t) return; casosUI.aba = t.getAttribute("data-aba"); $("cTabs").querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("active", x === t); }); draw(); };
+      $("cRows").onclick = function (e) {
+        var mb = e.target.closest("[data-menu]");
+        if (mb) { e.stopPropagation(); rowMenu(mb, casos.filter(function (c) { return c.id === mb.getAttribute("data-menu"); })[0]); return; }
+        var tr = e.target.closest("[data-caso]"); if (tr) location.hash = "mapa?caso=" + tr.getAttribute("data-caso");
+      };
+      v.querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { var g = b.getAttribute("data-go"); if (g.charAt(0) === "#") { var el = $(g.slice(1)); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); } else location.hash = g; }; });
+      v.querySelectorAll("[data-tabgo]").forEach(function (b) { b.onclick = function () { var g = b.getAttribute("data-tabgo"); if (g.charAt(0) === "#") { var el = $(g.slice(1)); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); return; } casosUI.aba = g; PAGES.casos(v); }; });
+      $("scAval").onclick = function () { escolherCaso("Nova avaliação", "avaliacoes"); };
+      $("scRel").onclick = function () { escolherCaso("Novo relatório", "documentos"); };
+    });
+
+    function statSm(tint, ic, label, n, link, go) {
+      return '<div class="stat stat-sm ' + tint + '"><div class="stat-head" style="min-height:0">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + n + '</div><button type="button" class="link-btn" data-tabgo="' + go + '">' + esc(link) + " " + icon("arrow") + "</button></div>";
+    }
+    function rowMenu(btn, c) {
+      document.querySelectorAll(".row-menu").forEach(function (m) { m.remove(); });
+      var m = document.createElement("div"); m.className = "row-menu";
+      m.innerHTML = '<button data-a="abrir">Abrir mapa de acompanhamento</button><button data-a="editar">Editar dados</button>' +
+        (c.status === "encerrado" ? '<button data-a="reabrir">Reabrir caso</button>' : '<button data-a="encerrar">Encerrar caso</button>') + '<button data-a="excluir" class="danger">Excluir caso</button>';
+      var wrap = btn.closest(".table-wrap"); wrap.appendChild(m);
+      m.style.top = (btn.getBoundingClientRect().bottom - wrap.getBoundingClientRect().top + 4) + "px";
+      setTimeout(function () { document.addEventListener("click", function h() { m.remove(); document.removeEventListener("click", h); }); }, 0);
+      m.onclick = function (e) {
+        var a = e.target.getAttribute("data-a"); if (!a) return;
+        if (a === "abrir") location.hash = "mapa?caso=" + c.id;
+        if (a === "editar") casoForm(c, function () { toast("Caso atualizado."); PAGES.casos($("view")); });
+        if (a === "encerrar" || a === "reabrir") sb.from("casos").update({ status: a === "encerrar" ? "encerrado" : "em_acompanhamento" }).eq("id", c.id).then(function (r) { if (!fail(r)) { toast(a === "encerrar" ? "Caso encerrado." : "Caso reaberto."); PAGES.casos($("view")); } });
+        if (a === "excluir") {
+          openModal("Excluir caso", "<p>Tem certeza que deseja excluir o caso de <b>" + esc(c.nome) + "</b>? Todos os registros, avaliações, planos e documentos dele serão apagados. <b>Isso não pode ser desfeito.</b></p><p class=\"hint\">Se o acompanhamento só terminou, prefira <b>Encerrar caso</b>: os dados ficam guardados.</p>", {
+            ok: "Excluir definitivamente", onSubmit: function (f, close) {
+              sb.from("casos").delete().eq("id", c.id).then(function (r) { if (!fail(r, "Não foi possível excluir")) { close(); toast("Caso excluído."); PAGES.casos($("view")); } });
+            }
+          });
+        }
+      };
+    }
+  };
+
+  /* ================= PÁGINA: MAPA DE ACOMPANHAMENTO ================= */
+  var ABAS = [["visao", "Visão geral", "map"], ["registros", "Registros", "doc"], ["avaliacoes", "Avaliações", "list"], ["plano", "Plano", "target"], ["documentos", "Documentos", "folder"]];
+
+  PAGES.mapa = function (v) {
+    var casoId = hashParam("caso"), aba = hashParam("aba") || "visao";
+    sb.from("casos").select("id,nome,status,ultimo_registro_em,created_at").order("nome").then(function (res) {
+      var todos = res.data || [];
+      if (!casoId) {
+        v.innerHTML = '<div class="card" style="max-width:720px">' + (todos.length ? '<h3 class="card-title" style="margin-bottom:10px">Selecione um caso</h3>' + todos.map(function (c) { return '<button type="button" class="list-item" data-go="mapa?caso=' + c.id + '"><span class="avatar avatar-sm">' + esc(initials(c.nome)) + '</span><span class="list-main"><span class="list-title">' + esc(c.nome) + "</span></span>" + chipStatus(statusEfetivo(c)) + "</button>"; }).join("") : '<div class="empty">' + icon("users") + '<strong>Nenhum caso cadastrado.</strong><p>Cadastre uma criança em Meus casos para abrir o mapa.</p><button type="button" class="btn btn-primary" data-go="casos">Ir para Meus casos</button></div>') + "</div>";
+        v.querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { location.hash = b.getAttribute("data-go"); }; });
+        return;
+      }
+      $("pageActions").innerHTML = '<select class="input" id="trocaCaso" style="width:auto;min-width:200px" aria-label="Selecionar outro caso"><option value="">Selecionar outro caso</option>' + todos.filter(function (c) { return c.id !== casoId; }).map(function (c) { return '<option value="' + c.id + '">' + esc(c.nome) + "</option>"; }).join("") + "</select>";
+      $("trocaCaso").onchange = function () { if (this.value) location.hash = "mapa?caso=" + this.value; };
+      carregarCaso(v, casoId, aba);
+    });
+  };
+
+  function carregarCaso(v, casoId, aba) {
+    v.innerHTML = '<div class="loading">Carregando…</div>';
+    sb.from("casos").select("*").eq("id", casoId).maybeSingle().then(function (res) {
+      var c = res.data;
+      if (!c) { v.innerHTML = '<div class="card empty">' + icon("users") + '<strong>Caso não encontrado.</strong><p>Ele pode ter sido excluído.</p><button type="button" class="btn" onclick="location.hash=\'casos\'">Voltar para Meus casos</button></div>'; return; }
+      registrarAtividade("caso", c.id, c.nome, [idadeTexto(c.data_nascimento, true), c.principal_motivo].filter(Boolean).join(" · "));
+      var st = statusEfetivo(c);
+      v.innerHTML =
+        '<div class="card case-head"><span class="case-photo" id="casePhoto">' + esc(initials(c.nome)) + "</span>" +
+          '<div><div class="case-name">' + esc(c.nome) + '</div><div class="case-meta">' + esc([idadeTexto(c.data_nascimento), c.serie_escolar].filter(Boolean).join(" · ") || "Idade não informada") + "</div>" +
+          "<div>" + chipStatus(st) + " " + (c.etiquetas || []).map(tagHtml).join("") + "</div>" +
+          '<div class="case-facts"><div><b>Responsáveis</b>' + esc(c.responsaveis || "—") + "</div><div><b>Escola</b>" + esc(c.escola || "—") + "</div><div><b>Profissional responsável</b>Você</div>" + (c.consentimento_lgpd ? "" : '<div style="color:var(--gold-ink)"><b style="color:var(--gold-ink)">LGPD</b>Consentimento não registrado</div>') + "</div></div>" +
+          '<button type="button" class="btn" id="editCaso">' + icon("edit") + " Editar dados</button></div>" +
+        '<div class="ctabs" id="cTabsMapa">' + ABAS.map(function (a) { return '<button type="button" class="ctab' + (a[0] === aba ? " active" : "") + '" data-a="' + a[0] + '">' + icon(a[2]) + esc(a[1]) + "</button>"; }).join("") + "</div>" +
+        '<div id="abaBody"><div class="loading">Carregando…</div></div>';
+      if (c.foto_path) signedUrl(c.foto_path).then(function (u) { if (u && $("casePhoto")) $("casePhoto").outerHTML = '<img class="case-photo" id="casePhoto" src="' + u + '" alt="Foto de ' + esc(c.nome) + '">'; });
+      $("editCaso").onclick = function () { casoForm(c, function () { toast("Dados atualizados."); carregarCaso(v, c.id, aba); }); };
+      $("cTabsMapa").onclick = function (e) { var b = e.target.closest("[data-a]"); if (!b) return; history.replaceState(null, "", "#mapa?caso=" + c.id + "&aba=" + b.getAttribute("data-a")); aba = b.getAttribute("data-a"); $("cTabsMapa").querySelectorAll(".ctab").forEach(function (x) { x.classList.toggle("active", x === b); }); abrirAba(); };
+      function abrirAba() { var fn = ABA_FN[aba] || ABA_FN.visao; fn($("abaBody"), c, function (novaAba) { if (novaAba) { aba = novaAba; history.replaceState(null, "", "#mapa?caso=" + c.id + "&aba=" + aba); $("cTabsMapa").querySelectorAll(".ctab").forEach(function (x) { x.classList.toggle("active", x.getAttribute("data-a") === aba); }); } abrirAba(); }); }
+      abrirAba();
+    });
+  }
+
+  var ABA_FN = {
+    /* ---------- Visão geral ---------- */
+    visao: function (el, c, reabrir) {
+      Promise.all([
+        sb.from("registros").select("*").eq("caso_id", c.id).order("destaque", { ascending: false }).order("data", { ascending: false }).limit(5),
+        sb.from("avaliacoes").select("*").eq("caso_id", c.id).order("data", { ascending: false }).limit(4),
+        sb.from("plano_itens").select("*").eq("caso_id", c.id).eq("tipo", "passo").order("concluido").order("data_prevista", { ascending: true, nullsFirst: false }).limit(6)
+      ]).then(function (r) {
+        var regs = r[0].data || [], avs = r[1].data || [], passos = r[2].data || [];
+        var ativos = DOMINIOS.filter(function (d) { return (c.dominios_ativos || []).indexOf(d.k) >= 0; });
+        var metade = Math.ceil(ativos.length / 2);
+        function pill(d) { return '<div class="dom-pill t-' + d.t + '"><span style="color:var(--icon-' + d.t + ')">' + icon(d.ic) + "</span><div><b>" + esc(d.l) + "</b><span>sem dados</span></div></div>"; }
+        el.innerHTML =
+          '<div class="ov-grid">' +
+            '<div class="card"><div class="card-head"><h3 class="card-title">Mapa de domínios</h3><button type="button" class="link-btn" data-edit>Escolher domínios</button></div>' +
+              (ativos.length ? '<div class="dom-map"><div class="dom-col">' + ativos.slice(0, metade).map(pill).join("") + "</div>" +
+                donut(ativos.map(function () { return { v: 1, c: "var(--sunken)" }; }), 180, 26, '<span style="color:var(--ink-faint)"><svg class="icon" style="width:34px;height:34px" viewBox="0 0 24 24">' + I.child + '</svg></span><b style="font-size:14px">' + esc(c.nome.split(" ")[0]) + '</b><span style="font-size:11.5px;color:var(--ink-soft)">' + esc(idadeTexto(c.data_nascimento, true)) + "</span>") +
+                '<div class="dom-col">' + ativos.slice(metade).map(pill).join("") + "</div></div>" +
+                '<p class="note" style="margin:14px 0 0">Os percentuais serão calculados automaticamente a partir dos instrumentos aplicados, conforme as regras do material NCC — em configuração. Estresse e Adversidades aparecerão em cor de alerta quando estiverem altos.</p>'
+                : '<div class="empty"><strong>Nenhum domínio ativo.</strong><p>Escolha quais domínios acompanhar para esta criança.</p></div>') +
+            "</div>" +
+            '<div class="card"><div class="card-head"><h3 class="card-title">Principais observações</h3><button type="button" class="btn" data-aba="registros" style="padding:6px 12px">Ver todas</button></div>' +
+              (regs.length ? '<div class="timeline">' + regs.slice(0, 4).map(function (g) { return '<div class="tl-item c-' + g.contexto + '"><div class="tl-top">' + esc(g.titulo || (g.texto || "").slice(0, 60) || "Registro") + "<span>" + fmtData(g.data) + '</span></div><div class="tl-sub">' + esc(CONTEXTOS[g.contexto]) + (g.dominios && g.dominios.length ? " · " + esc(g.dominios.map(domLabel).join(", ")) : "") + "</div></div>"; }).join("") + "</div>"
+                : '<div class="empty"><strong>Nenhum registro ainda.</strong><p>Tudo o que acontece no caso é anotado em Registros.</p></div>') +
+            "</div>" +
+            '<div class="card"><h3 class="card-title" style="margin-bottom:12px">Ações rápidas</h3><div class="qa">' +
+              '<button type="button" class="btn" data-aba="registros" data-novo="1">' + icon("plus") + " Adicionar registro</button>" +
+              '<button type="button" class="btn" data-aba="avaliacoes" data-novo="1">' + icon("list") + " Registrar avaliação</button>" +
+              '<button type="button" class="btn" data-aba="plano">' + icon("target") + " Criar plano de intervenção</button>" +
+              '<button type="button" class="btn" data-aba="documentos">' + icon("doc") + " Gerar relatório</button>" +
+              '<button type="button" class="btn" data-go="pesquisa">' + icon("search") + " Pesquisar no NCC</button>" +
+            "</div></div>" +
+          "</div>" +
+          '<div class="ov-grid-2">' +
+            '<div class="card"><h3 class="card-title" style="margin-bottom:10px">Evolução dos principais indicadores</h3><div class="empty">' + icon("chart") + "<strong>Ainda sem indicadores.</strong><p>O gráfico mostrará a evolução dos domínios ao longo do tempo, a partir das avaliações aplicadas.</p></div></div>" +
+            '<div class="card"><div class="card-head"><h3 class="card-title">Avaliações realizadas</h3><button type="button" class="btn" data-aba="avaliacoes" style="padding:6px 12px">Ver todas</button></div>' +
+              (avs.length ? avs.map(function (a) { return '<div class="list-item" style="cursor:default"><span class="list-ico t-sand" style="color:var(--icon-sand)">' + icon("list") + '</span><span class="list-main"><span class="list-title">' + esc(a.instrumento) + '</span><span class="list-sub">' + esc(a.descricao || "") + (a.status === "em_andamento" ? " · em andamento" : "") + '</span></span><span class="list-sub">' + fmtData(a.data) + "</span></div>"; }).join("")
+                : '<div class="empty"><strong>Nenhuma avaliação registrada.</strong></div>') + "</div>" +
+            '<div class="card"><h3 class="card-title" style="margin-bottom:6px">Próximos passos</h3>' +
+              (passos.length ? passos.map(function (p) { return '<label class="step' + (p.concluido ? " done" : "") + '"><input type="checkbox" data-passo="' + p.id + '"' + (p.concluido ? " checked" : "") + "><span>" + esc(p.texto) + (p.data_prevista ? "<small>" + fmtData(p.data_prevista) + (p.hora ? " · " + esc(p.hora) : "") + "</small>" : "") + "</span></label>"; }).join("") : '<p class="hint" style="margin:6px 0 0">Nenhum próximo passo. Adicione na aba Plano.</p>') +
+              '<button type="button" class="link-btn" data-aba="plano" style="margin-top:8px">Ver plano completo ' + icon("arrow") + "</button></div>" +
+          "</div>";
+        el.querySelectorAll("[data-aba]").forEach(function (b) { b.onclick = function () { if (b.getAttribute("data-novo")) sessionStorage.setItem("ncc-novo", "1"); reabrir(b.getAttribute("data-aba")); }; });
+        el.querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { location.hash = b.getAttribute("data-go"); }; });
+        var ed = el.querySelector("[data-edit]"); if (ed) ed.onclick = function () { casoForm(c, function (n) { Object.assign(c, n); reabrir(); }); };
+        el.querySelectorAll("[data-passo]").forEach(function (cb) { cb.onchange = function () { sb.from("plano_itens").update({ concluido: cb.checked }).eq("id", cb.getAttribute("data-passo")).then(function (r) { if (!fail(r)) cb.closest(".step").classList.toggle("done", cb.checked); }); }; });
+      });
+    },
+
+    /* ---------- Registros ---------- */
+    registros: function (el, c, reabrir) {
+      var ativos = DOMINIOS.filter(function (d) { return (c.dominios_ativos || []).indexOf(d.k) >= 0; });
+      sb.from("registros").select("*").eq("caso_id", c.id).order("data", { ascending: false }).order("created_at", { ascending: false }).then(function (res) {
+        var regs = res.data || [];
+        el.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap"><p class="hint" style="margin:0">Tudo o que acontece com a criança — atendimentos, relatos da família, informações da escola — fica aqui, com o contexto e os domínios relacionados.</p><button type="button" class="btn btn-primary" id="novoReg">' + icon("plus") + " Novo registro</button></div>" +
+          (regs.length ? regs.map(function (g) {
+            return '<div class="reg"><div class="reg-head"><span class="date">' + fmtData(g.data) + '</span><span class="tag">' + esc(CONTEXTOS[g.contexto]) + "</span>" + (g.dominios || []).map(function (k) { return '<span class="tag tag-hip">' + esc(domLabel(k)) + "</span>"; }).join("") + (g.destaque ? '<span class="tag tag-obs">Principal observação</span>' : "") + "</div>" +
+              (g.titulo ? '<div style="font-weight:600;margin-bottom:4px">' + esc(g.titulo) + "</div>" : "") + '<div class="reg-text">' + esc(g.texto || "") + '</div><div class="reg-actions"><button type="button" class="link-btn" data-ed="' + g.id + '">' + icon("edit") + ' Editar</button><button type="button" class="link-btn" data-del="' + g.id + '" style="color:var(--danger)">' + icon("trash") + " Excluir</button></div></div>";
+          }).join("") : '<div class="card empty">' + icon("doc") + "<strong>Nenhum registro ainda.</strong><p>Registre o primeiro atendimento ou observação.</p></div>");
+        $("novoReg").onclick = function () { form(null); };
+        el.querySelectorAll("[data-ed]").forEach(function (b) { b.onclick = function () { form(regs.filter(function (g) { return g.id === b.getAttribute("data-ed"); })[0]); }; });
+        el.querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function () { openModal("Excluir registro", "<p>Excluir este registro? Isso não pode ser desfeito.</p>", { ok: "Excluir", onSubmit: function (f, close) { sb.from("registros").delete().eq("id", b.getAttribute("data-del")).then(function (r) { if (!fail(r)) { close(); toast("Registro excluído."); reabrir(); } }); } }); }; });
+        if (sessionStorage.getItem("ncc-novo")) { sessionStorage.removeItem("ncc-novo"); form(null); }
+      });
+      function form(g) {
+        g = g || { data: todayIso(), contexto: "atendimento", dominios: [] };
+        var m = openModal(g.id ? "Editar registro" : "Novo registro",
+          '<div class="form-row"><div class="field"><label>Data</label><input class="input" type="date" name="data" value="' + esc(g.data) + '" required></div>' +
+          '<div class="field"><label>Contexto</label><select class="input" name="contexto">' + Object.keys(CONTEXTOS).map(function (k) { return '<option value="' + k + '"' + (g.contexto === k ? " selected" : "") + ">" + CONTEXTOS[k] + "</option>"; }).join("") + "</select></div></div>" +
+          '<div class="field"><label>Título (opcional)</label><input class="input" name="titulo" placeholder="Ex.: Dificuldade de transição entre atividades" value="' + esc(g.titulo || "") + '"></div>' +
+          '<div class="field"><label style="display:flex;justify-content:space-between;align-items:center">Registro <button type="button" class="btn ai-btn" id="iaOrg" style="padding:5px 10px;font-size:12px">' + icon("sparkle") + " Organizar texto com IA</button></label><textarea class=\"input\" name=\"texto\" rows=\"9\" placeholder=\"Descreva o que aconteceu, o que foi observado ou relatado…\">" + esc(g.texto || "") + "</textarea></div>" +
+          '<div class="field"><label>Domínios relacionados</label><div class="dom-toggle">' + ativos.map(function (d) { var on = (g.dominios || []).indexOf(d.k) >= 0; return '<label class="' + (on ? "on" : "") + '"><input type="checkbox" name="d_' + d.k + '"' + (on ? " checked" : "") + ">" + esc(d.l) + "</label>"; }).join("") + "</div></div>" +
+          '<label class="check"><input type="checkbox" name="destaque"' + (g.destaque ? " checked" : "") + "> Mostrar em “Principais observações” da Visão geral</label>",
+          { lg: true, onSubmit: function (f, close) {
+            var row = { data: fval(f, "data") || todayIso(), contexto: fval(f, "contexto"), titulo: fval(f, "titulo") || null, texto: fval(f, "texto"), destaque: fval(f, "destaque"),
+              dominios: ativos.filter(function (d) { return fval(f, "d_" + d.k); }).map(function (d) { return d.k; }) };
+            if (!row.texto && !row.titulo) { toast("Escreva o registro."); return; }
+            var p = g.id ? sb.from("registros").update(row).eq("id", g.id) : sb.from("registros").insert(Object.assign({ owner_id: state.user.id, caso_id: c.id }, row));
+            p.then(function (r) { if (!fail(r)) { close(); toast("Registro salvo."); reabrir(); } });
+          } });
+        m.form.querySelectorAll(".dom-toggle label").forEach(function (l) { l.querySelector("input").onchange = function () { l.classList.toggle("on", this.checked); }; });
+        $("iaOrg").onclick = function () {
+          var ta = m.form.querySelector("[name=texto]"); if (!ta.value.trim()) { toast("Escreva o registro primeiro."); return; }
+          var b = this; b.disabled = true; b.innerHTML = icon("sparkle") + " Organizando…";
+          invokeIA({ action: "organizar_registro", texto: ta.value, contexto: fval(m.form, "contexto") }).then(function (t) { ta.value = t; toast("Texto organizado. Revise antes de salvar."); }, function (e) { toast(e.message); }).then(function () { b.disabled = false; b.innerHTML = icon("sparkle") + " Organizar texto com IA"; });
+        };
+      }
+    },
+
+    /* ---------- Avaliações ---------- */
+    avaliacoes: function (el, c, reabrir) {
+      sb.from("avaliacoes").select("*").eq("caso_id", c.id).order("data", { ascending: false }).then(function (res) {
+        var avs = res.data || [];
+        el.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap"><p class="hint" style="margin:0">Registre os instrumentos aplicados e os resultados. São eles que vão alimentar os percentuais do Mapa de domínios.</p><button type="button" class="btn btn-primary" id="novaAv">' + icon("plus") + " Registrar avaliação</button></div>" +
+          (avs.length ? '<div class="card" style="padding:6px 16px">' + avs.map(function (a) {
+            var res = a.resultados && typeof a.resultados === "object" ? Object.keys(a.resultados).map(function (k) { return esc(k) + ": <b>" + esc(a.resultados[k]) + "</b>"; }).join(" · ") : "";
+            return '<div class="doc-row"><span class="list-ico t-sand" style="color:var(--icon-sand)">' + icon("list") + '</span><div class="list-main"><span class="list-title">' + esc(a.instrumento) + " " + (a.status === "em_andamento" ? '<span class="chip-status st-atencao">Em andamento</span>' : '<span class="chip-status st-em_acompanhamento">Concluída</span>') + '</span><span class="list-sub">' + fmtData(a.data) + (a.descricao ? " · " + esc(a.descricao) : "") + "</span>" + (res ? '<div style="font-size:12.5px;margin-top:4px">' + res + "</div>" : "") + (a.interpretacao ? '<div style="font-size:12.5px;color:var(--ink-soft);margin-top:4px;white-space:pre-wrap">' + esc(a.interpretacao) + "</div>" : "") + '</div><div style="display:flex;gap:10px">' + (a.status === "em_andamento" ? '<button type="button" class="link-btn" data-fim="' + a.id + '">' + icon("check") + " Concluir</button>" : "") + '<button type="button" class="link-btn" data-ed="' + a.id + '">' + icon("edit") + '</button><button type="button" class="link-btn" data-del="' + a.id + '" style="color:var(--danger)">' + icon("trash") + "</button></div></div>";
+          }).join("") + "</div>" : '<div class="card empty">' + icon("list") + "<strong>Nenhuma avaliação registrada.</strong><p>Quando uma avaliação é iniciada e ainda não foi concluída, ela aparece como pendência em Meus casos.</p></div>") +
+          '<p class="note" style="margin-top:14px">Instrumentos protegidos por direitos autorais (ex.: CBCL, BRIEF-2, Perfil Sensorial): registre apenas os resultados e a interpretação — nunca copie as perguntas do instrumento.</p>';
+        $("novaAv").onclick = function () { form(null); };
+        el.querySelectorAll("[data-ed]").forEach(function (b) { b.onclick = function () { form(avs.filter(function (a) { return a.id === b.getAttribute("data-ed"); })[0]); }; });
+        el.querySelectorAll("[data-fim]").forEach(function (b) { b.onclick = function () { sb.from("avaliacoes").update({ status: "concluida" }).eq("id", b.getAttribute("data-fim")).then(function (r) { if (!fail(r)) { toast("Avaliação concluída."); reabrir(); } }); }; });
+        el.querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function () { openModal("Excluir avaliação", "<p>Excluir esta avaliação? Isso não pode ser desfeito.</p>", { ok: "Excluir", onSubmit: function (f, close) { sb.from("avaliacoes").delete().eq("id", b.getAttribute("data-del")).then(function (r) { if (!fail(r)) { close(); toast("Avaliação excluída."); reabrir(); } }); } }); }; });
+        if (sessionStorage.getItem("ncc-novo")) { sessionStorage.removeItem("ncc-novo"); form(null); }
+      });
+      function form(a) {
+        a = a || { data: todayIso(), status: "em_andamento", resultados: {} };
+        var linhas = Object.keys(a.resultados || {}).map(function (k) { return k + ": " + a.resultados[k]; }).join("\n");
+        openModal(a.id ? "Editar avaliação" : "Registrar avaliação",
+          '<div class="field"><label>Instrumento *</label><input class="input" name="instrumento" required placeholder="Ex.: BRIEF-2" value="' + esc(a.instrumento || "") + '"></div>' +
+          '<div class="form-row"><div class="field"><label>O que avalia</label><input class="input" name="descricao" placeholder="Ex.: Funções executivas" value="' + esc(a.descricao || "") + '"></div>' +
+          '<div class="form-row" style="grid-template-columns:1fr 1fr"><div class="field"><label>Data</label><input class="input" type="date" name="data" value="' + esc(a.data) + '"></div><div class="field"><label>Situação</label><select class="input" name="status"><option value="em_andamento"' + (a.status === "em_andamento" ? " selected" : "") + '>Em andamento</option><option value="concluida"' + (a.status === "concluida" ? " selected" : "") + ">Concluída</option></select></div></div></div>" +
+          '<div class="field"><label>Resultados (um por linha, no formato “Escala: pontuação”)</label><textarea class="input" name="resultados" rows="5" placeholder="Índice global: 65&#10;Inibição: 70&#10;Memória de trabalho: 58">' + esc(linhas) + "</textarea></div>" +
+          '<div class="field"><label>Interpretação do profissional</label><textarea class="input" name="interpretacao" rows="4">' + esc(a.interpretacao || "") + "</textarea></div>",
+          { lg: true, onSubmit: function (f, close) {
+            var inst = fval(f, "instrumento"); if (!inst) { toast("Informe o instrumento."); return; }
+            var resObj = {}; fval(f, "resultados").split("\n").forEach(function (l) { var i = l.indexOf(":"); if (i > 0) { var k = l.slice(0, i).trim(), val = l.slice(i + 1).trim(); if (k) resObj[k] = val; } else if (l.trim()) resObj[l.trim()] = ""; });
+            var row = { instrumento: inst, descricao: fval(f, "descricao") || null, data: fval(f, "data") || todayIso(), status: fval(f, "status"), resultados: resObj, interpretacao: fval(f, "interpretacao") || null };
+            var p = a.id ? sb.from("avaliacoes").update(row).eq("id", a.id) : sb.from("avaliacoes").insert(Object.assign({ owner_id: state.user.id, caso_id: c.id }, row));
+            p.then(function (r) { if (!fail(r)) { close(); toast("Avaliação salva."); reabrir(); } });
+          } });
+      }
+    },
+
+    /* ---------- Plano ---------- */
+    plano: function (el, c, reabrir) {
+      sb.from("plano_itens").select("*").eq("caso_id", c.id).order("concluido").order("data_prevista", { ascending: true, nullsFirst: false }).order("created_at").then(function (res) {
+        var itens = res.data || [];
+        var cols = [["objetivo", "Objetivos", "O que se espera alcançar com a criança.", "target"], ["estrategia", "Estratégias", "Como vamos trabalhar para chegar lá.", "puzzle"], ["passo", "Próximos passos", "Ações com data: reuniões, devolutivas, aplicações.", "calendar"]];
+        el.innerHTML = '<div class="plan-cols">' + cols.map(function (col) {
+          var lista = itens.filter(function (i) { return i.tipo === col[0]; });
+          return '<div class="card"><h3 class="card-title" style="display:flex;align-items:center;gap:8px">' + icon(col[3]) + esc(col[1]) + '</h3><p class="hint" style="margin:4px 0 10px">' + esc(col[2]) + "</p>" +
+            (lista.length ? lista.map(function (i) { return '<div class="plan-item' + (i.concluido ? " step done" : "") + '"><input type="checkbox" data-ok="' + i.id + '"' + (i.concluido ? " checked" : "") + ' style="margin-top:3px;accent-color:var(--accent)"><span>' + esc(i.texto) + (i.data_prevista ? '<small style="display:block;color:var(--ink-faint);font-size:11.5px">' + fmtData(i.data_prevista) + (i.hora ? " · " + esc(i.hora) : "") + "</small>" : "") + '</span><button type="button" class="x" data-rm="' + i.id + '" aria-label="Remover">×</button></div>'; }).join("") : '<p class="hint" style="margin:0">Nada ainda.</p>') +
+            '<form class="plan-add" data-tipo="' + col[0] + '"><input class="input" name="t" placeholder="Adicionar…">' + (col[0] === "passo" ? '<input class="input" type="date" name="d" style="flex:0 0 150px"><input class="input" type="time" name="h" style="flex:0 0 110px">' : "") + '<button class="btn" type="submit">' + icon("plus") + "</button></form></div>";
+        }).join("") + "</div>";
+        el.querySelectorAll(".plan-add").forEach(function (f) {
+          f.onsubmit = function (e) {
+            e.preventDefault(); var t = f.querySelector("[name=t]").value.trim(); if (!t) return;
+            var row = { owner_id: state.user.id, caso_id: c.id, tipo: f.getAttribute("data-tipo"), texto: t };
+            var d = f.querySelector("[name=d]"), h = f.querySelector("[name=h]");
+            if (d && d.value) row.data_prevista = d.value; if (h && h.value) row.hora = h.value;
+            sb.from("plano_itens").insert(row).then(function (r) { if (!fail(r)) reabrir(); });
+          };
+        });
+        el.querySelectorAll("[data-ok]").forEach(function (cb) { cb.onchange = function () { sb.from("plano_itens").update({ concluido: cb.checked }).eq("id", cb.getAttribute("data-ok")).then(function (r) { if (!fail(r)) reabrir(); }); }; });
+        el.querySelectorAll("[data-rm]").forEach(function (b) { b.onclick = function () { sb.from("plano_itens").delete().eq("id", b.getAttribute("data-rm")).then(function (r) { if (!fail(r)) reabrir(); }); }; });
+      });
+    },
+
+    /* ---------- Documentos ---------- */
+    documentos: function (el, c, reabrir) {
+      sb.from("documentos_caso").select("*").eq("caso_id", c.id).order("created_at", { ascending: false }).then(function (res) {
+        var docs = res.data || [], rels = docs.filter(function (d) { return d.tipo !== "anexo"; }), anexos = docs.filter(function (d) { return d.tipo === "anexo"; });
+        el.innerHTML =
+          (c.relatorio_escola_solicitado ? '<div class="msg-ok" style="background:var(--tint-sand);color:var(--gold-ink)">A escola solicitou um relatório. Ao gerar o relatório para a escola, esta pendência sai da lista.</div>' : "") +
+          '<div class="layout-side"><div>' +
+            '<div class="card" style="margin-bottom:16px"><h3 class="card-title" style="margin-bottom:12px;display:flex;gap:8px;align-items:center">' + icon("sparkle") + 'Gerar relatório com IA</h3>' +
+              '<form id="relForm"><div class="form-row" style="grid-template-columns:1.4fr 1fr 1fr"><div class="field"><label>Para quem</label><select class="input" name="tipo"><option value="relatorio_familia">Família</option><option value="relatorio_escola"' + (c.relatorio_escola_solicitado ? " selected" : "") + '>Escola</option><option value="relatorio_equipe">Equipe multidisciplinar</option></select></div>' +
+              '<div class="field"><label>De</label><input class="input" type="date" name="inicio"></div><div class="field"><label>Até</label><input class="input" type="date" name="fim"></div></div>' +
+              '<p class="hint">A IA usa somente os registros, avaliações e o plano deste caso no período, e mantém como hipótese tudo o que não tiver diagnóstico confirmado. Você revisa e edita antes de salvar.</p>' +
+              '<button type="submit" class="btn btn-primary" id="relBtn">' + icon("sparkle") + " Gerar rascunho</button></form></div>" +
+            '<div class="card"><h3 class="card-title" style="margin-bottom:6px">Relatórios</h3>' +
+              (rels.length ? rels.map(function (d) { return '<div class="doc-row"><span class="list-ico t-sky" style="color:var(--icon-sky)">' + icon("doc") + '</span><div class="list-main"><span class="list-title">' + esc(d.titulo) + '</span><span class="list-sub">' + esc(TIPO_DOC[d.tipo]) + " · " + fmtDataHora(d.created_at) + " · " + (d.status === "enviado" ? "enviado" : d.status === "rascunho" ? "rascunho" : "gerado") + '</span></div><button type="button" class="btn" data-open="' + d.id + '" style="padding:6px 12px">Abrir</button></div>'; }).join("") : '<p class="hint" style="margin:6px 0 0">Nenhum relatório salvo.</p>') +
+            "</div></div>" +
+            '<div class="card"><h3 class="card-title" style="margin-bottom:6px">Anexos</h3><p class="hint" style="margin:0 0 10px">PDFs, imagens e documentos do caso (até 25 MB). Armazenamento privado.</p>' +
+              '<label class="btn btn-block" style="cursor:pointer">' + icon("upload") + ' Enviar arquivo<input type="file" id="anexoFile" hidden></label>' +
+              (anexos.length ? anexos.map(function (d) { return '<div class="doc-row">' + icon("clip") + '<div class="list-main"><span class="list-title" style="word-break:break-all">' + esc(d.titulo) + '</span><span class="list-sub">' + fmtDataHora(d.created_at) + '</span></div><button type="button" class="link-btn" data-dl="' + d.id + '">Baixar</button><button type="button" class="link-btn" data-rmx="' + d.id + '" style="color:var(--danger)">' + icon("trash") + "</button></div>"; }).join("") : '<p class="hint" style="margin:12px 0 0">Nenhum anexo.</p>') +
+            "</div></div>";
+
+        $("relForm").onsubmit = function (e) {
+          e.preventDefault(); var f = this, b = $("relBtn");
+          var tipo = fval(f, "tipo"); b.disabled = true; b.innerHTML = icon("sparkle") + " Gerando… (pode levar até 1 minuto)";
+          invokeIA({ action: "gerar_relatorio", caso_id: c.id, tipo: tipo, inicio: fval(f, "inicio") || null, fim: fval(f, "fim") || null }).then(function (t) {
+            abrirDoc({ tipo: tipo, titulo: TIPO_DOC[tipo] + " — " + c.nome + " — " + fmtData(todayIso()), conteudo: t, status: "rascunho" });
+          }, function (err) { toast(err.message); }).then(function () { b.disabled = false; b.innerHTML = icon("sparkle") + " Gerar rascunho"; });
+        };
+        el.querySelectorAll("[data-open]").forEach(function (b) { b.onclick = function () { abrirDoc(rels.filter(function (d) { return d.id === b.getAttribute("data-open"); })[0]); }; });
+        $("anexoFile").onchange = function () {
+          var file = this.files[0]; if (!file) return;
+          if (file.size > 25 * 1024 * 1024) { toast("O arquivo deve ter até 25 MB."); return; }
+          var safe = file.name.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9._-]+/g, "_");
+          var path = state.user.id + "/casos/" + c.id + "/anexos/" + Date.now() + "-" + safe;
+          toast("Enviando…");
+          sb.storage.from("ncc-arquivos").upload(path, file, { contentType: file.type || "application/octet-stream" }).then(function (up) {
+            if (up.error) { toast("Não foi possível enviar: " + up.error.message); return; }
+            sb.from("documentos_caso").insert({ owner_id: state.user.id, caso_id: c.id, tipo: "anexo", titulo: file.name, arquivo_path: path, status: "gerado" }).then(function (r) { if (!fail(r)) { toast("Arquivo anexado."); reabrir(); } });
+          });
+        };
+        el.querySelectorAll("[data-dl]").forEach(function (b) { b.onclick = function () { var d = anexos.filter(function (x) { return x.id === b.getAttribute("data-dl"); })[0]; signedUrl(d.arquivo_path).then(function (u) { if (u) window.open(u, "_blank", "noopener"); else toast("Não foi possível abrir o arquivo."); }); }; });
+        el.querySelectorAll("[data-rmx]").forEach(function (b) { b.onclick = function () { var d = anexos.filter(function (x) { return x.id === b.getAttribute("data-rmx"); })[0]; openModal("Excluir anexo", "<p>Excluir <b>" + esc(d.titulo) + "</b>?</p>", { ok: "Excluir", onSubmit: function (f, close) { sb.storage.from("ncc-arquivos").remove([d.arquivo_path]).then(function () { sb.from("documentos_caso").delete().eq("id", d.id).then(function (r) { if (!fail(r)) { close(); reabrir(); } }); }); } }); }; });
+      });
+
+      function abrirDoc(d) {
+        var m = openModal(d.id ? "Relatório" : "Revise o rascunho", '<div class="field"><label>Título</label><input class="input" name="titulo" value="' + esc(d.titulo) + '"></div><div class="field"><label>Texto</label><textarea class="input doc-editor" name="conteudo">' + esc(d.conteudo || "") + '</textarea></div>' + (d.id ? '<label class="check"><input type="checkbox" name="enviado"' + (d.status === "enviado" ? " checked" : "") + "> Já enviado</label>" : '<p class="hint">Rascunho gerado por IA a partir dos dados do caso. Confira todas as informações antes de salvar e enviar.</p>'), {
+          lg: true,
+          foot: (d.id ? '<button type="button" class="btn btn-ghost" data-delrel style="margin-right:auto;color:var(--danger)">' + icon("trash") + " Excluir</button>" : "") + '<button type="button" class="btn" data-print>' + icon("printer") + ' Imprimir / PDF</button><button type="button" class="btn" data-copy>Copiar</button><button type="submit" class="btn btn-primary">Salvar</button>',
+          onSubmit: function (f, close) {
+            var row = { titulo: fval(f, "titulo") || d.titulo, conteudo: fval(f, "conteudo"), status: d.id ? (fval(f, "enviado") ? "enviado" : "gerado") : "gerado" };
+            var p = d.id ? sb.from("documentos_caso").update(row).eq("id", d.id) : sb.from("documentos_caso").insert(Object.assign({ owner_id: state.user.id, caso_id: c.id, tipo: d.tipo }, row));
+            p.then(function (r) {
+              if (fail(r)) return;
+              if (d.tipo === "relatorio_escola" && c.relatorio_escola_solicitado) { sb.from("casos").update({ relatorio_escola_solicitado: false }).eq("id", c.id).then(function () {}); c.relatorio_escola_solicitado = false; }
+              close(); toast("Relatório salvo."); reabrir();
+            });
+          }
+        });
+        m.el.querySelector("[data-copy]").onclick = function () { var t = m.form.querySelector("[name=conteudo]").value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { toast("Texto copiado."); }, function () { toast("Não foi possível copiar."); }); };
+        m.el.querySelector("[data-print]").onclick = function () { imprimir(fval(m.form, "titulo"), m.form.querySelector("[name=conteudo]").value); };
+        var dr = m.el.querySelector("[data-delrel]");
+        if (dr) dr.onclick = function () { if (!confirm("Excluir este relatório?")) return; sb.from("documentos_caso").delete().eq("id", d.id).then(function (r) { if (!fail(r)) { m.close(); toast("Relatório excluído."); reabrir(); } }); };
+      }
+      function imprimir(titulo, texto) {
+        var p = state.profile || {};
+        var w = window.open("", "_blank"); if (!w) { toast("Permita pop-ups para imprimir."); return; }
+        var logo = document.querySelector(".sidebar-logo").src;
+        w.document.write('<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><title>' + esc(titulo) + '</title><style>body{font-family:Montserrat,Arial,sans-serif;color:#2E2418;max-width:720px;margin:32px auto;padding:0 24px;font-size:13.5px;line-height:1.65}img{width:170px}h1{font-size:18px;margin:18px 0 4px}.meta{color:#7A6B5C;font-size:12px;margin-bottom:20px;border-bottom:1px solid #E3DDD4;padding-bottom:12px}.txt{white-space:pre-wrap}.ass{margin-top:48px;border-top:1px solid #2E2418;width:280px;padding-top:6px;font-size:12px}@media print{body{margin:0}}</style></head><body><img src="' + logo + '" alt="NCC Integração"><h1>' + esc(titulo) + '</h1><div class="meta">' + esc(p.name || "") + (profileSubline(p) !== "Complete seu perfil" ? " · " + esc(profileSubline(p)) : "") + " · Emitido em " + fmtData(todayIso()) + '</div><div class="txt">' + esc(texto) + '</div><div class="ass">' + esc(p.name || "") + "<br>" + esc(profileSubline(p) === "Complete seu perfil" ? "" : profileSubline(p)) + "</div><script>window.onload=function(){window.print()}<\/script></body></html>");
+        w.document.close();
+      }
+    }
+  };
+
   function stat(tint, ic, label, num, sub, btnLabel, btnIcon, go) {
     return '<div class="stat ' + tint + '"><div class="stat-head">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + num + '</div><div class="stat-sub">' + sub + '</div><button type="button" class="btn btn-block" data-go="' + go + '">' + (btnIcon ? icon(btnIcon) : "") + esc(btnLabel) + "</button></div>";
   }
@@ -759,6 +1501,7 @@
     show("authScreen", false); show("appScreen", true);
     loadProfile().then(function () { render(); });
     loadNotifs();
+    sincronizarAlertas();
   }
 
   if (!sb) {
