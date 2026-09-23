@@ -700,6 +700,7 @@
   @media (max-width: 820px) { .ct-fontes, .ct-angulos { grid-template-columns: 1fr; } .ct-cores { grid-template-columns: 1fr 1fr; } }
   /* ---------- artes para instagram ---------- */
   .modal.modal-xl { max-width: 1040px; }
+  .ct-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .arte-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 22px; align-items: start; }
   .arte-prev { background: var(--sunken); border-radius: 14px; padding: 14px; display: flex; justify-content: center; }
   .arte-prev img { width: 100%; max-width: 440px; aspect-ratio: 4 / 5; border-radius: 8px; box-shadow: 0 10px 30px -12px rgba(0,0,0,.35); background: #fff; }
@@ -3706,7 +3707,8 @@
           "<h4>" + esc(t.title) + "</h4>" + (t.insight ? "<p>" + esc(curto(t.insight, 220)) + "</p>" : "") +
           '<div class="ct-foot">' + (t.roteiro_updated_at ? '<span class="ct-fmt">' + icon("check") + esc(rotulo(FORMATOS_C, t.format)) + " · " + esc(rotulo(ANGULOS_C, t.angle)) + "</span>" : '<span class="ct-fmt vazio">Sem roteiro</span>') +
             '<div style="display:flex;gap:6px;margin-left:auto"><button type="button" class="icon-btn" data-edt="' + t.id + '" title="Editar tema">' + icon("edit") + "</button>" +
-            '<button type="button" class="btn ' + (t.roteiro_updated_at ? "" : "btn-primary") + '" data-rot="' + t.id + '">' + (t.roteiro_updated_at ? "Ver roteiro" : "Gerar roteiro") + "</button></div></div></div>";
+            '<button type="button" class="btn ' + (t.roteiro_updated_at ? "" : "btn-primary") + '" data-rot="' + t.id + '">' + (t.roteiro_updated_at ? "Ver roteiro" : "Gerar roteiro") + "</button>" +
+            (t.roteiro_updated_at && (t.format === "carrossel" || t.format === "post_estatico") ? '<button type="button" class="btn btn-primary" data-arte="' + t.id + '">' + icon("image") + " Artes</button>" : "") + "</div></div></div>";
       }).join("") + "</div>";
       function acha(id) { return temas.filter(function (t) { return t.id === id; })[0]; }
       box.querySelectorAll("[data-st]").forEach(function (s) { s.onchange = function () {
@@ -3714,6 +3716,7 @@
         sb.from("themes").update({ status: s.value }).eq("id", t.id).then(function (r) { if (!fail(r)) { t.status = s.value; toast("Status: " + s.value + "."); pintarConteudos(v, temas); } });
       }; });
       box.querySelectorAll("[data-edt]").forEach(function (b) { b.onclick = function () { temaForm(acha(b.getAttribute("data-edt"))); }; });
+      box.querySelectorAll("[data-arte]").forEach(function (b) { b.onclick = function () { criarArtes(acha(b.getAttribute("data-arte"))); }; });
       box.querySelectorAll("[data-rot]").forEach(function (b) { b.onclick = function () { var t = acha(b.getAttribute("data-rot")); if (t.roteiro_updated_at) verRoteiro(t); else escolherFormato(t); }; });
     }
     lista();
@@ -3805,7 +3808,8 @@
   function verRoteiro(t) {
     var slides = (t.slides || []).slice();
     function campo(k, l, rows) { return '<div class="field"><label>' + l + '</label><textarea class="input" data-k="' + k + '" rows="' + rows + '">' + esc(t[k] || "") + "</textarea></div>"; }
-    var body = '<div class="ct-meta"><span class="tagx green">' + esc(rotulo(FORMATOS_C, t.format)) + '</span><span class="tagx">' + esc(rotulo(ANGULOS_C, t.angle)) + "</span>" + (t.duracao ? '<span class="tagx gold">' + esc(t.duracao) + "</span>" : "") + "</div>" +
+    var body = '<div class="ct-meta"><span class="tagx green">' + esc(rotulo(FORMATOS_C, t.format)) + '</span><span class="tagx">' + esc(rotulo(ANGULOS_C, t.angle)) + "</span>" + (t.duracao ? '<span class="tagx gold">' + esc(t.duracao) + "</span>" : "") +
+      (t.format === "carrossel" || t.format === "post_estatico" ? '<button type="button" class="btn btn-primary" id="rvArteTopo" style="margin-left:auto">' + icon("image") + " Criar artes</button>" : "") + "</div>" +
       campo("hook", "Gancho (primeiros 3 segundos)", 2) +
       (t.format === "carrossel" ? '<div class="field"><label>Slides</label><div id="rvSlides">' + slides.map(function (s, i) {
         return '<div class="ct-slide"><span class="ct-sn">' + (i + 1) + '</span><div style="flex:1"><input class="input" data-sl="' + i + '" data-sk="titulo" value="' + esc(s.titulo) + '"><input class="input" data-sl="' + i + '" data-sk="texto" value="' + esc(s.texto) + '" placeholder="Complemento (opcional)" style="margin-top:6px"></div></div>';
@@ -3824,7 +3828,8 @@
     m.el.querySelector("#rvLeg").onclick = function () { coletar(); copiar((t.legenda || "") + "\n\n" + (t.hashtags || ""), "Legenda copiada. É só colar no Instagram."); };
     m.el.querySelector("#rvTudo").onclick = function () { coletar(); copiar(textoRoteiro(t), "Roteiro completo copiado" + (briefingVisual() ? ", com o briefing visual." : ".")); };
     m.el.querySelector("#rvNovo").onclick = function () { m.close(); escolherFormato(t); };
-    var ra = m.el.querySelector("#rvArte");
+    var ra = m.el.querySelector("#rvArte"), raTopo = m.el.querySelector("#rvArteTopo");
+    if (raTopo) raTopo.onclick = function () { ra.click(); };
     if (ra) ra.onclick = function () {
       coletar();
       sb.from("themes").update({ hook: t.hook, texto: t.texto, cta: t.cta, legenda: t.legenda, hashtags: t.hashtags, slides: t.format === "carrossel" ? slides : t.slides }).eq("id", t.id).then(function () { m.close(); criarArtes(t); });
