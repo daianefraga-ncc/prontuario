@@ -662,6 +662,42 @@
   .aj-ia { font-size: 13px; color: var(--ink-soft); } .aj-ia b { font-size: 26px; color: var(--ink); }
   @media (max-width: 1180px) { .destaques { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 820px) { .destaques { grid-template-columns: 1fr; } }
+  /* ---------- conteúdos para instagram ---------- */
+  #pageActions .btn { white-space: nowrap; }
+  .ct-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .ct-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow); }
+  .ct-card h4 { font-size: 14.5px; line-height: 1.4; }
+  .ct-card p { margin: 0; font-size: 12.5px; color: var(--ink-soft); line-height: 1.55; }
+  .ct-top { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .ct-status { margin-left: auto; border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; font-size: 11.5px; font-weight: 600; background: var(--surface); color: var(--ink); cursor: pointer; }
+  .ct-status.st-aprovado { background: var(--tint-sand); color: var(--gold-ink); }
+  .ct-status.st-publicado { background: var(--accent-soft); color: var(--accent-strong); }
+  .ct-status.st-descartado { color: var(--ink-faint); }
+  .ct-foot { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); }
+  .ct-fmt { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; color: var(--accent-strong); }
+  .ct-fmt .icon { width: 14px; height: 14px; }
+  .ct-fmt.vazio { color: var(--ink-faint); }
+  .ct-fontes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .ct-fonte { text-align: left; border: 1px solid var(--line-strong); border-radius: 12px; padding: 14px; background: var(--surface); cursor: pointer; font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+  .ct-fonte .icon { color: var(--icon-green); margin-bottom: 6px; }
+  .ct-fonte b { display: block; color: var(--ink); font-size: 13.5px; margin-bottom: 2px; }
+  .ct-fonte.on { border-color: var(--accent); background: var(--tint-green); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .ct-sug { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--line); cursor: pointer; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .ct-sug input { accent-color: var(--accent); width: 16px; height: 16px; margin: 2px 0 0; flex-shrink: 0; }
+  .ct-sug b { display: block; color: var(--ink); font-size: 13.5px; }
+  .ct-sug em { display: block; font-style: normal; font-size: 11.5px; color: var(--ink-faint); margin-top: 3px; }
+  .ct-angulos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .ct-ang { text-align: left; border: 1px solid var(--line); border-radius: 10px; padding: 10px; background: var(--surface); cursor: pointer; font-size: 11.5px; color: var(--ink-soft); line-height: 1.4; }
+  .ct-ang b { display: block; font-size: 12.5px; color: var(--ink); margin-bottom: 2px; }
+  .ct-ang.on { border-color: var(--accent); background: var(--tint-green); }
+  .ct-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .ct-slide { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
+  .ct-sn { width: 26px; height: 26px; border-radius: 8px; background: var(--tint-green); color: var(--accent-strong); font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 8px; }
+  .ct-cores { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .ct-cor { display: flex; flex-direction: column; gap: 6px; }
+  .ct-cor input[type=color] { width: 100%; height: 44px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface); padding: 3px; cursor: pointer; }
+  .ct-cor .input { padding: 6px 8px; font-size: 12px; }
+  @media (max-width: 820px) { .ct-fontes, .ct-angulos { grid-template-columns: 1fr; } .ct-cores { grid-template-columns: 1fr 1fr; } }
 </style>
 </head>
 <body>
@@ -2042,7 +2078,7 @@
 
     var head = '<div class="pq-rhead"><div><h3>' + esc(r.titulo) + '</h3><p class="sub">Síntese baseada em conteúdos NCC e evidências científicas' + (pq.salvaId ? " · pesquisa salva" : "") + '.</p></div><div class="acts">' +
       (pq.salvaId ? "" : '<button type="button" class="btn" id="pqSalvar">' + icon("bookmark") + " Salvar pesquisa</button>") +
-      '<button type="button" class="icon-btn" id="pqShare" title="Compartilhar resumo" style="border-color:var(--line)">' + icon("share") + "</button></div></div>";
+      '<button type="button" class="btn" id="pqConteudo" title="Transformar em conteúdo para Instagram">' + icon("megaphone") + " Criar conteúdo</button>" + '<button type="button" class="icon-btn" id="pqShare" title="Compartilhar resumo" style="border-color:var(--line)">' + icon("share") + "</button></div></div>";
     var disc = '<div class="pq-disc" style="margin-top:16px">' + icon("bulb") + "<span>Esta é uma explicação científica geral, baseada no material NCC. Não substitui a avaliação profissional nem permite concluir sobre um caso específico.</span></div>";
     var aviso = !r.suficiente || r.lacunas ? '<div class="pq-warn"><b>' + (r.suficiente ? "O que o material ainda não cobre: " : "O material NCC cobre este tema apenas em parte. ") + "</b>" + esc(r.lacunas || "") + "</div>" : "";
     var body = "";
@@ -2110,6 +2146,7 @@
     var bt = $("pqTodosTemas"); if (bt) bt.onclick = function () { pq.modo = "tema"; $("pqModes").querySelectorAll(".pq-mode").forEach(function (x) { x.classList.toggle("active", x.getAttribute("data-modo") === "tema"); }); pintarModo(); window.scrollTo({ top: 0, behavior: "smooth" }); };
     var bs = $("pqSalvar"); if (bs) bs.onclick = salvarPesquisa;
     $("pqShare").onclick = compartilhar;
+    $("pqConteudo").onclick = function () { criarConteudoDaPesquisa(r); };
   }
 
   function textoResumo(r) {
@@ -3497,6 +3534,12 @@
       ["O que é o quadro “Coerência do projeto”?", "No Mapa metodológico, ele avisa sobre inconsistências comuns: por exemplo, objetivo que fala em “efeito” com um desenho que só permite associação, ou pesquisa com crianças sem registro de CEP, TCLE e TALE."],
       ["Como recebo lembretes dos prazos?", "Cadastre as tarefas no cronograma do projeto. O sino avisa 3 dias antes de cada prazo e quando ele vence."]
     ]],
+    ["Conteúdos para Instagram", "megaphone", [
+      ["Como a IA cria os conteúdos?", "Em “Conteúdos para Instagram”, peça sugestões de temas a partir do material NCC ou da sua prática. Depois, escolha formato (Reels, carrossel, post ou vídeo longo) e ângulo: a IA escreve gancho, roteiro, chamada para ação, legenda e hashtags, com base científica só no material NCC."],
+      ["Usar meus casos expõe as crianças?", "Não. Só entram casos com consentimento LGPD registrado, e nomes da criança, dos responsáveis e da escola, datas e telefones são removidos antes de o texto ir para a IA. A IA transforma padrões recorrentes em temas gerais — nunca descreve um caso específico."],
+      ["O conteúdo é publicado automaticamente?", "Não. Tudo fica como rascunho para você revisar, editar e copiar. A responsabilidade pelo que é publicado é sua, respeitando o código de ética da sua profissão."],
+      ["Posso transformar uma resposta da Pesquisa NCC em post?", "Sim. No resultado da Pesquisa NCC, clique em “Criar conteúdo”: o tema é criado já com as fontes do material e você escolhe o formato."]
+    ]],
     ["Privacidade, segurança e IA", "shield", [
       ["Meus dados e os das crianças são privados?", "Sim. Cada profissional só vê os próprios casos, registros, materiais e projetos. Os arquivos ficam em armazenamento privado. O documento da verificação profissional é visto só pela administração do NCC."],
       ["O que é enviado para a IA?", "Só o texto necessário para cada recurso (por exemplo, o registro a organizar ou os dados do caso para o relatório), enviado ao serviço de IA da OpenAI apenas para gerar a resposta. Registre o consentimento dos responsáveis (LGPD) em cada caso."],
@@ -3556,6 +3599,250 @@
       $("ajIA").innerHTML = '<div class="aj-ia"><b>' + usado + "</b> de " + lim + '</div><div class="pj-bar" style="margin:8px 0"><span style="width:' + Math.min(100, Math.round(100 * usado / lim)) + "%" + (usado / lim > 0.85 ? ";background:var(--danger)" : "") + '"></span></div><p class="hint" style="margin:0">O contador recomeça no dia 1º de cada mês. Cada ação de IA conta uma consulta.</p>';
     });
   };
+
+  /* ================= CONTEÚDOS PARA INSTAGRAM ================= */
+  Object.assign(I, {
+    megaphone: '<path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15 8a5 5 0 0 1 0 8M18 5a9 9 0 0 1 0 14"/>',
+    copy: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>',
+    palette: '<path d="M12 3a9 9 0 1 0 0 18c1 0 1.5-.8 1.5-1.5 0-.9-.7-1.2-.7-2 0-.8.6-1.5 1.5-1.5H17a4 4 0 0 0 4-4c0-5-4-9-9-9z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="14.5" cy="7" r="1.2"/>'
+  });
+  NAV.splice(NAV.map(function (n) { return n.id; }).indexOf("ajuda"), 0,
+    { id: "conteudos", label: "Conteúdos para Instagram", icon: "megaphone", title: "Conteúdos para Instagram", sub: "Transforme o material NCC e a sua prática (de forma anônima) em posts, carrosséis e vídeos." });
+
+  var FORMATOS_C = [["video_curto", "Vídeo curto (Reels)"], ["carrossel", "Carrossel"], ["post_estatico", "Post estático"], ["video_longo", "Vídeo longo"]];
+  var ANGULOS_C = [
+    ["resolverdor", "Prático", "Passo a passo ou orientação que pais e educadores aplicam hoje."],
+    ["contraintuitivo", "Contraintuitivo", "Vai contra uma crença comum e faz o público refletir."],
+    ["quebradeobjecoes", "Quebra de objeções", "Desfaz mitos e medos que impedem a família de buscar ajuda."],
+    ["estudodecaso", "Situação típica", "História ilustrativa e genérica, sem identificar ninguém."],
+    ["posicionamento", "Posicionamento", "Quem você é e por que atua com crianças."],
+    ["valores", "Valores", "O que você defende no cuidado com a infância."],
+    ["bastidores", "Bastidores", "Seu estudo contínuo: formação, cursos, artigos."],
+    ["jornada", "Jornada", "Um momento marcante da sua trajetória."],
+    ["oferta", "Convite", "Como é o seu acompanhamento, sem promessas."]
+  ];
+  var ORIGEM_C = { ncc: ["Material NCC", "green"], casos: ["Casos (anônimo)", "gold"], pesquisa: ["Pesquisa NCC", "green"], manual: ["Manual", ""] };
+  var STATUS_C = ["Novo", "Aprovado", "Publicado", "Descartado"];
+  var CATS_C = ["Comportamento", "Emoções", "Desenvolvimento cerebral", "Rotina e sono", "Escola e aprendizagem", "Parentalidade", "Estresse", "Socialização"];
+  var ct = { aba: "todos", busca: "", formato: "" };
+
+  function invokeConteudos(body) {
+    return sb.functions.invoke("ncc-conteudos", { body: body }).then(function (res) {
+      if (res.error) {
+        var ctx = res.error.context;
+        if (ctx && typeof ctx.json === "function") return ctx.json().then(function (p) { throw new Error(p && p.mensagem ? p.mensagem : aiErro(null, p)); }, function () { throw new Error(aiErro()); });
+        throw new Error(aiErro());
+      }
+      if (!res.data || res.data.error) throw new Error((res.data && res.data.mensagem) || aiErro(null, res.data));
+      return res.data;
+    });
+  }
+
+  PAGES.conteudos = function (v) {
+    $("pageActions").innerHTML = '<button type="button" class="btn" id="ctMarca">' + icon("palette") + ' Identidade visual</button><button type="button" class="btn" id="ctNovo">' + icon("plus") + ' Novo tema</button><button type="button" class="btn btn-primary" id="ctSugerir">' + icon("sparkle") + " Sugerir temas</button>";
+    $("ctNovo").onclick = function () { temaForm(null); };
+    $("ctSugerir").onclick = sugerirTemas;
+    $("ctMarca").onclick = identidadeVisual;
+    v.innerHTML = '<div class="loading">Carregando…</div>';
+    sb.from("themes").select("*").order("updated_at", { ascending: false }).then(function (res) {
+      if (fail(res, "Não foi possível carregar os conteúdos")) return;
+      pintarConteudos(v, res.data || []);
+    });
+  };
+
+  function pintarConteudos(v, temas) {
+    function n(f) { return temas.filter(f).length; }
+    v.innerHTML =
+      '<section class="ac-stats">' +
+        acStat("t-green", "bulb", temas.length, "Temas", "Ideias de conteúdo") +
+        acStat("t-sand", "check", n(function (t) { return t.status === "Aprovado"; }), "Aprovados", "Prontos para produzir") +
+        acStat("t-sky", "doc", n(function (t) { return t.roteiro_updated_at; }), "Roteiros prontos", "Gerados com base no NCC") +
+        acStat("t-rose", "megaphone", n(function (t) { return t.status === "Publicado"; }), "Publicados", "Já estão no seu Instagram") +
+      "</section>" +
+      '<div class="ac-toolbar"><div class="searchbar ac-search">' + icon("search") + '<input id="ctBusca" placeholder="Buscar por tema, categoria ou texto do roteiro…" value="' + esc(ct.busca) + '"></div>' +
+        '<select class="input ac-ordem" id="ctFormato"><option value="">Todos os formatos</option>' + FORMATOS_C.map(function (f) { return '<option value="' + f[0] + '"' + (ct.formato === f[0] ? " selected" : "") + ">" + f[1] + "</option>"; }).join("") + "</select></div>" +
+      '<div class="tabs" id="ctTabs">' + [["todos", "Todos", temas.length]].concat(STATUS_C.map(function (s) { return [s, s, n(function (t) { return t.status === s; })]; })).map(function (t) {
+        return '<button type="button" class="tab' + (ct.aba === t[0] ? " active" : "") + '" data-t="' + t[0] + '">' + esc(t[1]) + " (" + t[2] + ")</button>";
+      }).join("") + "</div>" +
+      '<div id="ctLista"></div>';
+    $("ctBusca").oninput = function () { ct.busca = this.value; lista(); };
+    $("ctFormato").onchange = function () { ct.formato = this.value; lista(); };
+    $("ctTabs").onclick = function (e) { var t = e.target.closest("[data-t]"); if (!t) return; ct.aba = t.getAttribute("data-t"); $("ctTabs").querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("active", x === t); }); lista(); };
+    function lista() {
+      var q = ct.busca.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+      var rows = temas.filter(function (t) {
+        if (ct.aba !== "todos" && t.status !== ct.aba) return false;
+        if (ct.formato && t.format !== ct.formato) return false;
+        if (!q) return true;
+        return [t.title, t.insight, t.category, t.hook, t.texto, t.legenda].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").indexOf(q) >= 0;
+      });
+      var box = $("ctLista");
+      if (!rows.length) {
+        box.innerHTML = '<div class="card"><div class="empty">' + icon("megaphone") + "<strong>" + (temas.length ? "Nenhum tema com esses filtros." : "Nenhum tema ainda.") + "</strong><p>" +
+          (temas.length ? "Tente outra busca." : "Peça à IA sugestões de temas a partir do material NCC ou da sua prática (de forma anônima), ou cadastre um tema seu.") + "</p>" +
+          (temas.length ? "" : '<button type="button" class="btn btn-primary" id="ctVazio">' + icon("sparkle") + " Sugerir temas com IA</button>") + "</div></div>";
+        var b = $("ctVazio"); if (b) b.onclick = sugerirTemas;
+        return;
+      }
+      box.innerHTML = '<div class="ct-grid">' + rows.map(function (t) {
+        var o = ORIGEM_C[t.origem] || ORIGEM_C.manual;
+        return '<div class="ct-card"><div class="ct-top"><span class="tagx ' + o[1] + '">' + esc(o[0]) + "</span>" + (t.category ? '<span class="ac-cat">' + esc(t.category) + "</span>" : "") +
+          '<select class="ct-status st-' + esc((t.status || "Novo").toLowerCase()) + '" data-st="' + t.id + '" aria-label="Status">' + STATUS_C.map(function (s) { return "<option" + (t.status === s ? " selected" : "") + ">" + s + "</option>"; }).join("") + "</select></div>" +
+          "<h4>" + esc(t.title) + "</h4>" + (t.insight ? "<p>" + esc(curto(t.insight, 220)) + "</p>" : "") +
+          '<div class="ct-foot">' + (t.roteiro_updated_at ? '<span class="ct-fmt">' + icon("check") + esc(rotulo(FORMATOS_C, t.format)) + " · " + esc(rotulo(ANGULOS_C, t.angle)) + "</span>" : '<span class="ct-fmt vazio">Sem roteiro</span>') +
+            '<div style="display:flex;gap:6px;margin-left:auto"><button type="button" class="icon-btn" data-edt="' + t.id + '" title="Editar tema">' + icon("edit") + "</button>" +
+            '<button type="button" class="btn ' + (t.roteiro_updated_at ? "" : "btn-primary") + '" data-rot="' + t.id + '">' + (t.roteiro_updated_at ? "Ver roteiro" : "Gerar roteiro") + "</button></div></div></div>";
+      }).join("") + "</div>";
+      function acha(id) { return temas.filter(function (t) { return t.id === id; })[0]; }
+      box.querySelectorAll("[data-st]").forEach(function (s) { s.onchange = function () {
+        var t = acha(s.getAttribute("data-st"));
+        sb.from("themes").update({ status: s.value }).eq("id", t.id).then(function (r) { if (!fail(r)) { t.status = s.value; toast("Status: " + s.value + "."); pintarConteudos(v, temas); } });
+      }; });
+      box.querySelectorAll("[data-edt]").forEach(function (b) { b.onclick = function () { temaForm(acha(b.getAttribute("data-edt"))); }; });
+      box.querySelectorAll("[data-rot]").forEach(function (b) { b.onclick = function () { var t = acha(b.getAttribute("data-rot")); if (t.roteiro_updated_at) verRoteiro(t); else escolherFormato(t); }; });
+    }
+    lista();
+  }
+  function recarregarConteudos() { if (state.route === "conteudos") PAGES.conteudos($("view")); }
+
+  function temaForm(t) {
+    var novo = !t; t = t || { status: "Novo", category: "Comportamento" };
+    var m = openModal(novo ? "Novo tema" : "Editar tema",
+      '<div class="field"><label>Tema *</label><input class="input" name="title" maxlength="200" value="' + esc(t.title || "") + '" placeholder="Ex.: Por que a rotina acalma o cérebro da criança"></div>' +
+      '<div class="field"><label>Ideia central</label><textarea class="input" name="insight" rows="3" maxlength="600">' + esc(t.insight || "") + "</textarea></div>" +
+      '<div class="form-row"><div class="field"><label>Categoria</label><select class="input" name="category">' + CATS_C.concat(CATS_C.indexOf(t.category) < 0 && t.category ? [t.category] : []).map(function (c) { return "<option" + (t.category === c ? " selected" : "") + ">" + esc(c) + "</option>"; }).join("") + "</select></div>" +
+        '<div class="field"><label>Status</label><select class="input" name="status">' + STATUS_C.map(function (s) { return "<option" + (t.status === s ? " selected" : "") + ">" + s + "</option>"; }).join("") + "</select></div></div>",
+      { ok: novo ? "Criar tema" : "Salvar", foot: (novo ? "" : '<button type="button" class="btn" id="tfDel" style="margin-right:auto;color:var(--danger)">' + icon("trash") + " Excluir</button>") + '<button type="button" class="btn" data-x>Cancelar</button><button type="submit" class="btn btn-primary">' + (novo ? "Criar tema" : "Salvar") + "</button>",
+        onSubmit: function (form, close) {
+          var row = { title: fval(form, "title"), insight: fval(form, "insight") || null, category: fval(form, "category"), status: fval(form, "status") };
+          if (!row.title) { toast("Escreva o tema."); return; }
+          var q = novo ? sb.from("themes").insert(Object.assign({ owner_id: state.user.id, origem: "manual" }, row)) : sb.from("themes").update(row).eq("id", t.id);
+          q.then(function (r) { if (!fail(r)) { close(); toast(novo ? "Tema criado." : "Tema atualizado."); recarregarConteudos(); } });
+        } });
+    var d = m.el.querySelector("#tfDel"); if (d) d.onclick = function () {
+      if (!confirm("Excluir este tema e o roteiro dele?")) return;
+      sb.from("themes").delete().eq("id", t.id).then(function (r) { if (!fail(r)) { m.close(); toast("Tema excluído."); recarregarConteudos(); } });
+    };
+  }
+
+  function sugerirTemas() {
+    var fonte = "ncc";
+    var m = openModal("Sugerir temas com IA",
+      '<div class="ct-fontes"><button type="button" class="ct-fonte on" data-f="ncc">' + icon("book") + "<b>Do material NCC</b><span>Temas a partir das aulas, do NeuroCompêndio e dos artigos da base.</span></button>" +
+        '<button type="button" class="ct-fonte" data-f="casos">' + icon("users") + "<b>Da minha prática (anônimo)</b><span>Padrões recorrentes nos registros dos seus casos com consentimento LGPD. Nomes são removidos antes de ir para a IA.</span></button></div>" +
+      '<div class="field" style="margin-top:14px"><label>Foco (opcional)</label><input class="input" name="foco" maxlength="300" placeholder="Ex.: birras e rotina, para pais de crianças pequenas"></div>' +
+      '<p class="hint" style="margin:0">A IA sugere de 5 a 6 temas, sempre com base no material NCC. Usa 1 consulta de IA. Nada é publicado automaticamente.</p><div id="sgRes"></div>',
+      { lg: true, ok: "Sugerir temas", onSubmit: function (form) {
+        var btn = m.el.querySelector('[type="submit"]'); btn.disabled = true; btn.textContent = "A IA está pensando…";
+        m.el.querySelector("#sgRes").innerHTML = '<div class="pq-load" style="margin-top:12px"><div class="pq-step on"><span class="spin"></span>Lendo o material' + (fonte === "casos" ? " e os registros (anonimizados)" : " NCC") + " e montando os temas…</div></div>";
+        invokeConteudos({ action: "sugerir_temas", fonte: fonte, foco: fval(form, "foco"), profissao: profLabel(state.profile && state.profile.profissao) }).then(function (r) {
+          btn.hidden = true;
+          var box = m.el.querySelector("#sgRes");
+          box.innerHTML = '<div class="pq-sec" style="margin-top:16px">Escolha os temas que quer guardar</div>' + r.temas.map(function (t, i) {
+            return '<label class="ct-sug"><input type="checkbox" checked data-i="' + i + '"><span><b>' + esc(t.titulo) + "</b>" + esc(t.insight) + '<em>' + esc(t.categoria) + (t.fontes.length ? " · base: " + esc(t.fontes.map(function (f) { return f.conteudo + (f.pagina ? " (" + f.pagina + ")" : ""); }).filter(function (x, j, a) { return a.indexOf(x) === j; }).slice(0, 2).join("; ")) : "") + "</em></span></label>";
+          }).join("") + '<button type="button" class="btn btn-primary" id="sgSalvar" style="margin-top:12px">' + icon("plus") + " Adicionar temas escolhidos</button>";
+          box.querySelector("#sgSalvar").onclick = function () {
+            var sel = [].filter.call(box.querySelectorAll("[data-i]"), function (c) { return c.checked; }).map(function (c) { return r.temas[+c.getAttribute("data-i")]; });
+            if (!sel.length) { toast("Marque pelo menos um tema."); return; }
+            this.disabled = true;
+            sb.from("themes").insert(sel.map(function (t) { return { owner_id: state.user.id, title: t.titulo, insight: t.insight, category: t.categoria, status: "Novo", origem: r.origem === "casos" ? "casos" : "ncc", fontes: t.fontes }; })).then(function (x) {
+              if (!fail(x)) { m.close(); toast(sel.length + (sel.length === 1 ? " tema adicionado." : " temas adicionados.")); recarregarConteudos(); }
+            });
+          };
+        }, function (e) { btn.disabled = false; btn.textContent = "Sugerir temas"; m.el.querySelector("#sgRes").innerHTML = '<div class="msg-error" style="margin-top:12px">' + esc(e.message) + "</div>"; });
+      } });
+    m.el.querySelectorAll("[data-f]").forEach(function (b) { b.onclick = function () { fonte = b.getAttribute("data-f"); m.el.querySelectorAll("[data-f]").forEach(function (x) { x.classList.toggle("on", x === b); }); }; });
+  }
+
+  function escolherFormato(t) {
+    var formato = t.format || "video_curto", angulo = t.angle || "resolverdor";
+    var m = openModal("Gerar roteiro — " + t.title,
+      '<div class="field"><label>Formato</label><div class="chips" id="gfFmt">' + FORMATOS_C.map(function (f) { return '<button type="button" class="chip' + (formato === f[0] ? " on" : "") + '" data-fmt="' + f[0] + '">' + f[1] + "</button>"; }).join("") + "</div></div>" +
+      '<div class="field"><label>Ângulo do conteúdo</label><div class="ct-angulos" id="gfAng">' + ANGULOS_C.map(function (a) { return '<button type="button" class="ct-ang' + (angulo === a[0] ? " on" : "") + '" data-ang="' + a[0] + '"><b>' + a[1] + "</b><span>" + a[2] + "</span></button>"; }).join("") + "</div></div>" +
+      '<p class="hint" style="margin:0">O roteiro usa como base científica só o material NCC. Usa 1 consulta de IA.' + (t.roteiro_updated_at ? " O roteiro atual será substituído." : "") + "</p>",
+      { lg: true, ok: "Gerar roteiro", onSubmit: function () {
+        var btn = m.el.querySelector('[type="submit"]'); btn.disabled = true; btn.textContent = "Escrevendo o roteiro…";
+        invokeConteudos({ action: "gerar_roteiro", theme_id: t.id, formato: formato, angulo: angulo, profissao: profLabel(state.profile && state.profile.profissao) }).then(function (r) {
+          Object.assign(t, r); m.close(); toast("Roteiro pronto."); verRoteiro(t); recarregarConteudos();
+        }, function (e) { btn.disabled = false; btn.textContent = "Gerar roteiro"; toast(e.message); });
+      } });
+    m.el.querySelector("#gfFmt").onclick = function (e) { var b = e.target.closest("[data-fmt]"); if (!b) return; formato = b.getAttribute("data-fmt"); this.querySelectorAll(".chip").forEach(function (x) { x.classList.toggle("on", x === b); }); };
+    m.el.querySelector("#gfAng").onclick = function (e) { var b = e.target.closest("[data-ang]"); if (!b) return; angulo = b.getAttribute("data-ang"); this.querySelectorAll(".ct-ang").forEach(function (x) { x.classList.toggle("on", x === b); }); };
+  }
+
+  function briefingVisual() {
+    var p = state.profile || {};
+    var cores = [p.brand_color_1, p.brand_color_2, p.brand_color_3, p.brand_color_4].filter(Boolean);
+    if (!cores.length && !p.brand_fonts && !p.design_style) return "";
+    return "\n\nBRIEFING VISUAL\n" + (cores.length ? "Cores: " + cores.join(", ") + "\n" : "") + (p.brand_fonts ? "Fontes: " + p.brand_fonts + "\n" : "") + (p.design_style ? "Estilo: " + p.design_style + "\n" : "");
+  }
+  function textoRoteiro(t) {
+    var s = t.title + "\n" + rotulo(FORMATOS_C, t.format) + " · " + rotulo(ANGULOS_C, t.angle) + "\n\nGANCHO\n" + (t.hook || "") + "\n\n";
+    if (t.slides && t.slides.length) s += "SLIDES\n" + t.slides.map(function (x, i) { return (i + 1) + ". " + x.titulo + (x.texto ? " — " + x.texto : ""); }).join("\n") + "\n\n";
+    s += (t.format === "carrossel" ? "RESUMO\n" : "ROTEIRO\n") + (t.texto || "") + "\n\nCHAMADA PARA AÇÃO\n" + (t.cta || "") + (t.duracao ? "\n\nDURAÇÃO: " + t.duracao : "") +
+      "\n\nLEGENDA\n" + (t.legenda || "") + "\n\n" + (t.hashtags || "");
+    return s + briefingVisual();
+  }
+  function copiar(txt, msg) {
+    if (navigator.clipboard) navigator.clipboard.writeText(txt).then(function () { toast(msg || "Copiado."); }, function () { toast("Não foi possível copiar."); });
+    else toast("Seu navegador não permite copiar automaticamente.");
+  }
+  function verRoteiro(t) {
+    var slides = (t.slides || []).slice();
+    function campo(k, l, rows) { return '<div class="field"><label>' + l + '</label><textarea class="input" data-k="' + k + '" rows="' + rows + '">' + esc(t[k] || "") + "</textarea></div>"; }
+    var body = '<div class="ct-meta"><span class="tagx green">' + esc(rotulo(FORMATOS_C, t.format)) + '</span><span class="tagx">' + esc(rotulo(ANGULOS_C, t.angle)) + "</span>" + (t.duracao ? '<span class="tagx gold">' + esc(t.duracao) + "</span>" : "") + "</div>" +
+      campo("hook", "Gancho (primeiros 3 segundos)", 2) +
+      (t.format === "carrossel" ? '<div class="field"><label>Slides</label><div id="rvSlides">' + slides.map(function (s, i) {
+        return '<div class="ct-slide"><span class="ct-sn">' + (i + 1) + '</span><div style="flex:1"><input class="input" data-sl="' + i + '" data-sk="titulo" value="' + esc(s.titulo) + '"><input class="input" data-sl="' + i + '" data-sk="texto" value="' + esc(s.texto) + '" placeholder="Complemento (opcional)" style="margin-top:6px"></div></div>';
+      }).join("") + "</div></div>" : "") +
+      campo("texto", t.format === "carrossel" ? "Resumo" : "Roteiro", t.format === "carrossel" ? 3 : 9) + campo("cta", "Chamada para ação", 2) + campo("legenda", "Legenda do post", 6) + campo("hashtags", "Hashtags", 2) +
+      ((t.fontes || []).length ? '<details class="cmp-fontes"><summary>Base no material NCC (' + t.fontes.length + ")</summary>" + t.fontes.map(function (f, i) {
+        return '<div class="src-card"><div class="src-head"><span class="src-n">' + (i + 1) + "</span><b>" + esc(f.conteudo) + '</b><span style="color:var(--ink-faint)">' + esc(f.pagina || "") + "</span></div>" + (f.titulo ? '<div style="font-size:12.5px;font-weight:600;margin-top:6px">' + esc(f.titulo) + "</div>" : "") + '<div class="src-txt">' + esc(f.texto) + "</div></div>";
+      }).join("") + "</details>" : "") +
+      '<div class="pq-disc" style="margin-top:14px">' + icon("bulb") + "<span>Rascunho gerado com base no material NCC. Revise antes de publicar: o conteúdo é de sua responsabilidade profissional e deve respeitar o código de ética da sua profissão.</span></div>";
+    var m = openModal(t.title, body, { lg: true, foot: '<button type="button" class="btn" id="rvNovo" style="margin-right:auto">' + icon("sparkle") + ' Gerar outro</button><button type="button" class="btn" id="rvLeg">' + icon("copy") + ' Copiar legenda</button><button type="button" class="btn" id="rvTudo">' + icon("copy") + ' Copiar tudo</button><button type="button" class="btn btn-primary" id="rvSalvar">Salvar</button>' });
+    function coletar() {
+      m.el.querySelectorAll("[data-k]").forEach(function (el) { t[el.getAttribute("data-k")] = el.value; });
+      m.el.querySelectorAll("[data-sl]").forEach(function (el) { slides[+el.getAttribute("data-sl")][el.getAttribute("data-sk")] = el.value; });
+      if (t.format === "carrossel") t.slides = slides;
+    }
+    m.el.querySelector("#rvLeg").onclick = function () { coletar(); copiar((t.legenda || "") + "\n\n" + (t.hashtags || ""), "Legenda copiada. É só colar no Instagram."); };
+    m.el.querySelector("#rvTudo").onclick = function () { coletar(); copiar(textoRoteiro(t), "Roteiro completo copiado" + (briefingVisual() ? ", com o briefing visual." : ".")); };
+    m.el.querySelector("#rvNovo").onclick = function () { m.close(); escolherFormato(t); };
+    m.el.querySelector("#rvSalvar").onclick = function () {
+      coletar();
+      sb.from("themes").update({ hook: t.hook, texto: t.texto, cta: t.cta, legenda: t.legenda, hashtags: t.hashtags, slides: t.format === "carrossel" ? slides : t.slides }).eq("id", t.id).then(function (r) { if (!fail(r)) { m.close(); toast("Roteiro salvo."); recarregarConteudos(); } });
+    };
+  }
+
+  function identidadeVisual() {
+    var p = state.profile || {};
+    var cores = [p.brand_color_1, p.brand_color_2, p.brand_color_3, p.brand_color_4];
+    var m = openModal("Minha identidade visual",
+      '<p style="margin:0 0 12px;color:var(--ink-soft);line-height:1.55">Ao usar “Copiar tudo” em um roteiro, estes dados vão junto como briefing visual — útil para montar o post no Canva ou pedir a outra ferramenta.</p>' +
+      '<div class="field"><label>Cores da marca</label><div class="ct-cores">' + cores.map(function (c, i) {
+        return '<label class="ct-cor"><input type="color" data-cor="' + (i + 1) + '" value="' + esc(c || ["#4f826f", "#ac793d", "#e6e3de", "#5b3d1a"][i]) + '"><input class="input" data-hex="' + (i + 1) + '" maxlength="7" value="' + esc(c || "") + '" placeholder="sem cor"></label>';
+      }).join("") + "</div></div>" +
+      '<div class="field"><label>Fontes</label><input class="input" name="fontes" maxlength="200" value="' + esc(p.brand_fonts || "") + '" placeholder="Ex.: Montserrat para textos, Cormorant Garamond para títulos"></div>' +
+      '<div class="field"><label>Estilo visual</label><input class="input" name="estilo" maxlength="200" value="' + esc(p.design_style || "") + '" placeholder="Ex.: minimalista, fotos reais, tons terrosos"></div>',
+      { ok: "Salvar", onSubmit: function (form, close) {
+        var upd = { brand_fonts: fval(form, "fontes") || null, design_style: fval(form, "estilo") || null };
+        [1, 2, 3, 4].forEach(function (i) { var v2 = m.el.querySelector('[data-hex="' + i + '"]').value.trim(); upd["brand_color_" + i] = /^#[0-9a-f]{6}$/i.test(v2) ? v2 : null; });
+        sb.from("profiles").update(upd).eq("id", state.user.id).then(function (r) { if (!fail(r)) { Object.assign(state.profile, upd); close(); toast("Identidade visual salva."); } });
+      } });
+    m.el.querySelectorAll("[data-cor]").forEach(function (c) { c.oninput = function () { m.el.querySelector('[data-hex="' + c.getAttribute("data-cor") + '"]').value = c.value; }; });
+  }
+
+  // atalho na Pesquisa NCC: transformar a resposta em tema de conteúdo
+  function criarConteudoDaPesquisa(r) {
+    sb.from("themes").insert({ owner_id: state.user.id, title: r.titulo, insight: r.visao_geral && r.visao_geral.texto ? r.visao_geral.texto.slice(0, 600) : null, category: "Comportamento", status: "Novo", origem: "pesquisa",
+      fontes: ((r.fontes && r.fontes.trechos) || []).slice(0, 4).map(function (f) { return { conteudo: f.conteudo, pagina: f.pagina, titulo: f.titulo, texto: String(f.texto || "").slice(0, 600) }; }) })
+      .select("*").maybeSingle().then(function (x) {
+        if (fail(x)) return;
+        toast("Tema criado em Conteúdos para Instagram.");
+        escolherFormato(x.data);
+      });
+  }
 
   function stat(tint, ic, label, num, sub, btnLabel, btnIcon, go) {
     return '<div class="stat ' + tint + '"><div class="stat-head">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + num + '</div><div class="stat-sub">' + sub + '</div><button type="button" class="btn btn-block" data-go="' + go + '">' + (btnIcon ? icon(btnIcon) : "") + esc(btnLabel) + "</button></div>";
