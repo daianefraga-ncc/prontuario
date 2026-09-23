@@ -640,6 +640,28 @@
   .mapa-alerta { display: flex; gap: 10px; background: var(--tint-sand); border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 10px; }
   .mapa-alerta .icon { color: var(--gold-ink); flex-shrink: 0; margin-top: 1px; }
   @media (max-width: 1180px) { .pj-grid3 { grid-template-columns: 1fr; } }
+  /* ---------- etapa 6: início + ajuda ---------- */
+  .tools-6 { grid-template-columns: 1fr 1fr; }
+  .icon.mini { width: 12px; height: 12px; vertical-align: -1px; margin-right: 4px; }
+  .destaques { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 18px; }
+  .admin-banner { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; border: 1px solid var(--gold); background: var(--tint-sand); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 18px; cursor: pointer; font-size: 12.5px; color: var(--ink-soft); }
+  .admin-banner > .icon:first-child { width: 26px; height: 26px; color: var(--gold-ink); }
+  .admin-banner b { display: block; color: var(--ink); font-size: 14px; }
+  .admin-banner > .icon:last-child { margin-left: auto; }
+  .aj-q { border-bottom: 1px solid var(--line); padding: 12px 0; }
+  .aj-q:last-child { border-bottom: 0; }
+  .aj-q summary { cursor: pointer; font-weight: 600; font-size: 13.5px; }
+  .aj-q p { color: var(--ink-soft); margin: 8px 0 0; line-height: 1.6; font-size: 13px; }
+  .aj-passo { display: flex; gap: 10px; align-items: flex-start; width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line); background: none; padding: 10px 0; cursor: pointer; font-size: 12px; color: var(--ink-faint); }
+  .aj-passo:last-child { border-bottom: 0; }
+  .aj-passo b { display: block; color: var(--ink); font-size: 13px; }
+  .aj-passo.ok b { color: var(--ink-faint); text-decoration: line-through; }
+  .aj-ck { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--line-strong); flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .aj-passo.ok .aj-ck { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .aj-ck .icon { width: 12px; height: 12px; }
+  .aj-ia { font-size: 13px; color: var(--ink-soft); } .aj-ia b { font-size: 26px; color: var(--ink); }
+  @media (max-width: 1180px) { .destaques { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 820px) { .destaques { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -3300,6 +3322,240 @@
       });
     });
   }
+
+  /* ================= ETAPA 6: INÍCIO COMPLETO + CENTRAL DE AJUDA ================= */
+  Object.assign(I, { play: '<circle cx="12" cy="12" r="9"/><path d="M10 8.5l6 3.5-6 3.5z"/>' });
+
+  PAGES.inicio = function (v) {
+    var hoje = todayIso();
+    v.innerHTML = '<div id="homeRoot">' +
+      '<section class="hero">' +
+        '<div><h2>O que você precisa compreender hoje?</h2><p>Descreva um comportamento, situação ou faça uma pergunta.</p></div>' +
+        "<div>" +
+          '<form class="searchbar" id="homeSearch">' + icon("search") + '<input id="homeQ" placeholder="Ex.: “Por que a criança se desorganiza tanto na escola?”" aria-label="Pesquisa NCC"><button class="btn btn-primary" type="submit">Pesquisar no NCC</button></form>' +
+          '<div class="chips-label">Ou experimente:</div><div class="chips">' + CHIPS.map(function (c) { return '<button type="button" class="chip" data-chip="' + esc(c) + '">' + esc(c) + "</button>"; }).join("") + "</div>" +
+        "</div>" +
+        '<div class="hero-quote"><div class="quote">Comportamentos têm explicação.<br>E a ciência te ajuda a encontrar.</div></div>' +
+      "</section>" +
+      '<div id="homeAdmin"></div>' +
+      '<section class="grid-5" style="margin-bottom:18px">' +
+        stat("t-green", "users", "Meus casos", '<span id="stCasos">–</span>', '<span id="stCasosSub">Carregando…</span>', "Novo caso", "plus", "@novocaso") +
+        stat("t-sand", "calendar", "Compromissos de hoje", '<span id="stHoje">–</span>', '<span id="stHojeSub">Carregando…</span>', "Ver compromissos", "", "#compromissos") +
+        stat("t-sky", "search", "Pesquisas recentes", '<span id="stPesq">–</span>', "Suas buscas no NCC.", "Pesquisar no NCC", "", "pesquisa") +
+        stat("t-rose", "folder", "Meu acervo profissional", isVerified() ? '<span id="stAcervo">–</span>' : icon("lock"), isVerified() ? "Seus instrumentos e materiais privados." : "Disponível após a verificação profissional.", isVerified() ? "Gerenciar acervo" : "Solicitar verificação", "", "acervo") +
+        stat("t-lilac", "cap", "Projetos acadêmicos", '<span id="stProj">–</span>', '<span id="stProjSub">Seus projetos de pesquisa.</span>', "Ver projetos", "", "projetos") +
+      "</section>" +
+      '<section class="grid-3" style="margin-bottom:18px">' +
+        '<div class="card"><div class="card-head"><h3 class="card-title">Continue de onde parou</h3></div>' +
+          '<div class="tabs" id="contTabs"><button class="tab active" data-t="caso">Casos</button><button class="tab" data-t="pesquisa">Pesquisas</button><button class="tab" data-t="projeto">Projetos</button></div>' +
+          '<div id="contList"><div class="loading">Carregando…</div></div></div>' +
+        '<div class="card" id="compromissos"><div class="card-head"><h3 class="card-title">Próximos compromissos</h3></div><div id="compList"><div class="loading">Carregando…</div></div></div>' +
+        '<div class="card"><div class="card-head"><h3 class="card-title">Ferramentas rápidas</h3></div><div class="tools tools-6">' +
+          tool("doc", "Criar registro", "Anotações e observações", "@registro") +
+          tool("userplus", "Adicionar criança", "Novo acompanhamento", "@novocaso") +
+          tool("printer", "Gerar relatório", "Família, escola ou equipe", "@relatorio") +
+          tool("search", "Pesquisar no NCC", "Comportamentos e temas", "pesquisa") +
+          tool("folder", "Adicionar ao acervo", "Instrumentos e materiais", "@acervo") +
+          tool("cap", "Novo projeto", "Projeto acadêmico", "@projeto") +
+        "</div></div>" +
+      "</section>" +
+      '<div class="card"><div class="card-head"><h3 class="card-title">Materiais em destaque</h3><button type="button" class="link-btn" data-go="pesquisa">Explorar na Pesquisa NCC ' + icon("arrow") + '</button></div><div id="destaques" class="destaques"><div class="loading">Carregando…</div></div></div></div>';
+
+    $("homeSearch").onsubmit = function (e) { e.preventDefault(); var q = $("homeQ").value.trim(); if (q) goSearch(q); else $("homeQ").focus(); };
+    v.querySelectorAll("[data-chip]").forEach(function (b) { b.onclick = function () { goSearch(b.getAttribute("data-chip")); }; });
+    $("homeRoot").onclick = function (e) {
+      var b = e.target.closest("[data-go]"); if (!b) return;
+      var g = b.getAttribute("data-go");
+      if (g === "@novocaso") { casoForm(null, function (c) { toast("Caso criado."); location.hash = "mapa?caso=" + c.id; }); return; }
+      if (g === "@registro") { sessionStorage.setItem("ncc-novo", "1"); escolherCaso("Novo registro", "registros"); return; }
+      if (g === "@relatorio") { escolherCaso("Gerar relatório", "documentos"); return; }
+      if (g === "@acervo") { if (isVerified()) { location.hash = "acervo"; setTimeout(function () { itemForm(null); }, 400); } else location.hash = "acervo"; return; }
+      if (g === "@projeto") { projetoForm(null); return; }
+      if (g.charAt(0) === "#") { var el = $(g.slice(1)); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+      location.hash = g;
+    };
+
+    var contTipo = "caso";
+    $("contTabs").onclick = function (e) {
+      var t = e.target.closest("[data-t]"); if (!t) return;
+      contTipo = t.getAttribute("data-t");
+      $("contTabs").querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("active", x === t); });
+      loadCont();
+    };
+    function loadCont() {
+      var empt = {
+        caso: ["Nenhum caso em andamento.", "Quando você abrir um caso, ele aparecerá aqui.", "Ver meus casos", "casos"],
+        pesquisa: ["Nenhuma pesquisa ainda.", "Suas buscas na Pesquisa NCC aparecerão aqui.", "Pesquisar no NCC", "pesquisa"],
+        projeto: ["Nenhum projeto em andamento.", "Seus projetos acadêmicos aparecerão aqui.", "Ver projetos", "projetos"]
+      }[contTipo];
+      sb.from("atividade_recente").select("*").eq("tipo", contTipo).order("created_at", { ascending: false }).limit(5).then(function (res) {
+        var rows = res.data || [];
+        if (!$("contList")) return;
+        $("contList").innerHTML = rows.length ? rows.map(function (r) {
+          var go = contTipo === "caso" ? "mapa?caso=" + r.ref_id : contTipo === "pesquisa" ? "pesquisa?q=" + encodeURIComponent(r.titulo) : "projetos?p=" + r.ref_id;
+          return '<button type="button" class="list-item" data-go="' + esc(go) + '"><span class="list-ico ' + (contTipo === "caso" ? "t-green" : contTipo === "pesquisa" ? "t-sky" : "t-lilac") + '">' + icon(contTipo === "caso" ? "users" : contTipo === "pesquisa" ? "search" : "cap") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo) + '</span><span class="list-sub">' + esc(r.subtitulo || "") + "</span></span>" + icon("arrow") + "</button>";
+        }).join("") : '<div class="empty">' + icon("stack") + "<strong>" + empt[0] + "</strong><p>" + empt[1] + '</p><button type="button" class="btn" data-go="' + empt[3] + '">' + empt[2] + "</button></div>";
+      });
+    }
+    loadCont();
+
+    sb.from("casos").select("id,status").then(function (res) {
+      var rows = res.data || [], ativos = rows.filter(function (r) { return r.status !== "encerrado"; }).length;
+      if (!$("stCasos")) return;
+      $("stCasos").textContent = rows.length;
+      $("stCasosSub").textContent = rows.length ? ativos + " em andamento." : "Nenhuma criança cadastrada.";
+    });
+    sb.from("atividade_recente").select("id", { count: "exact", head: true }).eq("tipo", "pesquisa").then(function (res) { if ($("stPesq")) $("stPesq").textContent = res.count || 0; });
+    sb.from("projetos").select("id,etapa").then(function (res) {
+      var rows = res.data || [], ativos = rows.filter(function (p) { return p.etapa !== "concluido"; }).length;
+      if (!$("stProj")) return;
+      $("stProj").textContent = rows.length;
+      $("stProjSub").textContent = rows.length ? ativos + " em andamento." : "Seus projetos de pesquisa.";
+    });
+    if (isVerified()) sb.from("acervo_itens").select("id", { count: "exact", head: true }).then(function (res) { if ($("stAcervo")) $("stAcervo").textContent = res.count || 0; });
+
+    // compromissos: próximos passos dos casos + prazos e reuniões dos projetos
+    Promise.all([
+      sb.from("plano_itens").select("id,texto,data_prevista,hora,caso_id,casos(nome)").eq("tipo", "passo").eq("concluido", false).gte("data_prevista", hoje).order("data_prevista", { ascending: true }).limit(8),
+      sb.from("projeto_tarefas").select("id,titulo,tipo,data,hora,projeto_id,projetos(titulo)").eq("concluido", false).gte("data", hoje).order("data", { ascending: true }).limit(8)
+    ]).then(function (rs) {
+      var itens = (rs[0].data || []).map(function (r) { return { data: r.data_prevista, hora: r.hora, t: r.texto, s: (r.casos && r.casos.nome) || "Caso", go: "mapa?caso=" + r.caso_id, ic: "users" }; })
+        .concat((rs[1].data || []).filter(function (t) { return t.tipo !== "pendencia"; }).map(function (t) { return { data: t.data, hora: t.hora, t: t.titulo, s: "Projeto: " + ((t.projetos && t.projetos.titulo) || ""), go: "projetos?p=" + t.projeto_id + "&aba=cronograma", ic: "cap" }; }));
+      itens.sort(function (a, b) { return (a.data + (a.hora || "99")) < (b.data + (b.hora || "99")) ? -1 : 1; });
+      var nHoje = itens.filter(function (i) { return i.data === hoje; }).length;
+      if (!$("stHoje")) return;
+      $("stHoje").textContent = nHoje;
+      $("stHojeSub").textContent = nHoje ? "Compromissos marcados para hoje." : "Nada marcado para hoje.";
+      $("compList").innerHTML = itens.length ? itens.slice(0, 6).map(function (r) {
+        var d = parseDate(r.data);
+        return '<button type="button" class="list-item" data-go="' + esc(r.go) + '"><span class="date-box"><b>' + d.getDate() + "</b><span>" + MES[d.getMonth()] + '</span></span><span class="list-main"><span class="list-title">' + esc(r.t) + '</span><span class="list-sub">' + icon(r.ic, "mini") + esc(r.s) + (r.hora ? " · " + esc(r.hora) : "") + "</span></span></button>";
+      }).join("") : '<div class="empty">' + icon("calendar") + "<strong>Nenhum compromisso agendado.</strong><p>Os próximos passos dos casos e os prazos dos projetos aparecem aqui.</p></div>";
+    });
+
+    // materiais em destaque: conteúdos publicados da base NCC
+    sb.from("ncc_conteudos").select("id,titulo,tipo,modulo,aula,descricao,fonte,areas,created_at").eq("publicado", true).order("created_at", { ascending: false }).limit(6).then(function (res) {
+      var rows = res.data || [];
+      if (!$("destaques")) return;
+      var icTipo = { aula: "play", artigo: "doc", material: "book", protocolo: "list", comentario: "users" };
+      $("destaques").innerHTML = rows.length ? rows.map(function (c, i) {
+        return '<button type="button" class="list-item dest-item" data-dest="' + i + '"><span class="list-ico t-sand">' + icon(icTipo[c.tipo] || "doc") + '</span><span class="list-main"><span class="list-title">' + esc(c.titulo) + '</span><span class="list-sub">' + esc([rotulo(TIPOS_CONT, c.tipo), c.modulo, c.aula].filter(Boolean).join(" · ")) + "</span></span>" + icon("chevron") + "</button>";
+      }).join("") : '<div class="empty" style="grid-column:1/-1">' + icon("book") + "<strong>Os materiais do NCC aparecerão aqui.</strong><p>Conforme os módulos do curso forem adicionados à base.</p></div>";
+      $("destaques").querySelectorAll("[data-dest]").forEach(function (b) { b.onclick = function () {
+        var c = rows[+b.getAttribute("data-dest")];
+        var m = openModal(c.titulo, '<p style="margin:0 0 10px;color:var(--ink-soft)">' + esc([rotulo(TIPOS_CONT, c.tipo), c.modulo, c.aula].filter(Boolean).join(" · ")) + "</p>" +
+          (c.descricao ? '<p style="line-height:1.6;margin:0 0 12px">' + esc(c.descricao) + "</p>" : "") +
+          (c.fonte ? '<p class="hint" style="margin:0 0 14px">Fonte: ' + esc(c.fonte) + "</p>" : "") +
+          ((c.areas || []).length ? '<div class="pq-sec">Explore na Pesquisa NCC</div><div class="chips">' + c.areas.map(function (a) { return '<button type="button" class="chip" data-area="' + esc(rotulo(AREAS, a)) + '">' + esc(rotulo(AREAS, a)) + "</button>"; }).join("") + "</div>" : ""),
+          { lg: true, foot: '<button type="button" class="btn" data-x>Fechar</button>' });
+        m.el.querySelectorAll("[data-area]").forEach(function (x) { x.onclick = function () { m.close(); goSearch(x.getAttribute("data-area") + " na infância segundo o material NCC"); }; });
+      }; });
+    });
+
+    // aviso para a administração
+    if (isAdmin()) sb.rpc("admin_verificacoes").then(function (r) {
+      var n = (r.data || []).filter(function (x) { return x.verificacao_status === "pendente"; }).length;
+      if (n && $("homeAdmin")) $("homeAdmin").innerHTML = '<button type="button" class="admin-banner" data-go="verificacoes">' + icon("shield") + "<span><b>" + n + (n === 1 ? " verificação profissional aguardando" : " verificações profissionais aguardando") + " a sua análise</b>Os profissionais só acessam o Meu Acervo depois da sua aprovação.</span>" + icon("arrow") + "</button>";
+    });
+  };
+
+  /* ---------- Central de Ajuda ---------- */
+  var FAQ = [
+    ["Início e conta", "home", [
+      ["Como volto para a NeuroPlat?", "Use o item “Voltar à NeuroPlat”, no fim do menu."],
+      ["Como troco entre tema claro e escuro?", "Pelo botão de tema, no rodapé do menu. A escolha fica salva neste aparelho."],
+      ["Onde atualizo meu nome, profissão e registro profissional?", "Clique no seu nome, no rodapé do menu, ou no seu avatar, no canto superior direito. Atenção: se você já foi verificado(a) e mudar a profissão ou o registro, o acesso ao Meu Acervo volta para análise."],
+      ["Esqueci minha senha. E agora?", "Na tela de entrada, clique em “Esqueci minha senha” e siga o link enviado por e-mail."],
+      ["O que aparece em “Continue de onde parou”?", "Os últimos casos, pesquisas e projetos que você abriu, para retomar com um clique."],
+      ["Onde vejo os avisos da plataforma?", "No sino, no alto da tela: casos em Atenção, prazos dos projetos, resultado da verificação profissional e outros lembretes."]
+    ]],
+    ["Pesquisa NCC", "search", [
+      ["De onde vêm as respostas da Pesquisa NCC?", "Somente do material do curso NCC cadastrado na base: aulas, NeuroCompêndio, materiais de apoio e artigos. A IA não usa conhecimento de fora nem inventa estudos, autores ou números."],
+      ["O que significam os números ao lado das frases?", "São as citações. Clique no número para ver, na aba “Conteúdos NCC”, o trecho exato do material de onde veio a informação, com página ou minuto da aula."],
+      ["As imagens das respostas são geradas pela IA?", "Não. Todas as imagens são do material NCC, com a indicação da página de origem."],
+      ["Por que a resposta diz que o material não cobre o tema?", "Porque a Pesquisa NCC prefere admitir a lacuna a completar com informação de fora. Conforme novos módulos entram na base, as respostas ficam mais completas."],
+      ["Como os estudos científicos aparecem?", "Só aparecem estudos cadastrados na base, com autores, ano, periódico e DOI conferidos. Cada um informa o tipo de evidência (associação, correlação, risco aumentado, mecanismo experimental ou causal); estudos anteriores a 2023 são sinalizados como clássicos."],
+      ["Posso usar a resposta para concluir sobre um caso?", "Não. A Pesquisa NCC traz explicação científica geral. Ela não substitui a avaliação profissional nem permite concluir sobre uma criança específica."],
+      ["Como guardo uma resposta?", "Use “Salvar pesquisa”. Ela fica em “Pesquisas salvas” e pode ser reaberta sem gastar nova consulta. Você também pode adicioná-la à Biblioteca particular do Meu Acervo."]
+    ]],
+    ["Meus casos e Mapa de Acompanhamento", "users", [
+      ["Quando um caso entra em “Atenção”?", "Automaticamente, quando o caso fica mais de 20 dias sem registro. Você também recebe um aviso no sino."],
+      ["Por que preciso marcar “hipótese”?", "Porque nem toda profissão pode diagnosticar. Uma condição só deve ser marcada como confirmada quando houver diagnóstico feito por profissional habilitado; caso contrário, fica como hipótese — e os relatórios gerados pela IA respeitam essa marcação."],
+      ["Posso ditar um registro?", "Sim. No celular, use o microfone do teclado para ditar no campo do registro e depois clique em “Organizar texto com IA”: a IA só organiza a escrita, sem acrescentar nem remover informações."],
+      ["Como gero um relatório para a família, a escola ou a equipe?", "No Mapa de Acompanhamento, aba Documentos: escolha o público e o período. A IA escreve um rascunho só com os dados do caso; você revisa, edita e imprime ou salva em PDF."],
+      ["Como escolho os domínios de cada criança?", "Ao editar os dados do caso, marque ou desmarque os domínios (incluindo Estresse e Adversidades)."],
+      ["Por que os domínios aparecem “sem dados”?", "Os percentuais serão calculados a partir dos instrumentos aplicados, segundo as regras do material NCC. Enquanto essas regras não estiverem configuradas, o mapa não mostra percentuais — para não exibir números sem base."]
+    ]],
+    ["Meu Acervo Profissional", "folder", [
+      ["Como libero o Meu Acervo Profissional?", "Abra “Meu acervo profissional”, preencha profissão e registro no conselho e anexe a foto ou o PDF da carteira. A administração do NCC analisa e você recebe o aviso no sino."],
+      ["O que significam Privado, Verificado e Uso restrito?", "Privado: só você acessa. Verificado: material de uso restrito, e sua profissão verificada está habilitada. Uso restrito: material restrito a outras profissões — fica registrado, mas o arquivo não abre."],
+      ["O que é “Comparar com o NCC”?", "A IA lê a descrição e o texto que você escreveu sobre o material e mostra o que há em comum com o material NCC, o que o NCC acrescentaria e sugestões — sempre com as fontes do curso."],
+      ["Posso guardar instrumentos protegidos?", "Pode guardar o arquivo no seu acervo privado. Para a comparação com o NCC, não cole os itens do instrumento: descreva o que ele avalia. A IA nunca lê o arquivo, só o texto que você escreve."]
+    ]],
+    ["Projetos acadêmicos", "cap", [
+      ["Como funciona a matriz de evidências?", "Em cada projeto, adicione o PDF do artigo e clique em “Preencher”. A IA extrai autores, desenho, amostra, resultados, limitações e tipo de evidência somente do texto do artigo. Confira sempre antes de citar. A matriz pode ser exportada para o Excel."],
+      ["A IA não conseguiu ler o meu PDF. Por quê?", "Provavelmente é um PDF escaneado (imagem), sem texto selecionável. Nesse caso, preencha os campos manualmente."],
+      ["O que é o quadro “Coerência do projeto”?", "No Mapa metodológico, ele avisa sobre inconsistências comuns: por exemplo, objetivo que fala em “efeito” com um desenho que só permite associação, ou pesquisa com crianças sem registro de CEP, TCLE e TALE."],
+      ["Como recebo lembretes dos prazos?", "Cadastre as tarefas no cronograma do projeto. O sino avisa 3 dias antes de cada prazo e quando ele vence."]
+    ]],
+    ["Privacidade, segurança e IA", "shield", [
+      ["Meus dados e os das crianças são privados?", "Sim. Cada profissional só vê os próprios casos, registros, materiais e projetos. Os arquivos ficam em armazenamento privado. O documento da verificação profissional é visto só pela administração do NCC."],
+      ["O que é enviado para a IA?", "Só o texto necessário para cada recurso (por exemplo, o registro a organizar ou os dados do caso para o relatório), enviado ao serviço de IA da OpenAI apenas para gerar a resposta. Registre o consentimento dos responsáveis (LGPD) em cada caso."],
+      ["Existe limite de uso da IA?", "Sim, um número de consultas por mês. Cada ação de IA (pesquisa, comparação, relatório, organizar texto, preencher matriz) conta uma consulta. Seu uso do mês aparece no alto desta página."]
+    ]]
+  ];
+
+  PAGES.ajuda = function (v) {
+    var ini = new Date(); ini.setDate(1); ini.setHours(0, 0, 0, 0);
+    v.innerHTML = '<div class="layout-side"><div>' +
+        '<div class="card" style="margin-bottom:16px"><div class="searchbar">' + icon("search") + '<input id="ajBusca" placeholder="Busque uma dúvida: senha, relatório, matriz, verificação…"></div></div>' +
+        '<div id="ajFaq">' + FAQ.map(function (sec, si) {
+          return '<div class="card aj-sec" data-sec="' + si + '" style="margin-bottom:16px"><div class="card-head" style="margin-bottom:4px"><h3 class="card-title" style="display:flex;gap:10px;align-items:center"><span class="list-ico t-green">' + icon(sec[1]) + "</span>" + esc(sec[0]) + "</h3></div>" +
+            sec[2].map(function (f) { return '<details class="aj-q"><summary>' + esc(f[0]) + "</summary><p>" + esc(f[1]) + "</p></details>"; }).join("") + "</div>";
+        }).join("") + '<div class="card" id="ajNada" hidden><div class="empty">' + icon("search") + "<strong>Nenhuma dúvida encontrada.</strong><p>Tente outras palavras.</p></div></div></div>" +
+      "</div><aside>" +
+        '<div class="card" style="margin-bottom:16px"><div class="card-head" style="margin-bottom:8px"><h3 class="card-title">Primeiros passos</h3></div><div id="ajPassos"><div class="loading">Carregando…</div></div></div>' +
+        '<div class="card" style="margin-bottom:16px"><div class="card-head" style="margin-bottom:8px"><h3 class="card-title" style="display:flex;gap:8px;align-items:center">' + icon("sparkle") + ' Consultas de IA neste mês</h3></div><div id="ajIA"><div class="loading">Carregando…</div></div></div>' +
+        '<div class="card"><h3 class="card-title" style="margin-bottom:8px">Precisa de mais ajuda?</h3><p style="font-size:13px;color:var(--ink-soft);line-height:1.55;margin:0 0 12px">Fale com a equipe NCC pelos canais da NeuroPlat.</p><a class="btn btn-block" href="' + NEUROPLAT_URL + '" target="_blank" rel="noopener">' + icon("external") + " Ir para a NeuroPlat</a></div>" +
+      "</aside></div>";
+
+    $("ajBusca").oninput = function () {
+      var q = this.value.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim(), total = 0;
+      v.querySelectorAll(".aj-sec").forEach(function (sec) {
+        var n = 0;
+        sec.querySelectorAll(".aj-q").forEach(function (d) {
+          var ok = !q || d.textContent.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").indexOf(q) >= 0;
+          d.hidden = !ok; if (ok) n++; d.open = !!q && ok;
+        });
+        sec.hidden = !n; total += n;
+      });
+      $("ajNada").hidden = !!total;
+    };
+
+    var p = state.profile || {};
+    Promise.all([
+      sb.from("casos").select("id", { count: "exact", head: true }),
+      sb.from("atividade_recente").select("id", { count: "exact", head: true }).eq("tipo", "pesquisa"),
+      sb.from("projetos").select("id", { count: "exact", head: true }),
+      sb.from("ai_generations").select("id", { count: "exact", head: true }).gte("created_at", ini.toISOString())
+    ]).then(function (rs) {
+      if (!$("ajPassos")) return;
+      var passos = [
+        [!!(p.name && p.profissao), "Complete seu perfil", "Nome, profissão e registro no conselho.", "@conta"],
+        [isVerified(), "Faça a verificação profissional", p.verificacao_status === "pendente" ? "Em análise pela administração." : "Libera o Meu Acervo Profissional.", "acervo"],
+        [(rs[0].count || 0) > 0, "Cadastre o primeiro caso", "E abra o Mapa de Acompanhamento.", "casos"],
+        [(rs[1].count || 0) > 0, "Faça uma Pesquisa NCC", "Descreva um comportamento ou faça uma pergunta.", "pesquisa"],
+        [(rs[2].count || 0) > 0, "Crie um projeto acadêmico", "Com matriz de evidências e cronograma.", "projetos"]
+      ];
+      var feitos = passos.filter(function (x) { return x[0]; }).length;
+      $("ajPassos").innerHTML = '<div class="pj-bar" style="margin-bottom:10px"><span style="width:' + Math.round(100 * feitos / passos.length) + '%"></span></div><p class="hint" style="margin:0 0 6px">' + feitos + " de " + passos.length + " concluídos</p>" +
+        passos.map(function (x) {
+          return '<button type="button" class="aj-passo' + (x[0] ? " ok" : "") + '" data-passo="' + x[3] + '"><span class="aj-ck">' + (x[0] ? icon("check") : "") + "</span><span><b>" + esc(x[1]) + "</b>" + esc(x[2]) + "</span></button>";
+        }).join("");
+      $("ajPassos").querySelectorAll("[data-passo]").forEach(function (b) { b.onclick = function () { var g = b.getAttribute("data-passo"); if (g === "@conta") openAccount(); else location.hash = g; }; });
+      var usado = rs[3].count || 0, lim = p.monthly_credit_limit || 100;
+      $("ajIA").innerHTML = '<div class="aj-ia"><b>' + usado + "</b> de " + lim + '</div><div class="pj-bar" style="margin:8px 0"><span style="width:' + Math.min(100, Math.round(100 * usado / lim)) + "%" + (usado / lim > 0.85 ? ";background:var(--danger)" : "") + '"></span></div><p class="hint" style="margin:0">O contador recomeça no dia 1º de cada mês. Cada ação de IA conta uma consulta.</p>';
+    });
+  };
 
   function stat(tint, ic, label, num, sub, btnLabel, btnIcon, go) {
     return '<div class="stat ' + tint + '"><div class="stat-head">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + num + '</div><div class="stat-sub">' + sub + '</div><button type="button" class="btn btn-block" data-go="' + go + '">' + (btnIcon ? icon(btnIcon) : "") + esc(btnLabel) + "</button></div>";
