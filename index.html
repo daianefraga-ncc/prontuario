@@ -396,6 +396,119 @@
   @media (min-width: 821px) {
     .sidebar-panel { display: flex; flex-direction: column; flex: 1; min-height: 0; }
   }
+  /* ---------- etapa 3: pesquisa NCC ---------- */
+  .pq-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 18px; align-items: start; }
+  .pq-side { display: flex; flex-direction: column; gap: 14px; position: sticky; top: 16px; }
+  .pq-modes { display: flex; gap: 4px; background: var(--sunken); padding: 4px; border-radius: 10px; margin-bottom: 14px; overflow-x: auto; }
+  .pq-mode { white-space: nowrap; border: 0; background: transparent; padding: 8px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: var(--ink-soft); cursor: pointer; }
+  .pq-mode.active { background: var(--accent); color: var(--on-accent); }
+  .pq-extra { margin-top: 12px; }
+  .pq-extra-title { font-size: 12px; font-weight: 600; color: var(--ink-soft); margin-bottom: 8px; }
+  .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+  .theme-card { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); cursor: pointer; text-align: left; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+  .theme-card:hover { border-color: var(--accent); }
+  .theme-card .icon { color: var(--icon-green); }
+  .chip.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .pq-h { font-size: 18px; margin: 20px 0 10px; }
+  .pq-tabs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-bottom: 14px; }
+  .pq-tab { display: flex; align-items: center; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink-soft); font-size: 12px; font-weight: 600; line-height: 1.25; cursor: pointer; text-align: left; min-height: 52px; }
+  .pq-tab .icon { color: var(--icon-green); }
+  .pq-tab.active { background: var(--tint-green); border-color: var(--accent); color: var(--accent-strong); }
+  .pq-tab:disabled { opacity: .5; cursor: default; }
+  .pq-tab .n { margin-left: auto; padding-left: 4px; flex-shrink: 0; font-size: 11px; color: var(--ink-faint); font-weight: 600; }
+  .pq-rhead { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 14px; flex-wrap: wrap; }
+  .pq-rhead h3 { font-size: 19px; }
+  .pq-rhead .sub { color: var(--ink-faint); font-size: 12.5px; margin: 4px 0 0; }
+  .pq-rhead .acts { display: flex; gap: 8px; }
+  .pq-grid2 { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 18px; align-items: start; }
+  .pq-synth { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; line-height: 1.65; margin-bottom: 16px; }
+  .pq-sec { font-size: 13.5px; font-weight: 700; margin: 4px 0 10px; }
+  .pq-points { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px; }
+  .pq-points li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; }
+  .pq-num { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--tint-green); color: var(--accent-strong); font-size: 11.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .pq-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--line); line-height: 1.6; }
+  .pq-item:last-child { border-bottom: 0; }
+  .pq-item > .icon { color: var(--icon-green); margin-top: 3px; }
+  .cite { display: inline-flex; align-items: center; justify-content: center; min-width: 18px; height: 18px; padding: 0 4px; margin-left: 3px; border-radius: 6px; border: 1px solid var(--accent-soft); background: var(--accent-soft); color: var(--accent-strong); font-size: 10.5px; font-weight: 700; cursor: pointer; vertical-align: 2px; }
+  .cite:hover { border-color: var(--accent); }
+  .pq-disc { display: flex; gap: 10px; align-items: flex-start; background: var(--tint-green); border-radius: 12px; padding: 12px 14px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .pq-disc .icon { color: var(--icon-green); margin-top: 1px; }
+  .pq-warn { background: var(--tint-sand); color: var(--ink-soft); border-radius: 12px; padding: 12px 14px; font-size: 12.5px; margin-bottom: 14px; line-height: 1.55; }
+  .pq-warn b { color: var(--gold-ink); }
+  .pq-rel { border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .pq-rel h4 { font-size: 13.5px; margin-bottom: 8px; }
+  .pq-rel-item { display: flex; align-items: center; gap: 10px; width: 100%; padding: 9px 6px; border: 0; border-bottom: 1px solid var(--line); background: none; cursor: pointer; font-size: 12.5px; font-weight: 500; text-align: left; color: var(--ink); }
+  .pq-rel-item:hover { background: var(--surface-2); }
+  .pq-rel-item .icon:first-child { color: var(--icon-green); }
+  .pq-rel-item .icon:last-child { margin-left: auto; width: 14px; height: 14px; color: var(--ink-faint); }
+  .fig-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin: 6px 0 18px; }
+  .fig-card { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); display: flex; flex-direction: column; }
+  .fig-card button.fig-img { border: 0; padding: 10px; background: #fff; cursor: zoom-in; display: flex; align-items: center; justify-content: center; min-height: 150px; }
+  .fig-card img { max-width: 100%; max-height: 220px; object-fit: contain; display: block; }
+  .fig-cap { padding: 10px 12px 12px; font-size: 12px; line-height: 1.5; color: var(--ink-soft); }
+  .fig-cap b { display: block; color: var(--ink); font-size: 12.5px; margin-bottom: 4px; }
+  .fig-cap .src { color: var(--ink-faint); font-size: 11px; margin-top: 6px; }
+  .fig-zoom img { width: 100%; height: auto; background: #fff; border-radius: 10px; }
+  .est-card { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; }
+  .est-card h4 { font-size: 14px; line-height: 1.4; margin: 6px 0 4px; }
+  .est-meta { color: var(--ink-faint); font-size: 12px; }
+  .est-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tagx { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; background: var(--tint-sky); color: var(--icon-sky); }
+  .tagx.gold { background: var(--tint-sand); color: var(--gold-ink); }
+  .tagx.green { background: var(--tint-green); color: var(--accent-strong); }
+  .est-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-top: 10px; font-size: 12.5px; line-height: 1.55; }
+  .est-grid div b { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-faint); margin-bottom: 2px; }
+  .src-card { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; transition: box-shadow .3s, border-color .3s; }
+  .src-card.hl { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .src-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12.5px; }
+  .src-n { width: 22px; height: 22px; border-radius: 6px; background: var(--accent-soft); color: var(--accent-strong); display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+  .src-txt { font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .src-card.open .src-txt { display: block; -webkit-line-clamp: unset; }
+  .pq-filters h3 { font-size: 15px; }
+  .fgroup { margin-top: 14px; }
+  .fgroup > b { display: block; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .fopt { display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 3px 0; cursor: pointer; color: var(--ink-soft); }
+  .fopt input { accent-color: var(--accent); width: 15px; height: 15px; margin: 0; }
+  .fopt .c { color: var(--ink-faint); }
+  .pq-load { display: flex; flex-direction: column; gap: 10px; padding: 8px 0; }
+  .pq-step { display: flex; align-items: center; gap: 10px; color: var(--ink-faint); font-size: 13px; }
+  .pq-step.on { color: var(--ink); font-weight: 600; }
+  .pq-step.done { color: var(--accent-strong); }
+  .spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--accent-soft); border-top-color: var(--accent); animation: spin 0.9s linear infinite; flex-shrink: 0; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .pq-foot { margin-top: 12px; font-size: 11.5px; color: var(--ink-faint); }
+  .base-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .base-table th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-faint); padding: 8px 6px; border-bottom: 1px solid var(--line); }
+  .base-table td { padding: 10px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .imp-log { background: var(--sunken); border-radius: 10px; padding: 10px 12px; font-size: 12px; max-height: 220px; overflow-y: auto; white-space: pre-wrap; margin-top: 12px; }
+  .switch { position: relative; width: 36px; height: 20px; border-radius: 999px; border: 0; background: var(--line-strong); cursor: pointer; flex-shrink: 0; }
+  .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; transition: left .15s; }
+  .switch.on { background: var(--accent); }
+  .switch.on::after { left: 18px; }
+  @media (max-width: 1280px) { .pq-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 1180px) {
+    .pq-layout { grid-template-columns: 1fr; }
+    .pq-side { position: static; order: -1; }
+    .pq-side .quote-card { display: none; }
+    .pq-grid2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 820px) {
+    .pq-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .est-grid { grid-template-columns: 1fr; }
+    .base-table .hide-m { display: none; }
+  }
+  .base-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .base-stats .stat { min-height: 0; }
+  .pq-main, .pq-side { min-width: 0; }
+  .pq-ftoggle { display: flex; align-items: center; gap: 8px; border: 0; background: none; padding: 0; cursor: default; color: var(--ink); }
+  .pq-ftoggle .icon { display: none; }
+  @media (max-width: 1180px) {
+    .pq-ftoggle { cursor: pointer; } .pq-ftoggle .icon { display: inline-block; color: var(--icon-green); }
+    .pq-filters:not(.aberto) .fgroup, .pq-filters:not(.aberto) #pqAplicar, .pq-filters:not(.aberto) .hint { display: none; }
+    .pq-filters { padding: 14px 18px; }
+  }
+  .pq-tab > span:not(.n) { min-width: 0; }
+  @media (max-width: 820px) { .base-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pq-layout { grid-template-columns: minmax(0, 1fr); } }
 </style>
 </head>
 <body>
@@ -734,7 +847,7 @@
 
   /* ================= NAVEGAÇÃO ================= */
   function renderNav() {
-    var html = NAV.map(function (n) {
+    var html = NAV.filter(function (n) { return !n.admin || isAdmin(); }).map(function (n) {
       var locked = n.locked && !isVerified();
       return '<button type="button" class="nav-item' + (state.route === n.id ? " active" : "") + '" data-route="' + n.id + '">' + icon(n.icon) + "<span>" + esc(n.label) + "</span>" + (locked ? icon("lock", "lock") : "") + "</button>";
     }).join("");
@@ -750,7 +863,7 @@
 
   function routeFromHash() {
     var h = (location.hash || "").replace(/^#/, "").split("?")[0];
-    for (var i = 0; i < NAV.length; i++) if (NAV[i].id === h) return h;
+    for (var i = 0; i < NAV.length; i++) if (NAV[i].id === h && (!NAV[i].admin || isAdmin())) return h;
     return "inicio";
   }
   function hashParam(k) { var q = (location.hash.split("?")[1] || ""); var m = q.match(new RegExp("(?:^|&)" + k + "=([^&]*)")); return m ? decodeURIComponent(m[1]) : ""; }
@@ -892,6 +1005,9 @@
         ["Como troco entre tema claro e escuro?", "Pelo botão de tema, no rodapé do menu. A escolha fica salva neste aparelho."],
         ["Onde atualizo meu nome e registro profissional?", "Clique no seu nome, no rodapé do menu, ou no seu avatar, no canto superior direito."],
         ["Meus dados e os das crianças são privados?", "Sim. Cada profissional só vê os próprios casos, registros e materiais. Arquivos ficam em armazenamento privado."],
+        ["De onde vêm as respostas da Pesquisa NCC?", "Somente do material do curso NCC cadastrado na base (aulas, NeuroCompêndio, materiais de apoio e artigos). Cada informação traz um número que leva ao trecho de origem, na aba “Conteúdos NCC”. Se o material não cobre a pergunta, a resposta diz isso."],
+        ["As imagens das respostas são geradas pela IA?", "Não. Todas as imagens são do material NCC, com a indicação da página de origem."],
+        ["Como guardo uma resposta?", "Use “Salvar pesquisa”. Ela fica em “Pesquisas salvas” e pode ser reaberta sem gastar nova consulta."],
         ["Esqueci minha senha. E agora?", "Na tela de entrada, clique em “Esqueci minha senha” e siga o link enviado por e-mail."]
       ];
       v.innerHTML = '<div class="card" style="max-width:820px">' + faq.map(function (f) { return '<details style="padding:12px 0;border-bottom:1px solid var(--line)"><summary style="cursor:pointer;font-weight:600">' + esc(f[0]) + '</summary><p style="color:var(--ink-soft);margin:8px 0 0">' + esc(f[1]) + "</p></details>"; }).join("") + '<p class="hint" style="margin:16px 0 0">A Central de Ajuda completa será escrita conforme cada seção for concluída.</p></div>';
@@ -1489,6 +1605,537 @@
       }
     }
   };
+
+  /* ================= ETAPA 3: PESQUISA NCC + BASE NCC (administração) ================= */
+  Object.assign(I, {
+    share: '<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/>',
+    book: '<path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5z"/><path d="M12 6v14"/>',
+    tool: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>',
+    person: '<circle cx="12" cy="8" r="3.5"/><path d="M5 21a7 7 0 0 1 14 0"/>',
+    bulb: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/>',
+    image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 9"/>',
+    db: '<ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v13c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-13"/><path d="M5 12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/>',
+    chevron: '<path d="M9 6l6 6-6 6"/>'
+  });
+
+  var TIPOS_CONT = [["aula", "Aulas NCC"], ["artigo", "Artigos científicos"], ["material", "Materiais de apoio"], ["protocolo", "Protocolos"], ["comentario", "Comentário de especialistas"]];
+  var FAIXAS = [["0-2", "0 – 2 anos"], ["3-5", "3 – 5 anos"], ["6-10", "6 – 10 anos"], ["11-14", "11 – 14 anos"], ["adolescencia", "Adolescência"]];
+  var AREAS = [["funcoes_executivas", "Funções executivas"], ["regulacao_emocional", "Regulação emocional"], ["atencao", "Atenção e concentração"], ["comportamento", "Comportamento"],
+    ["aprendizagem", "Aprendizagem"], ["socializacao", "Socialização"], ["sono", "Sono"], ["linguagem", "Linguagem"],
+    ["desenvolvimento_cerebral", "Desenvolvimento cerebral"], ["estresse", "Estresse"], ["parentalidade", "Parentalidade"], ["sensorial_motor", "Sensorial e motor"]];
+  function rotulo(lista, k) { for (var i = 0; i < lista.length; i++) if (lista[i][0] === k) return lista[i][1]; return k; }
+
+  var TEMAS_NCC = [
+    ["Birras e crises emocionais", "Por que a criança tem crises de birra e como o cérebro participa disso?", "heart"],
+    ["Medo, ameaça e amígdala", "Como a amígdala participa do medo e das reações de ameaça na criança?", "alert"],
+    ["Rotina e previsibilidade", "Por que a rotina e a previsibilidade ajudam a criança a se regular?", "calendar"],
+    ["Funções executivas e autocontrole", "O que o autocontrole na infância prevê para a vida adulta?", "target"],
+    ["Córtex pré-frontal", "Qual o papel do córtex pré-frontal na regulação do comportamento da criança?", "brain"],
+    ["Estresse e sistema nervoso autônomo", "Como o sistema nervoso autônomo reage ao estresse na criança?", "bolt"],
+    ["Corregulação e alostase", "O que é corregulação emocional e por que o bebê precisa dela?", "family"],
+    ["Parentalidade", "Quais são os pilares da parentalidade que influenciam o cérebro da criança?", "users"],
+    ["Pertencimento e rejeição", "Como a rejeição e o pertencimento afetam o cérebro da criança?", "social"],
+    ["Formação de hábitos", "Como o cérebro forma hábitos e comportamentos automáticos?", "sprout"],
+    ["Neurônios espelho e imitação", "Neurônios espelho: a criança aprende só por imitação?", "child"],
+    ["Os primeiros anos do cérebro", "Como o cérebro da criança se desenvolve nos primeiros anos de vida?", "chart"],
+    ["Adversidades e maus-tratos", "Quais os efeitos de maus-tratos e adversidades na infância sobre o cérebro?", "shield"],
+    ["Sono e tronco encefálico", "Que estruturas cerebrais participam da regulação do sono?", "moon"],
+    ["Crises: fases e manejo", "Quais são as fases de uma crise e o que acontece no sistema nervoso?", "wave"],
+    ["Observação integrada do comportamento", "Como observar o comportamento da criança de forma integrada na prática profissional?", "map"]
+  ];
+  var PERGUNTAS_FAIXA = {
+    "0-2": ["Como o cérebro do bebê se desenvolve até os 2 anos?", "O que é corregulação e por que o bebê precisa dela?", "Como o estresse aparece no corpo e no cérebro do bebê?"],
+    "3-5": ["Por que a criança pequena tem crises de birra?", "O que é a poda sináptica entre 2 e 5 anos?", "Como a rotina ajuda a criança a regular as emoções?"],
+    "6-10": ["Dificuldade de atenção na escola", "Autocontrole na infância e vida adulta", "Como a rejeição na escola afeta a criança?"],
+    "11-14": ["Plasticidade do hipocampo no início da adolescência", "Por que a regulação emocional externa ainda é importante nessa fase?", "Pertencimento e autoestima no pré-adolescente"],
+    "adolescencia": ["Por que a regulação emocional externa é importante até a adolescência?", "Autocontrole e trajetória de vida", "Pertencimento, autoestima e junção temporoparietal"]
+  };
+  var EXEMPLOS_PQ = ["Por que a criança tem birra?", "Dificuldade de atenção na escola", "Agressividade na infância", "Sono e comportamento", "Medo e ansiedade na infância"];
+
+  var pq = { modo: "geral", filtros: { tipos: [], faixas: [], areas: [] }, profissao: null, ordem: "relevancia", aba: "visao",
+    resp: null, erro: null, carregando: false, pergunta: "", salvaId: null, contagens: null, maisAreas: false, token: 0 };
+  var pqCache = {};
+
+  function pqChave(p) { return JSON.stringify([p, pq.filtros, pq.profissao || ""]); }
+  function filtrosAtivos() { return pq.filtros.tipos.length + pq.filtros.faixas.length + pq.filtros.areas.length; }
+
+  function invokePesquisa(body) {
+    return sb.functions.invoke("ncc-pesquisa", { body: body }).then(function (res) {
+      if (res.error) {
+        var ctx = res.error.context;
+        if (ctx && typeof ctx.json === "function") return ctx.json().then(function (p) { throw new Error(aiErro(null, p)); }, function () { throw new Error(aiErro()); });
+        throw new Error(aiErro());
+      }
+      if (!res.data || res.data.error) throw new Error(aiErro(null, res.data));
+      return res.data;
+    });
+  }
+
+  function carregarContagens() {
+    if (pq.contagens) return Promise.resolve(pq.contagens);
+    return sb.from("ncc_conteudos").select("tipo,faixas,areas").eq("publicado", true).then(function (res) {
+      var c = { total: 0, tipo: {}, faixa: {}, area: {} };
+      (res.data || []).forEach(function (r) {
+        c.total++;
+        c.tipo[r.tipo] = (c.tipo[r.tipo] || 0) + 1;
+        (r.faixas || []).forEach(function (f) { c.faixa[f] = (c.faixa[f] || 0) + 1; });
+        (r.areas || []).forEach(function (a) { c.area[a] = (c.area[a] || 0) + 1; });
+      });
+      pq.contagens = c; return c;
+    });
+  }
+
+  function citeHtml(fontes) {
+    return (fontes || []).map(function (n) { return '<button type="button" class="cite" data-cite="' + n + '" title="Ver trecho do material NCC">' + (n + 1) + "</button>"; }).join("");
+  }
+  function iconeTema(t) {
+    var s = String(t).toLowerCase();
+    if (/execut|autocontrole|inibi|planej/.test(s)) return "target";
+    if (/emo|regula|birra|afet/.test(s)) return "heart";
+    if (/estresse|cortisol|autônomo|autonomo|ameaça/.test(s)) return "bolt";
+    if (/sono/.test(s)) return "moon";
+    if (/escola|aprend/.test(s)) return "school";
+    if (/famíl|famil|parent|mãe|pai|corregula/.test(s)) return "family";
+    if (/social|pertenc|rejei|espelho/.test(s)) return "social";
+    if (/hábit|habit|recompensa|motiva/.test(s)) return "sprout";
+    return "brain";
+  }
+
+  function dispararPesquisa(p) {
+    p = String(p || "").trim();
+    if (p.length < 3) { toast("Escreva uma pergunta um pouco maior."); return; }
+    var alvo = "pesquisa?q=" + encodeURIComponent(p);
+    if (location.hash.replace(/^#/, "") === alvo) executarPesquisa(p, true); else location.hash = alvo;
+  }
+
+  function executarPesquisa(p, forcar) {
+    pq.pergunta = p; pq.salvaId = null; pq.erro = null;
+    var k = pqChave(p);
+    if (!forcar && pqCache[k]) { pq.resp = pqCache[k]; pq.carregando = false; pintarResultado(); return; }
+    if (forcar && pqCache[k]) { pq.resp = pqCache[k]; pintarResultado(); return; }
+    pq.resp = null; pq.carregando = true; pq.aba = "visao";
+    var meu = ++pq.token;
+    pintarResultado();
+    var prof = pq.profissao || (state.profile && state.profile.profissao) || "";
+    invokePesquisa({ pergunta: p, filtros: pq.filtros, profissao: prof ? profLabel(prof) || prof : "" }).then(function (r) {
+      if (meu !== pq.token) return;
+      pq.carregando = false; pq.resp = r; pqCache[k] = r;
+      pintarResultado();
+      if (!r.sem_resultado) sb.from("atividade_recente").insert({ owner_id: state.user.id, tipo: "pesquisa", titulo: p.slice(0, 200), subtitulo: r.titulo || "" }).then(function () {});
+    }, function (e) {
+      if (meu !== pq.token) return;
+      pq.carregando = false; pq.erro = e.message; pintarResultado();
+    });
+  }
+
+  /* ---------- página ---------- */
+  PAGES.pesquisa = function (v) {
+    var q = hashParam("q"), salva = hashParam("salva");
+    if (!pq.profissao && state.profile && state.profile.profissao) pq.profissao = state.profile.profissao;
+    $("pageActions").innerHTML = '<button type="button" class="btn" id="pqSalvas">' + icon("bookmark") + " Pesquisas salvas</button>";
+    $("pqSalvas").onclick = abrirSalvas;
+    v.innerHTML =
+      '<div class="pq-layout"><div class="pq-main">' +
+        '<div class="card"><div class="pq-modes" id="pqModes">' +
+          [["geral", "Busca geral"], ["tema", "Buscar por tema"], ["faixa", "Explorar por faixa etária"], ["area", "Explorar por área profissional"]].map(function (m) {
+            return '<button type="button" class="pq-mode' + (pq.modo === m[0] ? " active" : "") + '" data-modo="' + m[0] + '">' + m[1] + "</button>";
+          }).join("") + "</div>" +
+          '<form class="searchbar" id="pqForm">' + icon("search") + '<input id="pqQ" placeholder="Descreva o comportamento ou faça uma pergunta…" maxlength="1000" value="' + esc(q || (salva ? "" : pq.pergunta)) + '"><button class="btn btn-primary" type="submit">Pesquisar</button></form>' +
+          '<div class="pq-extra" id="pqExtra"></div>' +
+        "</div>" +
+        '<h2 class="pq-h">Resultados</h2>' +
+        '<div class="pq-tabs" id="pqTabs"></div>' +
+        '<div id="pqOut"></div>' +
+      "</div>" +
+      '<aside class="pq-side">' +
+        '<div class="quote-card"><div class="quote">Do comportamento<br>ao conhecimento científico.<br>A ciência é prática.</div></div>' +
+        '<div class="card pq-filters" id="pqFiltros"><div class="loading">Carregando filtros…</div></div>' +
+      "</aside></div>";
+
+    $("pqForm").onsubmit = function (e) { e.preventDefault(); dispararPesquisa($("pqQ").value); };
+    $("pqModes").onclick = function (e) {
+      var b = e.target.closest("[data-modo]"); if (!b) return;
+      pq.modo = b.getAttribute("data-modo");
+      $("pqModes").querySelectorAll(".pq-mode").forEach(function (x) { x.classList.toggle("active", x === b); });
+      pintarModo();
+    };
+    pintarModo();
+    pintarFiltros();
+
+    if (salva) abrirSalva(salva);
+    else if (q) { if (q !== pq.pergunta || (!pq.resp && !pq.carregando && !pq.erro)) executarPesquisa(q, false); else pintarResultado(); }
+    else { pq.pergunta = ""; pq.resp = null; pq.erro = null; pq.carregando = false; pintarResultado(); }
+  };
+
+  function pintarModo() {
+    var el = $("pqExtra"); if (!el) return;
+    var h = "";
+    if (pq.modo === "geral") {
+      h = '<div class="chips-label">Exemplos de busca</div><div class="chips">' + EXEMPLOS_PQ.map(function (c) { return '<button type="button" class="chip" data-q="' + esc(c) + '">“' + esc(c) + "”</button>"; }).join("") + "</div>";
+    } else if (pq.modo === "tema") {
+      h = '<div class="pq-extra-title">Temas do material NCC</div><div class="theme-grid">' + TEMAS_NCC.map(function (t) {
+        return '<button type="button" class="theme-card" data-q="' + esc(t[1]) + '">' + icon(t[2]) + "<span>" + esc(t[0]) + "</span></button>";
+      }).join("") + "</div>";
+    } else if (pq.modo === "faixa") {
+      var f = pq.filtros.faixas.length === 1 ? pq.filtros.faixas[0] : "";
+      h = '<div class="pq-extra-title">Escolha a faixa etária — a pesquisa usará só o material marcado para ela</div><div class="chips">' +
+        FAIXAS.map(function (x) { return '<button type="button" class="chip' + (f === x[0] ? " on" : "") + '" data-faixa="' + x[0] + '">' + esc(x[1]) + "</button>"; }).join("") + "</div>" +
+        (f ? '<div class="pq-extra-title" style="margin-top:12px">Perguntas para ' + esc(rotulo(FAIXAS, f)) + '</div><div class="chips">' +
+          (PERGUNTAS_FAIXA[f] || []).map(function (c) { return '<button type="button" class="chip" data-q="' + esc(c) + '">“' + esc(c) + "”</button>"; }).join("") + "</div>" : "");
+    } else if (pq.modo === "area") {
+      h = '<div class="pq-extra-title">Sua área de atuação — a aba “Aplicação profissional” será adaptada a ela</div><div class="chips">' +
+        PROFISSOES.filter(function (p) { return p[0]; }).map(function (p) { return '<button type="button" class="chip' + (pq.profissao === p[0] ? " on" : "") + '" data-prof="' + p[0] + '">' + esc(p[1]) + "</button>"; }).join("") + "</div>";
+    }
+    el.innerHTML = h;
+    el.querySelectorAll("[data-q]").forEach(function (b) { b.onclick = function () { $("pqQ").value = b.getAttribute("data-q"); dispararPesquisa(b.getAttribute("data-q")); }; });
+    el.querySelectorAll("[data-faixa]").forEach(function (b) { b.onclick = function () {
+      var f = b.getAttribute("data-faixa");
+      pq.filtros.faixas = pq.filtros.faixas.length === 1 && pq.filtros.faixas[0] === f ? [] : [f];
+      pintarModo(); pintarFiltros(true);
+    }; });
+    el.querySelectorAll("[data-prof]").forEach(function (b) { b.onclick = function () {
+      pq.profissao = b.getAttribute("data-prof"); pintarModo();
+      if (pq.pergunta && pq.resp) toast("Pesquise novamente para adaptar a aplicação a " + profLabel(pq.profissao) + ".");
+    }; });
+  }
+
+  function pintarFiltros(mudou) {
+    var box = $("pqFiltros"); if (!box) return;
+    carregarContagens().then(function (c) {
+      if (!$("pqFiltros")) return;
+      function grupo(titulo, chave, lista, cont, limite) {
+        var itens = lista;
+        var extra = "";
+        if (limite && !pq.maisAreas && lista.length > limite) { itens = lista.slice(0, limite); extra = '<button type="button" class="link-btn" id="pqMaisAreas" style="margin-top:4px">Outros ' + icon("chevron") + "</button>"; }
+        return '<div class="fgroup"><b>' + titulo + "</b>" + itens.map(function (x) {
+          var on = pq.filtros[chave].indexOf(x[0]) >= 0;
+          return '<label class="fopt"><input type="checkbox" data-f="' + chave + '" value="' + x[0] + '"' + (on ? " checked" : "") + "><span>" + esc(x[1]) + ' <span class="c">(' + (cont[x[0]] || 0) + ")</span></span></label>";
+        }).join("") + extra + "</div>";
+      }
+      box.innerHTML =
+        '<div class="card-head" style="margin-bottom:0"><button type="button" class="pq-ftoggle" id="pqFToggle">' + icon("filter") + "<h3>Filtros" + (filtrosAtivos() ? " (" + filtrosAtivos() + ")" : "") + '</h3></button><button type="button" class="link-btn" id="pqLimpar">Limpar filtros</button></div>' +
+        (c.total ? "" : '<p class="hint" style="margin:8px 0 0">A base NCC ainda está sendo alimentada.</p>') +
+        grupo("Tipo de conteúdo", "tipos", TIPOS_CONT, c.tipo) +
+        grupo("Faixa etária", "faixas", FAIXAS, c.faixa) +
+        grupo("Área de interesse", "areas", AREAS, c.area, 8) +
+        '<div class="fgroup"><b>Ordenar estudos por</b><select class="input" id="pqOrdem"><option value="relevancia">Mais relevantes</option><option value="recentes">Mais recentes</option></select></div>' +
+        '<button type="button" class="btn btn-primary btn-block" id="pqAplicar" style="margin-top:14px"' + (mudou && pq.pergunta ? "" : " hidden") + ">Aplicar filtros à pesquisa</button>";
+      $("pqFToggle").onclick = function () { pq.filtrosAbertos = !box.classList.contains("aberto"); box.classList.toggle("aberto", pq.filtrosAbertos); };
+      box.classList.toggle("aberto", !!pq.filtrosAbertos);
+      $("pqOrdem").value = pq.ordem;
+      $("pqOrdem").onchange = function () { pq.ordem = this.value; if (pq.resp && pq.aba === "estudos") pintarResultado(); };
+      box.querySelectorAll("[data-f]").forEach(function (cb) { cb.onchange = function () {
+        var k = cb.getAttribute("data-f"), arr = pq.filtros[k], i = arr.indexOf(cb.value);
+        if (cb.checked && i < 0) arr.push(cb.value); if (!cb.checked && i >= 0) arr.splice(i, 1);
+        if (k === "faixas" && pq.modo === "faixa") pintarModo();
+        if (pq.pergunta) $("pqAplicar").hidden = false;
+      }; });
+      $("pqLimpar").onclick = function () { pq.filtros = { tipos: [], faixas: [], areas: [] }; pintarFiltros(true); if (pq.modo === "faixa") pintarModo(); };
+      $("pqAplicar").onclick = function () { $("pqAplicar").hidden = true; if (pq.pergunta) executarPesquisa(pq.pergunta, false); };
+      var mais = $("pqMaisAreas"); if (mais) mais.onclick = function () { pq.maisAreas = true; pintarFiltros(!$("pqAplicar").hidden); };
+    });
+  }
+
+  var ABAS_PQ = [["visao", "Visão geral", "doc"], ["neuro", "Explicação neurocientífica", "brain"], ["estudos", "Estudos científicos", "chart"],
+    ["conteudos", "Conteúdos NCC", "book"], ["ferramentas", "Ferramentas práticas", "tool"], ["aplicacao", "Aplicação profissional", "person"]];
+
+  function pintarResultado() {
+    var out = $("pqOut"), tabs = $("pqTabs"); if (!out || !tabs) return;
+    var r = pq.resp, ok = r && !r.sem_resultado;
+    var n = ok ? { visao: 0, neuro: r.neuro.length + r.figuras.length + r.analogias.length, estudos: r.estudos.length, conteudos: r.fontes.trechos.length, ferramentas: r.ferramentas.length, aplicacao: r.aplicacao.length } : {};
+    tabs.innerHTML = ABAS_PQ.map(function (a) {
+      return '<button type="button" class="pq-tab' + (ok && pq.aba === a[0] ? " active" : "") + '" data-aba="' + a[0] + '"' + (ok ? "" : " disabled") + ">" + icon(a[2]) + "<span>" + esc(a[1]) + "</span>" + (ok && a[0] !== "visao" ? '<span class="n">' + n[a[0]] + "</span>" : "") + "</button>";
+    }).join("");
+    tabs.onclick = function (e) { var b = e.target.closest("[data-aba]"); if (!b || b.disabled) return; pq.aba = b.getAttribute("data-aba"); pintarResultado(); };
+
+    if (pq.carregando) {
+      out.innerHTML = '<div class="card"><div class="pq-rhead"><div><h3>' + esc(pq.pergunta) + '</h3><p class="sub">Consultando o material NCC. Isso pode levar até um minuto.</p></div></div><div class="pq-load">' +
+        ['Entendendo a pergunta e buscando termos relacionados', 'Procurando trechos, imagens e estudos na base NCC', 'Organizando a resposta com base somente no material'].map(function (s, i) {
+          return '<div class="pq-step" data-st="' + i + '"><span class="spin"></span>' + s + "</div>";
+        }).join("") + "</div></div>";
+      var i = 0, meu = pq.token;
+      (function passo() {
+        if (!pq.carregando || meu !== pq.token || !$("pqOut")) return;
+        out.querySelectorAll(".pq-step").forEach(function (s, j) { s.classList.toggle("on", j === i); s.classList.toggle("done", j < i); s.querySelector(".spin").style.visibility = j === i ? "visible" : "hidden"; });
+        if (i < 2) { i++; setTimeout(passo, i === 1 ? 6000 : 9000); }
+      })();
+      return;
+    }
+    if (pq.erro) {
+      out.innerHTML = '<div class="card"><div class="empty">' + icon("alert") + "<strong>" + esc(pq.erro) + '</strong><p></p><button type="button" class="btn" id="pqDenovo">Tentar novamente</button></div></div>';
+      $("pqDenovo").onclick = function () { executarPesquisa(pq.pergunta, false); };
+      return;
+    }
+    if (!r) {
+      var c = pq.contagens;
+      out.innerHTML = '<div class="card"><div class="empty">' + icon("brain") + "<strong>Faça uma pergunta para começar</strong><p>A resposta traz visão geral, explicação neurocientífica com imagens, estudos científicos, conteúdos NCC, ferramentas práticas e aplicação profissional — sempre com base no material do NCC, citando de onde veio cada informação.</p></div></div>";
+      return;
+    }
+    if (r.sem_resultado) {
+      out.innerHTML = '<div class="card"><div class="empty">' + icon("search") + "<strong>" + esc(r.mensagem || "Nada encontrado na base NCC.") + '</strong><p>A Pesquisa NCC responde apenas com o material do curso. Experimente um destes temas:</p><div class="chips" style="justify-content:center">' +
+        TEMAS_NCC.slice(0, 6).map(function (t) { return '<button type="button" class="chip" data-q="' + esc(t[1]) + '">' + esc(t[0]) + "</button>"; }).join("") + "</div></div></div>";
+      out.querySelectorAll("[data-q]").forEach(function (b) { b.onclick = function () { $("pqQ").value = b.getAttribute("data-q"); dispararPesquisa(b.getAttribute("data-q")); }; });
+      return;
+    }
+
+    var head = '<div class="pq-rhead"><div><h3>' + esc(r.titulo) + '</h3><p class="sub">Síntese baseada em conteúdos NCC e evidências científicas' + (pq.salvaId ? " · pesquisa salva" : "") + '.</p></div><div class="acts">' +
+      (pq.salvaId ? "" : '<button type="button" class="btn" id="pqSalvar">' + icon("bookmark") + " Salvar pesquisa</button>") +
+      '<button type="button" class="icon-btn" id="pqShare" title="Compartilhar resumo" style="border-color:var(--line)">' + icon("share") + "</button></div></div>";
+    var disc = '<div class="pq-disc" style="margin-top:16px">' + icon("bulb") + "<span>Esta é uma explicação científica geral, baseada no material NCC. Não substitui a avaliação profissional nem permite concluir sobre um caso específico.</span></div>";
+    var aviso = !r.suficiente || r.lacunas ? '<div class="pq-warn"><b>' + (r.suficiente ? "O que o material ainda não cobre: " : "O material NCC cobre este tema apenas em parte. ") + "</b>" + esc(r.lacunas || "") + "</div>" : "";
+    var body = "";
+    var a = pq.aba;
+    if (a === "visao") {
+      body = '<div class="pq-grid2"><div>' +
+        '<div class="pq-synth">' + esc(r.visao_geral.texto) + citeHtml(r.visao_geral.fontes) + "</div>" +
+        (r.pontos.length ? '<div class="pq-sec">Principais pontos</div><ol class="pq-points">' + r.pontos.map(function (p, i) { return '<li><span class="pq-num">' + (i + 1) + "</span><span>" + esc(p.texto) + citeHtml(p.fontes) + "</span></li>"; }).join("") + "</ol>" : "") +
+        (r.figuras.length ? '<button type="button" class="list-item" data-aba-go="neuro" style="border:1px solid var(--line);border-radius:12px;padding:10px 12px">' + '<span class="list-ico t-green">' + icon("image") + '</span><span class="list-main"><span class="list-title">' + r.figuras.length + (r.figuras.length === 1 ? " imagem do material NCC" : " imagens do material NCC") + ' explicam este tema</span><span class="list-sub">Veja na aba Explicação neurocientífica</span></span>' + icon("arrow") + "</button>" : "") +
+        aviso + disc +
+      '</div><div class="pq-rel"><h4>Temas relacionados</h4>' +
+        (r.temas_relacionados.length ? r.temas_relacionados.map(function (t) { return '<button type="button" class="pq-rel-item" data-q="' + esc(t) + '">' + icon(iconeTema(t)) + "<span>" + esc(t) + "</span>" + icon("chevron") + "</button>"; }).join("") : '<p class="hint" style="margin:0">Nenhum tema relacionado.</p>') +
+        '<button type="button" class="btn btn-block" id="pqTodosTemas" style="margin-top:12px">Ver todos os temas NCC</button>' +
+      "</div></div>";
+    } else if (a === "neuro") {
+      body = (r.neuro.length ? r.neuro.map(function (p) { return '<div class="pq-item">' + icon("brain") + "<div>" + esc(p.texto) + citeHtml(p.fontes) + "</div></div>"; }).join("") : '<p class="hint" style="margin:0 0 12px">O material consultado não traz explicação neurocientífica específica para esta pergunta.</p>') +
+        (r.figuras.length ? '<div class="pq-sec" style="margin-top:16px">Imagens do material NCC</div><div class="fig-grid">' + r.figuras.map(function (f, i) {
+          return '<div class="fig-card"><button type="button" class="fig-img" data-fig="' + i + '" aria-label="Ampliar imagem"><img src="' + esc(f.url || "") + '" alt="' + esc(f.legenda) + '" loading="lazy"></button><div class="fig-cap"><b>' + esc(f.legenda) + "</b>" + esc(f.por_que || f.descricao || "") + '<div class="src">Fonte: ' + esc(f.fonte || "Material NCC") + "</div></div></div>";
+        }).join("") + "</div>" : "") +
+        (r.analogias.length ? '<div class="pq-sec" style="margin-top:16px">Analogias e exemplos do material NCC</div>' + r.analogias.map(function (p) { return '<div class="pq-item">' + icon("bulb") + "<div>" + esc(p.texto) + citeHtml(p.fontes) + "</div></div>"; }).join("") : "") + disc;
+    } else if (a === "estudos") {
+      var est = r.estudos.slice();
+      if (pq.ordem === "recentes") est.sort(function (x, y) { return (y.ano || 0) - (x.ano || 0); });
+      body = (est.length ? est.map(function (e) {
+        return '<div class="est-card"><div class="est-badges"><span class="tagx">' + esc(e.tipo_evidencia || "Tipo de evidência não informado") + "</span>" +
+          (e.anterior_2023 ? '<span class="tagx gold">Estudo anterior a 2023 (clássico)</span>' : '<span class="tagx green">2023 ou mais recente</span>') + "</div>" +
+          "<h4>" + esc(e.titulo) + '</h4><div class="est-meta">' + esc(e.autores) + " (" + esc(e.ano || "s.d.") + "). " + esc(e.periodico || "") +
+          (e.doi ? ' · DOI: <a href="https://doi.org/' + esc(e.doi) + '" target="_blank" rel="noopener">' + esc(e.doi) + "</a>" : "") + "</div>" +
+          (e.relacao ? '<p style="margin:10px 0 0;line-height:1.6">' + esc(e.relacao) + "</p>" : "") +
+          '<div class="est-grid"><div><b>Desenho</b>' + esc(e.desenho || "—") + "</div><div><b>Amostra</b>" + esc(e.amostra || "—") + "</div><div><b>Principais achados</b>" + esc(e.achados || "—") + "</div><div><b>Limitações</b>" + esc(e.limitacoes || "—") + "</div></div></div>";
+      }).join("") : '<div class="empty">' + icon("chart") + "<strong>Nenhum estudo da base NCC se relaciona diretamente com esta pergunta.</strong><p>Os estudos só aparecem quando estão cadastrados na base, com autores, ano, periódico e DOI conferidos. Nenhum estudo é inventado.</p></div>") +
+        '<p class="pq-foot">Associação e correlação não significam causa: cada estudo informa o tipo de evidência que oferece.</p>';
+    } else if (a === "conteudos") {
+      body = '<p class="hint" style="margin:0 0 12px">Trechos do material NCC usados para montar a resposta. Os números correspondem às citações do texto.</p>' +
+        r.fontes.trechos.map(function (t, i) {
+          return '<div class="src-card" id="pq-src-' + i + '"><div class="src-head"><span class="src-n">' + (i + 1) + '</span><span class="tagx green">' + esc(rotulo(TIPOS_CONT, t.tipo)) + "</span><b>" + esc(t.conteudo) + "</b>" +
+            '<span style="color:var(--ink-faint)">' + esc([t.aula, t.pagina].filter(Boolean).join(" · ")) + "</span></div>" +
+            (t.titulo ? '<div style="font-size:12.5px;font-weight:600;margin-top:6px">' + esc(t.titulo) + "</div>" : "") +
+            '<div class="src-txt">' + esc(t.texto) + '</div><button type="button" class="link-btn" data-abrir="' + i + '" style="margin-top:6px">Ver trecho completo</button></div>';
+        }).join("");
+    } else if (a === "ferramentas") {
+      body = (r.ferramentas.length ? r.ferramentas.map(function (p) { return '<div class="pq-item">' + icon("tool") + "<div>" + esc(p.texto) + citeHtml(p.fontes) + "</div></div>"; }).join("") :
+        '<div class="empty">' + icon("tool") + "<strong>O material consultado não descreve ferramentas práticas para esta pergunta.</strong><p>Conforme novos módulos forem adicionados à base, esta aba ganha mais conteúdo.</p></div>") + disc;
+    } else if (a === "aplicacao") {
+      var prof = pq.profissao || (state.profile && state.profile.profissao);
+      body = (prof ? '<p class="hint" style="margin:0 0 8px">Adaptado à atuação em ' + esc(profLabel(prof)) + ". Para mudar, use “Explorar por área profissional”.</p>" : "") +
+        (r.aplicacao.length ? r.aplicacao.map(function (p) { return '<div class="pq-item">' + icon("person") + "<div>" + esc(p.texto) + citeHtml(p.fontes) + "</div></div>"; }).join("") :
+        '<div class="empty">' + icon("person") + "<strong>O material consultado não traz orientações de aplicação para esta pergunta.</strong></div>") +
+        (r.lacunas ? '<div class="pq-warn" style="margin-top:14px"><b>O que o material ainda não cobre: </b>' + esc(r.lacunas) + "</div>" : "") + disc;
+    }
+    out.innerHTML = '<div class="card">' + head + body + (r.limit ? '<p class="pq-foot">Consultas de IA neste mês: ' + (r.used || 0) + " de " + r.limit + ".</p>" : "") + "</div>";
+
+    out.querySelectorAll("[data-cite]").forEach(function (b) { b.onclick = function () {
+      var i = +b.getAttribute("data-cite"); pq.aba = "conteudos"; pintarResultado();
+      var el = $("pq-src-" + i); if (el) { el.classList.add("hl", "open"); el.scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(function () { el.classList.remove("hl"); }, 2200); }
+    }; });
+    out.querySelectorAll("[data-abrir]").forEach(function (b) { b.onclick = function () { var c = b.closest(".src-card"); var o = c.classList.toggle("open"); b.textContent = o ? "Recolher trecho" : "Ver trecho completo"; }; });
+    out.querySelectorAll("[data-q]").forEach(function (b) { b.onclick = function () { $("pqQ").value = b.getAttribute("data-q"); dispararPesquisa(b.getAttribute("data-q")); }; });
+    out.querySelectorAll("[data-aba-go]").forEach(function (b) { b.onclick = function () { pq.aba = b.getAttribute("data-aba-go"); pintarResultado(); }; });
+    out.querySelectorAll("[data-fig]").forEach(function (b) { b.onclick = function () {
+      var f = r.figuras[+b.getAttribute("data-fig")];
+      var m = openModal(f.legenda, '<div class="fig-zoom"><img src="' + esc(f.url) + '" alt="' + esc(f.legenda) + '"></div><p style="font-size:13px;line-height:1.6;color:var(--ink-soft)">' + esc(f.descricao || "") + '</p><p class="hint" style="margin:0 0 8px">Fonte: ' + esc(f.fonte || "Material NCC") + "</p>", { lg: true, foot: '<button type="button" class="btn" data-x>Fechar</button>' });
+      return m;
+    }; });
+    var bt = $("pqTodosTemas"); if (bt) bt.onclick = function () { pq.modo = "tema"; $("pqModes").querySelectorAll(".pq-mode").forEach(function (x) { x.classList.toggle("active", x.getAttribute("data-modo") === "tema"); }); pintarModo(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+    var bs = $("pqSalvar"); if (bs) bs.onclick = salvarPesquisa;
+    $("pqShare").onclick = compartilhar;
+  }
+
+  function textoResumo(r) {
+    var t = r.titulo + "\n\n" + r.visao_geral.texto + "\n";
+    if (r.pontos.length) t += "\nPrincipais pontos:\n" + r.pontos.map(function (p, i) { return (i + 1) + ". " + p.texto; }).join("\n") + "\n";
+    if (r.estudos.length) t += "\nEstudos:\n" + r.estudos.map(function (e) { return "- " + e.autores + " (" + (e.ano || "s.d.") + "). " + e.titulo + ". " + (e.periodico || "") + (e.doi ? ". https://doi.org/" + e.doi : ""); }).join("\n") + "\n";
+    var fontes = []; r.fontes.trechos.forEach(function (x) { var s = x.conteudo + (x.pagina ? ", " + x.pagina : ""); if (fontes.indexOf(s) < 0) fontes.push(s); });
+    t += "\nFontes do material NCC:\n" + fontes.map(function (s) { return "- " + s; }).join("\n");
+    t += "\n\nExplicação científica geral; não substitui a avaliação profissional.\nPesquisa NCC · NCC Integração";
+    return t;
+  }
+  function compartilhar() {
+    var r = pq.resp; if (!r) return;
+    var t = textoResumo(r);
+    if (navigator.share) { navigator.share({ title: r.titulo, text: t }).catch(function () {}); return; }
+    if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { toast("Resumo copiado. É só colar onde quiser."); }, function () { toast("Não foi possível copiar."); });
+  }
+  function salvarPesquisa() {
+    var r = pq.resp; if (!r) return;
+    var b = $("pqSalvar"); if (b) b.disabled = true;
+    sb.from("pesquisas_salvas").insert({ owner_id: state.user.id, pergunta: pq.pergunta, filtros: { tipos: pq.filtros.tipos, faixas: pq.filtros.faixas, areas: pq.filtros.areas, profissao: pq.profissao || null }, resposta: r }).select("id").maybeSingle().then(function (res) {
+      if (fail(res, "Não foi possível salvar a pesquisa")) { if (b) b.disabled = false; return; }
+      pq.salvaId = res.data && res.data.id; toast("Pesquisa salva."); pintarResultado();
+    });
+  }
+  function abrirSalvas() {
+    var m = openModal("Pesquisas salvas", '<div id="pqListaSalvas"><div class="loading">Carregando…</div></div>', { lg: true, foot: '<button type="button" class="btn" data-x>Fechar</button>' });
+    sb.from("pesquisas_salvas").select("id,pergunta,created_at,resposta->>titulo").order("created_at", { ascending: false }).limit(50).then(function (res) {
+      var rows = res.data || [], box = m.el.querySelector("#pqListaSalvas");
+      box.innerHTML = rows.length ? rows.map(function (r) {
+        return '<div class="list-item" style="cursor:default"><span class="list-ico t-green">' + icon("bookmark") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo || r.pergunta) + '</span><span class="list-sub">“' + esc(r.pergunta) + "” · " + fmtDataHora(r.created_at) + '</span></span><button type="button" class="btn" data-abre="' + r.id + '">Abrir</button><button type="button" class="icon-btn" data-apaga="' + r.id + '" title="Excluir">' + icon("trash") + "</button></div>";
+      }).join("") : '<div class="empty">' + icon("bookmark") + "<strong>Nenhuma pesquisa salva.</strong><p>Use “Salvar pesquisa” em um resultado para guardá-lo aqui, sem gastar nova consulta.</p></div>";
+      box.querySelectorAll("[data-abre]").forEach(function (b) { b.onclick = function () { m.close(); location.hash = "pesquisa?salva=" + b.getAttribute("data-abre"); }; });
+      box.querySelectorAll("[data-apaga]").forEach(function (b) { b.onclick = function () {
+        if (!confirm("Excluir esta pesquisa salva?")) return;
+        sb.from("pesquisas_salvas").delete().eq("id", b.getAttribute("data-apaga")).then(function (r2) { if (!fail(r2, "Não foi possível excluir")) b.closest(".list-item").remove(); });
+      }; });
+    });
+  }
+  function abrirSalva(id) {
+    pq.carregando = false; pq.erro = null; pq.resp = null; pintarResultado();
+    sb.from("pesquisas_salvas").select("*").eq("id", id).maybeSingle().then(function (res) {
+      var row = res.data;
+      if (!row) { pq.erro = "Pesquisa salva não encontrada."; pintarResultado(); return; }
+      var r = row.resposta;
+      pq.pergunta = row.pergunta; pq.salvaId = row.id; pq.aba = "visao";
+      if ($("pqQ")) $("pqQ").value = row.pergunta;
+      var ps = (r.figuras || []).map(function (f) {
+        if (!f.path) return Promise.resolve();
+        return sb.storage.from("ncc-base").createSignedUrl(f.path, 3600).then(function (s) { if (s && s.data) f.url = s.data.signedUrl; }, function () {});
+      });
+      Promise.all(ps).then(function () { pq.resp = r; pintarResultado(); });
+    });
+  }
+
+  /* ---------- BASE NCC (somente administração) ---------- */
+  NAV.push({ id: "base", label: "Base NCC", icon: "db", title: "Base NCC", sub: "Materiais que alimentam a Pesquisa NCC. Visível somente para a administração.", admin: true });
+  function isAdmin() { return !!(state.profile && state.profile.is_admin); }
+
+  PAGES.base = function (v) {
+    if (!isAdmin()) { location.hash = "inicio"; return; }
+    v.innerHTML =
+      '<section class="base-stats" id="baseStats"></section>' +
+      '<div class="card" style="margin-bottom:18px"><div class="card-head"><h3 class="card-title">Importar pacote de conteúdo</h3></div>' +
+        '<p style="color:var(--ink-soft);margin:0 0 12px;line-height:1.6">Envie o arquivo <b>.json</b> preparado para cada módulo (por exemplo, <i>NCC_base_modulo1.json</i>). Ele traz os trechos das aulas, dos materiais e dos artigos, as imagens e os estudos. Enviar o mesmo pacote de novo atualiza o conteúdo, sem duplicar.</p>' +
+        '<label class="btn btn-primary" style="cursor:pointer">' + icon("upload") + ' Escolher pacote (.json)<input type="file" id="baseFile" accept=".json,application/json" hidden></label>' +
+        '<div class="imp-log" id="baseLog" hidden></div></div>' +
+      '<div class="card" style="margin-bottom:18px"><div class="card-head"><h3 class="card-title">Conteúdos na base</h3></div><div id="baseLista"><div class="loading">Carregando…</div></div></div>' +
+      '<div class="card"><div class="card-head"><h3 class="card-title">Testar a busca (sem usar IA)</h3></div>' +
+        '<form class="searchbar" id="baseTeste">' + icon("search") + '<input id="baseTesteQ" placeholder="Ex.: amígdala, rotina, autocontrole"><button class="btn" type="submit">Buscar</button></form><div id="baseTesteOut" style="margin-top:12px"></div></div>';
+    carregarBase();
+    $("baseFile").onchange = function () {
+      var f = this.files[0]; this.value = ""; if (!f) return;
+      var log = $("baseLog"); log.hidden = false; log.textContent = "";
+      function L(s) { log.textContent += s + "\n"; log.scrollTop = log.scrollHeight; }
+      L("Lendo " + f.name + "…");
+      f.text().then(function (txt) {
+        var pac; try { pac = JSON.parse(txt); } catch (e) { throw new Error("O arquivo não é um pacote válido."); }
+        return importarPacote(pac, L);
+      }).then(function () { L("✓ Importação concluída."); pq.contagens = null; toast("Pacote importado."); carregarBase(); }, function (e) { L("✗ " + e.message); toast("A importação parou. Veja o registro."); });
+    };
+    $("baseTeste").onsubmit = function (e) {
+      e.preventDefault();
+      var termos = $("baseTesteQ").value.split(/[,;]+/).map(function (s) { return s.trim(); }).filter(Boolean);
+      if (!termos.length) return;
+      $("baseTesteOut").innerHTML = '<div class="loading">Buscando…</div>';
+      sb.rpc("buscar_ncc_trechos", { termos: termos, lim: 8 }).then(function (res) {
+        var rows = res.data || [];
+        $("baseTesteOut").innerHTML = res.error ? '<div class="msg-error">' + esc(res.error.message) + "</div>" : rows.length ? rows.map(function (t) {
+          return '<div class="src-card"><div class="src-head"><b>' + esc(t.conteudo_titulo) + '</b><span style="color:var(--ink-faint)">' + esc(t.pagina || "") + "</span></div>" + (t.titulo ? '<div style="font-size:12.5px;font-weight:600;margin-top:6px">' + esc(t.titulo) + "</div>" : "") + '<div class="src-txt">' + esc(t.texto) + "</div></div>";
+        }).join("") : '<p class="hint" style="margin:0">Nenhum trecho encontrado para esses termos.</p>';
+      });
+    };
+  };
+
+  function carregarBase() {
+    var cnt = function (t) { return sb.from(t).select("id", { count: "exact", head: true }).then(function (r) { return r.count || 0; }); };
+    Promise.all([cnt("ncc_conteudos"), cnt("ncc_trechos"), cnt("ncc_figuras"), cnt("ncc_estudos")]).then(function (n) {
+      if (!$("baseStats")) return;
+      $("baseStats").innerHTML = [["t-green", "book", "Conteúdos", n[0]], ["t-sand", "doc", "Trechos", n[1]], ["t-sky", "image", "Imagens", n[2]], ["t-lilac", "chart", "Estudos", n[3]]].map(function (s) {
+        return '<div class="stat ' + s[0] + '"><div class="stat-head">' + icon(s[1]) + "<span>" + s[2] + '</span></div><div class="stat-num">' + s[3] + "</div></div>";
+      }).join("");
+    });
+    sb.from("ncc_conteudos").select("id,chave,titulo,tipo,modulo,aula,publicado,created_at,ncc_trechos(count),ncc_figuras(count)").order("modulo").order("titulo").then(function (res) {
+      if (!$("baseLista")) return;
+      var rows = res.data || [];
+      $("baseLista").innerHTML = rows.length ? '<div style="overflow-x:auto"><table class="base-table"><thead><tr><th>Conteúdo</th><th class="hide-m">Tipo</th><th class="hide-m">Módulo / aula</th><th>Trechos</th><th class="hide-m">Imagens</th><th>Publicado</th><th></th></tr></thead><tbody>' +
+        rows.map(function (r) {
+          var nt = r.ncc_trechos && r.ncc_trechos[0] ? r.ncc_trechos[0].count : 0, nf = r.ncc_figuras && r.ncc_figuras[0] ? r.ncc_figuras[0].count : 0;
+          return "<tr><td><b>" + esc(r.titulo) + '</b><div class="hint" style="margin:2px 0 0">' + esc(r.chave) + '</div></td><td class="hide-m">' + esc(rotulo(TIPOS_CONT, r.tipo)) + '</td><td class="hide-m">' + esc([r.modulo, r.aula].filter(Boolean).join(" · ")) + "</td><td>" + nt + '</td><td class="hide-m">' + nf + '</td><td><button type="button" class="switch' + (r.publicado ? " on" : "") + '" data-pub="' + r.id + '" aria-label="Publicado"></button></td><td><button type="button" class="icon-btn" data-del="' + r.id + '" title="Excluir">' + icon("trash") + "</button></td></tr>";
+        }).join("") + "</tbody></table></div>" : '<div class="empty">' + icon("db") + "<strong>A base está vazia.</strong><p>Importe o primeiro pacote acima.</p></div>";
+      $("baseLista").querySelectorAll("[data-pub]").forEach(function (b) { b.onclick = function () {
+        var on = !b.classList.contains("on");
+        sb.from("ncc_conteudos").update({ publicado: on }).eq("id", b.getAttribute("data-pub")).then(function (r) { if (!fail(r)) { b.classList.toggle("on", on); pq.contagens = null; toast(on ? "Conteúdo publicado." : "Conteúdo ocultado da Pesquisa NCC."); } });
+      }; });
+      $("baseLista").querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function () {
+        if (!confirm("Excluir este conteúdo, seus trechos e imagens da base? Esta ação não pode ser desfeita.")) return;
+        var id = b.getAttribute("data-del");
+        sb.from("ncc_figuras").select("arquivo_path").eq("conteudo_id", id).then(function (fr) {
+          var paths = (fr.data || []).map(function (x) { return x.arquivo_path; });
+          return (paths.length ? sb.storage.from("ncc-base").remove(paths) : Promise.resolve()).then(function () {
+            return sb.from("ncc_estudos").update({ conteudo_id: null }).eq("conteudo_id", id);
+          }).then(function () { return sb.from("ncc_figuras").delete().eq("conteudo_id", id); })
+            .then(function () { return sb.from("ncc_trechos").delete().eq("conteudo_id", id); })
+            .then(function () { return sb.from("ncc_conteudos").delete().eq("id", id); });
+        }).then(function (r) { if (!fail(r, "Não foi possível excluir")) { toast("Conteúdo excluído."); pq.contagens = null; carregarBase(); } });
+      }; });
+    });
+  }
+
+  function b64Blob(b64, mime) {
+    var bin = atob(b64), n = bin.length, u = new Uint8Array(n);
+    for (var i = 0; i < n; i++) u[i] = bin.charCodeAt(i);
+    return new Blob([u], { type: mime || "application/octet-stream" });
+  }
+  function chk(res, oque) { if (res && res.error) throw new Error(oque + ": " + res.error.message); return res; }
+
+  function importarPacote(pac, L) {
+    if (!pac || pac.formato !== "ncc-base" || !Array.isArray(pac.conteudos)) return Promise.reject(new Error("Este arquivo não é um pacote da Base NCC."));
+    var ids = {};
+    var seq = Promise.resolve();
+    L("Pacote: " + (pac.pacote || "sem nome") + " · " + pac.conteudos.length + " conteúdos, " + (pac.figuras || []).length + " imagens, " + (pac.estudos || []).length + " estudos.");
+    pac.conteudos.forEach(function (c) {
+      seq = seq.then(function () {
+        var row = { chave: c.chave, titulo: c.titulo, tipo: c.tipo, modulo: c.modulo || null, aula: c.aula || null, fonte: c.fonte || null, descricao: c.descricao || null, faixas: c.faixas || [], areas: c.areas || [], publicado: c.publicado !== false };
+        return sb.from("ncc_conteudos").upsert(row, { onConflict: "chave" }).select("id").maybeSingle().then(function (res) {
+          chk(res, "Conteúdo " + c.chave);
+          var id = res.data.id; ids[c.chave] = id;
+          return sb.from("ncc_trechos").delete().eq("conteudo_id", id);
+        }).then(function (res) {
+          chk(res, "Limpando trechos antigos");
+          var tr = (c.trechos || []).map(function (t, i) { return { conteudo_id: ids[c.chave], ordem: t.ordem || i + 1, titulo: t.titulo || null, texto: t.texto, pagina: t.pagina || null, faixas: t.faixas || c.faixas || [], areas: t.areas || c.areas || [] }; });
+          var lotes = Promise.resolve();
+          for (var i = 0; i < tr.length; i += 40) (function (lote) { lotes = lotes.then(function () { return sb.from("ncc_trechos").insert(lote).then(function (r) { chk(r, "Trechos de " + c.chave); }); }); })(tr.slice(i, i + 40));
+          return lotes.then(function () { L("✓ " + c.titulo + " — " + tr.length + " trechos"); });
+        });
+      });
+    });
+    var figs = pac.figuras || [];
+    if (figs.length) seq = seq.then(function () {
+      var conts = []; figs.forEach(function (f) { if (conts.indexOf(f.conteudo_chave) < 0) conts.push(f.conteudo_chave); });
+      var s = Promise.resolve();
+      conts.forEach(function (k) { s = s.then(function () {
+        if (!ids[k]) throw new Error("Imagem ligada a um conteúdo que não está no pacote: " + k);
+        return sb.from("ncc_figuras").delete().eq("conteudo_id", ids[k]).then(function (r) { chk(r, "Limpando imagens antigas"); });
+      }); });
+      figs.forEach(function (f, i) { s = s.then(function () {
+        return sb.storage.from("ncc-base").upload(f.arquivo_path, b64Blob(f.base64, f.mime), { upsert: true, contentType: f.mime || "image/webp" }).then(function (r) {
+          chk(r, "Enviando imagem " + f.arquivo_path);
+          return sb.from("ncc_figuras").insert({ conteudo_id: ids[f.conteudo_chave], pagina: f.pagina || null, arquivo_path: f.arquivo_path, legenda: f.legenda, descricao: f.descricao || null, temas: f.temas || [], areas: f.areas || [] });
+        }).then(function (r) { chk(r, "Imagem " + f.arquivo_path); L("✓ Imagem " + (i + 1) + "/" + figs.length + ": " + f.legenda); });
+      }); });
+      return s;
+    });
+    (pac.estudos || []).forEach(function (e) {
+      seq = seq.then(function () {
+        var row = { conteudo_id: ids[e.conteudo_chave] || null, autores: e.autores, ano: e.ano || null, titulo: e.titulo, periodico: e.periodico || null, doi: e.doi || null, link: e.link || null,
+          desenho: e.desenho || null, tipo_evidencia: e.tipo_evidencia || null, amostra: e.amostra || null, achados: e.achados || null, limitacoes: e.limitacoes || null, faixas: e.faixas || [], areas: e.areas || [] };
+        var busca = e.doi ? sb.from("ncc_estudos").select("id").eq("doi", e.doi).limit(1) : sb.from("ncc_estudos").select("id").eq("titulo", e.titulo).limit(1);
+        return busca.then(function (r) {
+          chk(r, "Estudo " + e.titulo);
+          var ex = r.data && r.data[0];
+          return ex ? sb.from("ncc_estudos").update(row).eq("id", ex.id) : sb.from("ncc_estudos").insert(row);
+        }).then(function (r) { chk(r, "Estudo " + e.titulo); L("✓ Estudo: " + e.autores.split(";")[0] + " (" + (e.ano || "s.d.") + ")"); });
+      });
+    });
+    return seq;
+  }
 
   function stat(tint, ic, label, num, sub, btnLabel, btnIcon, go) {
     return '<div class="stat ' + tint + '"><div class="stat-head">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + num + '</div><div class="stat-sub">' + sub + '</div><button type="button" class="btn btn-block" data-go="' + go + '">' + (btnIcon ? icon(btnIcon) : "") + esc(btnLabel) + "</button></div>";
