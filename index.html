@@ -576,6 +576,70 @@
     .ac-cmp-cta { flex-wrap: wrap; }
     .ac-s { max-width: 160px; }
   }
+  /* ---------- etapa 5: projetos acadêmicos ---------- */
+  .icon.flip { transform: rotate(180deg); }
+  .btn:disabled { opacity: .55; cursor: default; }
+  .ep { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600; white-space: nowrap; }
+  .ep-planejamento { background: var(--tint-sand); color: var(--gold-ink); }
+  .ep-revisao { background: var(--tint-sky); color: var(--icon-sky); }
+  .ep-qualificacao { background: var(--tint-lilac); color: var(--icon-lilac); }
+  .ep-coleta { background: var(--tint-green); color: var(--accent-strong); }
+  .ep-analise { background: var(--tint-lilac); color: var(--icon-lilac); }
+  .ep-escrita { background: var(--tint-rose); color: var(--icon-rose); }
+  .ep-concluido { background: var(--accent-soft); color: var(--accent-strong); border: 1px solid var(--accent); }
+  .pj-t { font-weight: 600; }
+  .pj-cards .pj-card { display: flex; flex-direction: column; gap: 12px; justify-content: space-between; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .pj-card-top { display: flex; gap: 10px; font-size: 11.5px; color: var(--ink-soft); line-height: 1.45; }
+  .pj-card-top .icon { width: 24px; height: 24px; color: var(--icon-green); }
+  .pj-card-top b { display: block; color: var(--ink); font-size: 12.5px; margin-bottom: 3px; }
+  .pj-prog { display: flex; justify-content: center; margin: 4px 0 12px; }
+  .pj-cn { font-size: 26px; font-weight: 700; line-height: 1; }
+  .pj-cl { font-size: 11.5px; color: var(--ink-faint); }
+  .pj-leg { display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; }
+  .pj-leg > div { display: flex; align-items: center; gap: 8px; }
+  .pj-leg b { margin-left: auto; font-weight: 600; }
+  .pj-leg .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .pj-pend { display: flex; gap: 10px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .pj-pend:last-child { border-bottom: 0; }
+  .pj-pend input { accent-color: var(--accent); width: 16px; height: 16px; margin: 2px 0 0; flex-shrink: 0; }
+  .pj-late { width: 18px; height: 18px; border-radius: 50%; background: var(--danger); color: #fff; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .pj-pend-txt { border: 0; background: none; padding: 0; text-align: left; cursor: pointer; font-size: 12.5px; color: var(--ink); min-width: 0; }
+  .pj-pend-txt b { display: block; font-weight: 600; }
+  .pj-pend-txt span { display: block; color: var(--ink-faint); font-size: 11.5px; }
+  .pj-stepper { display: flex; gap: 4px; padding: 12px; margin-bottom: 16px; overflow-x: auto; }
+  .pj-step { flex: 1; min-width: 104px; display: flex; flex-direction: column; align-items: center; gap: 6px; border: 0; background: none; cursor: pointer; font-size: 11.5px; font-weight: 600; color: var(--ink-faint); padding: 6px 4px; border-radius: 10px; position: relative; text-align: center; }
+  .pj-step:hover { background: var(--sunken); }
+  .pj-step .n { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line-strong); display: inline-flex; align-items: center; justify-content: center; background: var(--surface); font-size: 12px; }
+  .pj-step .n .icon { width: 14px; height: 14px; }
+  .pj-step.done { color: var(--accent-strong); } .pj-step.done .n { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .pj-step.atual { color: var(--ink); } .pj-step.atual .n { border-color: var(--accent); color: var(--accent-strong); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .pj-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .pj-bar { height: 8px; border-radius: 999px; background: var(--sunken); overflow: hidden; }
+  .pj-bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+  .tp { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; flex-shrink: 0; margin-top: 1px; }
+  .tp-prazo { background: var(--tint-sand); color: var(--gold-ink); } .tp-reuniao { background: var(--tint-sky); color: var(--icon-sky); } .tp-pendencia { background: var(--tint-rose); color: var(--icon-rose); }
+  .pj-task { display: flex; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .pj-task input { accent-color: var(--accent); width: 17px; height: 17px; flex-shrink: 0; }
+  .pj-task-txt { flex: 1; min-width: 0; font-size: 13px; }
+  .pj-task-txt b { display: block; font-weight: 600; }
+  .pj-task-txt span { font-size: 12px; color: var(--ink-faint); }
+  .pj-task.feito .pj-task-txt b { text-decoration: line-through; color: var(--ink-faint); }
+  .pj-task .icon-btn { width: 34px; height: 34px; }
+  .mx-tbl td { vertical-align: top; font-size: 12.5px; line-height: 1.45; }
+  .mapa-flow { position: relative; }
+  .mapa-no { display: flex; gap: 14px; position: relative; padding-bottom: 18px; }
+  .mapa-no:not(:last-child)::before { content: ""; position: absolute; left: 15px; top: 34px; bottom: 0; width: 2px; background: var(--line); }
+  .mapa-no.ok:not(:last-child)::before { background: var(--accent); }
+  .mapa-num { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--line-strong); background: var(--surface); display: inline-flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 700; color: var(--ink-soft); flex-shrink: 0; position: relative; z-index: 1; }
+  .mapa-num .icon { width: 15px; height: 15px; }
+  .mapa-no.ok .mapa-num { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .mapa-corpo { flex: 1; min-width: 0; }
+  .mapa-corpo > b { font-size: 13.5px; }
+  .mapa-nota { display: flex; gap: 8px; margin-top: 8px; background: var(--tint-green); border-radius: 10px; padding: 10px 12px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .mapa-nota .icon { color: var(--icon-green); flex-shrink: 0; }
+  .mapa-alerta { display: flex; gap: 10px; background: var(--tint-sand); border-radius: 10px; padding: 10px 12px; font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); margin-bottom: 10px; }
+  .mapa-alerta .icon { color: var(--gold-ink); flex-shrink: 0; margin-top: 1px; }
+  @media (max-width: 1180px) { .pj-grid3 { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -1017,7 +1081,7 @@
         sb.from("atividade_recente").select("*").eq("tipo", contTipo).order("created_at", { ascending: false }).limit(5).then(function (res) {
           var rows = res.data || [];
           $("contList").innerHTML = rows.length ? rows.map(function (r) {
-            return '<button type="button" class="list-item" data-go="' + esc(contTipo === "caso" ? "mapa?caso=" + r.ref_id : contTipo === "pesquisa" ? "pesquisa?q=" + encodeURIComponent(r.titulo) : "projetos") + '"><span class="list-ico t-green">' + icon(contTipo === "caso" ? "users" : contTipo === "pesquisa" ? "search" : "cap") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo) + '</span><span class="list-sub">' + esc(r.subtitulo || "") + "</span></span>" + icon("arrow") + "</button>";
+            return '<button type="button" class="list-item" data-go="' + esc(contTipo === "caso" ? "mapa?caso=" + r.ref_id : contTipo === "pesquisa" ? "pesquisa?q=" + encodeURIComponent(r.titulo) : "projetos?p=" + r.ref_id) + '"><span class="list-ico t-green">' + icon(contTipo === "caso" ? "users" : contTipo === "pesquisa" ? "search" : "cap") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo) + '</span><span class="list-sub">' + esc(r.subtitulo || "") + "</span></span>" + icon("arrow") + "</button>";
           }).join("") : '<div class="empty">' + icon("stack") + "<strong>" + empt[0] + "</strong><p>" + empt[1] + '</p><button type="button" class="btn" data-go="' + empt[3] + '">' + empt[2] + "</button></div>";
           $("contList").querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { location.hash = b.getAttribute("data-go"); }; });
         });
@@ -1031,6 +1095,7 @@
         $("stCasosSub").textContent = rows.length ? ativos + (ativos === 1 ? " em andamento." : " em andamento.") : "Nenhuma criança cadastrada.";
       });
       sb.from("atividade_recente").select("id", { count: "exact", head: true }).eq("tipo", "pesquisa").then(function (res) { $("stPesq").textContent = res.count || 0; });
+      sb.from("projetos").select("id", { count: "exact", head: true }).then(function (res) { if ($("stProj")) $("stProj").textContent = res.count || 0; });
       if (isVerified()) sb.from("acervo_itens").select("id", { count: "exact", head: true }).then(function (res) { if ($("stAcervo")) $("stAcervo").textContent = res.count || 0; });
 
       var hoje = todayIso();
@@ -1081,6 +1146,8 @@
         ["Como guardo uma resposta?", "Use “Salvar pesquisa”. Ela fica em “Pesquisas salvas” e pode ser reaberta sem gastar nova consulta."],
         ["Como libero o Meu Acervo Profissional?", "Abra “Meu acervo profissional”, preencha profissão e registro no conselho e anexe a foto ou o PDF da carteira. A administração do NCC analisa e você recebe o aviso no sino."],
         ["O que é “Comparar com o NCC”?", "A IA lê a descrição e o texto que você escreveu sobre o seu material e mostra o que há em comum com o material NCC, o que o NCC acrescentaria e sugestões — sempre com as fontes do curso."],
+        ["Como funciona a matriz de evidências?", "Em cada projeto, adicione o PDF do artigo e clique em “Preencher”. A IA extrai autores, desenho, amostra, resultados, limitações e tipo de evidência somente do texto do artigo. Confira sempre antes de citar. A matriz pode ser exportada para o Excel."],
+        ["Como recebo lembretes dos prazos dos projetos?", "Cadastre as tarefas no cronograma do projeto. O sino avisa 3 dias antes de cada prazo e quando ele vence."],
         ["Esqueci minha senha. E agora?", "Na tela de entrada, clique em “Esqueci minha senha” e siga o link enviado por e-mail."]
       ];
       v.innerHTML = '<div class="card" style="max-width:820px">' + faq.map(function (f) { return '<details style="padding:12px 0;border-bottom:1px solid var(--line)"><summary style="cursor:pointer;font-weight:600">' + esc(f[0]) + '</summary><p style="color:var(--ink-soft);margin:8px 0 0">' + esc(f[1]) + "</p></details>"; }).join("") + '<p class="hint" style="margin:16px 0 0">A Central de Ajuda completa será escrita conforme cada seção for concluída.</p></div>';
@@ -2698,6 +2765,542 @@
     });
   };
 
+  /* ================= ETAPA 5: MEUS PROJETOS ACADÊMICOS ================= */
+  Object.assign(I, {
+    matrix: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M3 15h18M9 4v16M15 4v16"/>',
+    nodes: '<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M8 7.5l3 8M16 7.5l-3 8M8.5 6h7"/>',
+    download: '<path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/>'
+  });
+
+  var NIVEIS = [["ic", "Iniciação científica"], ["tcc", "TCC"], ["especializacao", "Especialização"], ["mestrado", "Mestrado"], ["doutorado", "Doutorado"], ["pos_doc", "Pós-doutorado"], ["artigo", "Artigo"], ["outro", "Outro"]];
+  var ETAPAS_P = [["planejamento", "Planejamento", "var(--icon-sand)"], ["revisao", "Revisão de literatura", "var(--icon-sky)"], ["qualificacao", "Qualificação", "#8A7FB8"],
+    ["coleta", "Coleta de dados", "var(--icon-green)"], ["analise", "Análise", "var(--icon-lilac)"], ["escrita", "Escrita", "var(--icon-rose)"], ["concluido", "Concluído", "var(--accent-strong)"]];
+  function nivelLabel(k) { return rotulo(NIVEIS, k); }
+  function etapaLabel(k) { return rotulo(ETAPAS_P, k); }
+  function etapaPill(k) { return '<span class="ep ep-' + esc(k) + '">' + esc(etapaLabel(k)) + "</span>"; }
+
+  var TIPOS_ESTUDO = [
+    ["", "Selecione…", ""],
+    ["revisao_sistematica", "Revisão sistemática", "Síntese de evidências com busca e seleção sistemáticas. Não gera dados novos; a força depende dos estudos incluídos."],
+    ["meta_analise", "Revisão sistemática com meta-análise", "Combina estatisticamente os resultados dos estudos incluídos. A força depende da qualidade e da heterogeneidade dos estudos."],
+    ["revisao_integrativa", "Revisão integrativa ou narrativa", "Mapeia e discute o tema, sem a sistematização completa: maior risco de viés de seleção."],
+    ["transversal", "Observacional transversal", "Mede tudo em um único momento: mostra associação ou correlação, não causa nem direção do efeito."],
+    ["coorte", "Observacional longitudinal (coorte)", "Acompanha ao longo do tempo: mostra associação e risco aumentado, com ordem temporal — mas ainda não prova causa."],
+    ["caso_controle", "Caso-controle", "Compara quem tem e quem não tem o desfecho: estima risco (odds), sujeito a viés de memória e de seleção."],
+    ["ensaio_clinico", "Ensaio clínico randomizado", "A randomização permite inferência causal sobre o efeito da intervenção estudada."],
+    ["quase_experimental", "Quase-experimental (intervenção sem randomização)", "Sugere efeito da intervenção, mas com mais risco de fatores de confusão."],
+    ["experimental_animal", "Experimental (modelo animal ou laboratorial)", "Investiga mecanismos biológicos em condições controladas; a transposição para crianças exige cautela."],
+    ["qualitativo", "Qualitativo", "Explora sentidos, experiências e percepções; não busca generalização estatística."],
+    ["estudo_caso", "Estudo de caso", "Descrição aprofundada de um ou poucos casos; não permite generalização."],
+    ["metodos_mistos", "Métodos mistos", "Integra dados quantitativos e qualitativos; o tipo de evidência depende de cada componente."]
+  ];
+  var CAMPOS_MAPA = [
+    ["pergunta", "Pergunta de pesquisa", "Uma pergunta clara, que o estudo consiga responder. Ajuda pensar em: população, exposição ou intervenção, comparação e desfecho."],
+    ["objetivo_geral", "Objetivo geral", "O que o estudo pretende alcançar, com um verbo de ação (investigar, comparar, analisar, verificar)."],
+    ["objetivos_especificos", "Objetivos específicos", "Os passos que, juntos, respondem ao objetivo geral. Um por linha."],
+    ["hipoteses", "Hipóteses", "O que você espera encontrar e por quê — com base na literatura."],
+    ["tipo_estudo", "Tipo de estudo", "O desenho define o tipo de conclusão possível."],
+    ["populacao", "População, amostra e critérios", "Quem participa, quantos, idade, onde; critérios de inclusão e de exclusão."],
+    ["variaveis", "Variáveis e desfechos", "O que será medido: variáveis de exposição, desfechos e possíveis fatores de confusão."],
+    ["instrumentos", "Instrumentos", "Escalas, testes, entrevistas ou protocolos — com validação para a população estudada."],
+    ["procedimentos", "Procedimentos de coleta", "Como, quando, onde e por quem os dados serão coletados."],
+    ["analise", "Plano de análise", "Como os dados serão analisados (estatística, análise de conteúdo etc.)."],
+    ["etica", "Aspectos éticos", "Comitê de Ética em Pesquisa, TCLE para os responsáveis e TALE (assentimento) para as crianças."],
+    ["limitacoes", "Limitações previstas", "O que o desenho não permite concluir e como você vai lidar com isso."]
+  ];
+
+  var pj = { aba: "todos", busca: "", ordem: "recentes", nivel: "", filtrosAbertos: false };
+  function fmtCurta(d) { var x = parseDate(d); return x ? String(x.getDate()).padStart(2, "0") + "/" + String(x.getMonth() + 1).padStart(2, "0") + "/" + x.getFullYear() : "—"; }
+  function diasAte(d) { var x = parseDate(d), h = parseDate(todayIso()); return Math.round((x - h) / 86400000); }
+
+  PAGES.projetos = function (v) {
+    var pid = hashParam("p");
+    if (pid) { paginaProjeto(v, pid, hashParam("aba") || "visao"); return; }
+    $("pageActions").innerHTML = '<button type="button" class="btn btn-primary" id="pjNovo">' + icon("plus") + " Novo projeto</button>";
+    $("pjNovo").onclick = function () { projetoForm(null); };
+    v.innerHTML = '<div class="loading">Carregando projetos…</div>';
+    Promise.all([
+      sb.from("projetos").select("id,titulo,nivel,tema,orientador,palavras_chave,etapa,prazo,updated_at").order("updated_at", { ascending: false }),
+      sb.from("projeto_tarefas").select("id,projeto_id,titulo,tipo,data,hora,concluido").eq("concluido", false).order("data", { ascending: true }),
+      sb.from("projeto_artigos").select("id", { count: "exact", head: true })
+    ]).then(function (rs) {
+      if (fail(rs[0], "Não foi possível carregar os projetos")) return;
+      pintarProjetos(v, rs[0].data || [], rs[1].data || [], rs[2].count || 0);
+    });
+  };
+
+  function pintarProjetos(v, projs, tarefas, nArtigos) {
+    var nome = {}; projs.forEach(function (p) { nome[p.id] = p.titulo; });
+    tarefas = tarefas.filter(function (t) { return nome[t.projeto_id]; });
+    var hoje = todayIso();
+    var semana = tarefas.filter(function (t) { return t.data && t.tipo !== "pendencia" && diasAte(t.data) >= 0 && diasAte(t.data) <= 7; }).length;
+    var proximos = tarefas.filter(function (t) { return t.data && t.tipo !== "pendencia" && t.data >= hoje; }).slice(0, 4);
+    var pend = tarefas.filter(function (t) { return t.tipo === "pendencia" || (t.data && t.data < hoje); });
+    var cont = {}; projs.forEach(function (p) { cont[p.etapa] = (cont[p.etapa] || 0) + 1; });
+
+    v.innerHTML =
+      '<section class="ac-stats">' +
+        pjStat("t-green", "cap", projs.length, "Total de projetos", "Ver todos", "todos") +
+        pjStat("t-sand", "calendar", semana, "Prazos nesta semana", "Ver agenda", "#pjPrazos") +
+        pjStat("t-sky", "doc", nArtigos, "Artigos salvos", "Acessar biblioteca", "@artigos") +
+        pjStat("t-rose", "alert", pend.length, "Pendências acadêmicas", "Ver pendências", "#pjPend") +
+      "</section>" +
+      '<div class="layout-side"><div>' +
+        '<div class="ac-toolbar"><div class="searchbar ac-search">' + icon("search") + '<input id="pjBusca" placeholder="Buscar por tema, projeto, orientador, palavra-chave ou etapa…" value="' + esc(pj.busca) + '"></div>' +
+          '<button type="button" class="btn" id="pjFiltrosBtn">' + icon("filter") + " Filtros" + (pj.nivel ? " (1)" : "") + "</button>" +
+          '<select class="input ac-ordem" id="pjOrdem"><option value="recentes">Mais recentes</option><option value="prazo">Prazo mais próximo</option><option value="nome">Nome (A–Z)</option></select></div>' +
+        '<div class="ac-filtros" id="pjFiltros"' + (pj.filtrosAbertos ? "" : " hidden") + '><div class="field"><label>Nível</label><select class="input" id="pjNivel"><option value="">Todos</option>' + NIVEIS.map(function (n) { return '<option value="' + n[0] + '"' + (pj.nivel === n[0] ? " selected" : "") + ">" + n[1] + "</option>"; }).join("") + "</select></div></div>" +
+        '<div class="tabs" id="pjTabs">' + [["todos", "Todos", projs.length]].concat(ETAPAS_P.map(function (e) { return [e[0], e[1], cont[e[0]] || 0]; })).map(function (t) {
+          return '<button type="button" class="tab' + (pj.aba === t[0] ? " active" : "") + '" data-t="' + t[0] + '">' + esc(t[1]) + " (" + t[2] + ")</button>";
+        }).join("") + "</div>" +
+        '<div class="card" style="padding:6px 10px"><div class="table-wrap" style="position:relative" id="pjTabela"></div></div>' +
+        '<section class="ac-cards pj-cards">' +
+          pjCard("book", "Explorar literatura científica", "Acesse o material e as evidências sobre a infância no NCC.", "Pesquisar no NCC", "pesq") +
+          pjCard("matrix", "Matriz de evidências", "Organize estudos, compare resultados e extraia os dados com IA a partir do PDF.", "Abrir matriz", "matriz") +
+          pjCard("nodes", "Mapa metodológico", "Estruture seu projeto passo a passo, com orientações de coerência.", "Ver mapa", "mapa") +
+          pjCard("calendar", "Cronograma", "Defina etapas e prazos e receba lembretes no sino.", "Atualizar prazos", "cronograma") +
+        "</section>" +
+      "</div><aside>" +
+        '<div class="card" style="margin-bottom:16px"><div class="card-head" style="margin-bottom:8px"><h3 class="card-title">Meu progresso científico</h3></div>' +
+          '<div class="pj-prog">' + donut(ETAPAS_P.map(function (e) { return { v: cont[e[0]] || 0, c: e[2] }; }), 140, 22, '<b class="pj-cn">' + projs.length + '</b><span class="pj-cl">' + (projs.length === 1 ? "projeto" : "projetos") + "</span>") + "</div>" +
+          '<div class="pj-leg">' + ETAPAS_P.filter(function (e) { return cont[e[0]]; }).map(function (e) {
+            return '<div><span class="dot" style="background:' + e[2] + '"></span>' + esc(e[1]) + "<b>" + cont[e[0]] + " (" + Math.round(100 * cont[e[0]] / projs.length) + "%)</b></div>";
+          }).join("") + (projs.length ? "" : '<p class="hint" style="margin:0;text-align:center">Crie seu primeiro projeto para ver o progresso.</p>') + "</div></div>" +
+        '<div class="card" style="margin-bottom:16px" id="pjPrazos"><div class="card-head" style="margin-bottom:6px"><h3 class="card-title">Próximos prazos</h3></div>' +
+          (proximos.length ? proximos.map(function (t) {
+            var d = parseDate(t.data);
+            return '<button type="button" class="list-item" data-go="projetos?p=' + t.projeto_id + '&aba=cronograma"><span class="date-box"><b>' + d.getDate() + "</b><span>" + MES[d.getMonth()] + '</span></span><span class="list-main"><span class="list-title">' + esc(t.titulo) + '</span><span class="list-sub">Projeto: ' + esc(nome[t.projeto_id]) + (t.hora ? " · " + esc(t.hora) : "") + "</span></span>" + icon("chevron") + "</button>";
+          }).join("") : '<p class="hint" style="margin:4px 0 0">Nenhum prazo agendado. Cadastre no cronograma de cada projeto.</p>') + "</div>" +
+        '<div class="card" style="margin-bottom:16px" id="pjPend"><div class="card-head" style="margin-bottom:6px"><h3 class="card-title">Pendências acadêmicas</h3></div>' +
+          (pend.length ? pend.slice(0, 6).map(function (t) {
+            var atras = t.data && t.data < hoje;
+            return '<div class="pj-pend">' + (atras ? '<span class="pj-late" title="Prazo vencido">!</span>' : '<input type="checkbox" data-done="' + t.id + '" aria-label="Concluir">') +
+              '<button type="button" class="pj-pend-txt" data-go="projetos?p=' + t.projeto_id + '&aba=cronograma"><b>' + esc(t.titulo) + "</b><span>" + (atras ? "Venceu em " + fmtCurta(t.data) + " · " : "") + "Projeto: " + esc(nome[t.projeto_id]) + "</span></button></div>";
+          }).join("") : '<p class="hint" style="margin:4px 0 0">Nenhuma pendência. 🎉</p>') + "</div>" +
+        '<div class="quote-card"><div class="quote">Cada projeto é uma construção científica. O NCC ajuda você a conectar perguntas, evidências e prática.</div></div>' +
+      "</aside></div>";
+
+    $("pjOrdem").value = pj.ordem;
+    $("pjBusca").oninput = function () { pj.busca = this.value; tabela(); };
+    $("pjOrdem").onchange = function () { pj.ordem = this.value; tabela(); };
+    $("pjFiltrosBtn").onclick = function () { pj.filtrosAbertos = !pj.filtrosAbertos; $("pjFiltros").hidden = !pj.filtrosAbertos; };
+    $("pjNivel").onchange = function () { pj.nivel = this.value; pintarProjetos(v, projs, tarefas, nArtigos); };
+    $("pjTabs").onclick = function (e) { var t = e.target.closest("[data-t]"); if (!t) return; pj.aba = t.getAttribute("data-t"); $("pjTabs").querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("active", x === t); }); tabela(); };
+    v.querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () {
+      var g = b.getAttribute("data-go");
+      if (g === "todos") { pj.aba = "todos"; pj.busca = ""; pj.nivel = ""; pintarProjetos(v, projs, tarefas, nArtigos); return; }
+      if (g === "@artigos") { bibliotecaArtigos(); return; }
+      if (g.charAt(0) === "#") { var el = $(g.slice(1)); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+      location.hash = g;
+    }; });
+    v.querySelectorAll("[data-done]").forEach(function (cb) { cb.onchange = function () {
+      sb.from("projeto_tarefas").update({ concluido: true }).eq("id", cb.getAttribute("data-done")).then(function (r) { if (!fail(r)) { toast("Pendência concluída."); PAGES.projetos(v); } });
+    }; });
+    v.querySelectorAll("[data-pjcard]").forEach(function (b) { b.onclick = function () {
+      var k = b.getAttribute("data-pjcard");
+      if (k === "pesq") { location.hash = "pesquisa"; return; }
+      escolherProjeto(projs, k);
+    }; });
+
+    function tabela() {
+      var box = $("pjTabela"); if (!box) return;
+      var q = pj.busca.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+      var rows = projs.filter(function (p) {
+        if (pj.aba !== "todos" && p.etapa !== pj.aba) return false;
+        if (pj.nivel && p.nivel !== pj.nivel) return false;
+        if (!q) return true;
+        return [p.titulo, p.tema, p.orientador, (p.palavras_chave || []).join(" "), etapaLabel(p.etapa), nivelLabel(p.nivel)].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").indexOf(q) >= 0;
+      });
+      if (pj.ordem === "nome") rows.sort(function (a, b) { return a.titulo.localeCompare(b.titulo, "pt"); });
+      if (pj.ordem === "prazo") rows.sort(function (a, b) { return (a.prazo || "9999") < (b.prazo || "9999") ? -1 : 1; });
+      if (!rows.length) {
+        box.innerHTML = '<div class="empty">' + icon("cap") + "<strong>" + (projs.length ? "Nenhum projeto encontrado com esses filtros." : "Nenhum projeto ainda.") + "</strong><p>" + (projs.length ? "Tente outra busca." : "Crie um projeto para organizar etapas, prazos, a matriz de evidências e o mapa metodológico.") + "</p>" +
+          (projs.length ? "" : '<button type="button" class="btn btn-primary" id="pjVazio">' + icon("plus") + " Novo projeto</button>") + "</div>";
+        var b = $("pjVazio"); if (b) b.onclick = function () { projetoForm(null); };
+        return;
+      }
+      box.innerHTML = '<table class="tbl"><thead><tr><th>Projeto</th><th class="hide-sm">Nível</th><th class="hide-md">Tema</th><th>Etapa</th><th class="hide-md">Última atualização</th><th class="hide-sm">Prazo</th><th style="text-align:right">Ações</th></tr></thead><tbody>' +
+        rows.map(function (p) {
+          var venc = p.prazo && p.etapa !== "concluido" && p.prazo < todayIso();
+          return '<tr data-proj="' + p.id + '"><td><b class="pj-t">' + esc(p.titulo) + '</b></td><td class="hide-sm">' + esc(nivelLabel(p.nivel)) + '</td><td class="hide-md">' + esc(p.tema || "—") + "</td><td>" + etapaPill(p.etapa) + '</td><td class="hide-md">' + fmtDataHora(p.updated_at) + '</td><td class="hide-sm nw"' + (venc ? ' style="color:var(--danger);font-weight:600"' : "") + ">" + (p.prazo ? fmtCurta(p.prazo) : "—") + '</td><td style="text-align:right"><button type="button" class="menu-btn" data-menu="' + p.id + '" aria-label="Ações">⋯</button></td></tr>';
+        }).join("") + "</tbody></table>";
+      box.onclick = function (e) {
+        var mb = e.target.closest("[data-menu]");
+        if (mb) { e.stopPropagation(); menuProjeto(mb, projs.filter(function (p) { return p.id === mb.getAttribute("data-menu"); })[0]); return; }
+        var tr = e.target.closest("[data-proj]"); if (tr) location.hash = "projetos?p=" + tr.getAttribute("data-proj");
+      };
+    }
+    tabela();
+  }
+  function pjStat(t, ic, num, titulo, link, go) {
+    return '<div class="ac-stat"><span class="ac-stat-ico ' + t + '">' + icon(ic) + '</span><div><div class="ac-num">' + num + '</div><div class="ac-tit">' + esc(titulo) + '</div><button type="button" class="link-btn" data-go="' + go + '" style="margin-top:4px">' + esc(link) + " " + icon("arrow") + "</button></div></div>";
+  }
+  function pjCard(ic, t, s, btn, k) {
+    return '<div class="pj-card"><div class="pj-card-top">' + icon(ic) + "<span><b>" + esc(t) + "</b>" + esc(s) + '</span></div><button type="button" class="btn btn-block" data-pjcard="' + k + '">' + esc(btn) + "</button></div>";
+  }
+  function escolherProjeto(projs, aba) {
+    var ativos = projs.filter(function (p) { return p.etapa !== "concluido"; });
+    var lista = ativos.length ? ativos : projs;
+    if (!lista.length) { toast("Crie um projeto primeiro."); projetoForm(null); return; }
+    if (lista.length === 1) { location.hash = "projetos?p=" + lista[0].id + "&aba=" + aba; return; }
+    openModal("Escolha o projeto", '<div class="field"><label>Projeto</label><select class="input" name="p">' + lista.map(function (p) { return '<option value="' + p.id + '">' + esc(p.titulo) + "</option>"; }).join("") + "</select></div>", {
+      ok: "Continuar", onSubmit: function (form, close) { close(); location.hash = "projetos?p=" + fval(form, "p") + "&aba=" + aba; }
+    });
+  }
+  function menuProjeto(btn, p) {
+    document.querySelectorAll(".row-menu").forEach(function (m) { m.remove(); });
+    var m = document.createElement("div"); m.className = "row-menu";
+    m.innerHTML = '<button data-a="abrir">Abrir projeto</button><button data-a="matriz">Matriz de evidências</button><button data-a="mapa">Mapa metodológico</button><button data-a="cronograma">Cronograma</button><button data-a="editar">Editar dados</button><button data-a="excluir" class="danger">Excluir projeto</button>';
+    var wrap = btn.closest(".table-wrap"); wrap.appendChild(m);
+    m.style.top = (btn.getBoundingClientRect().bottom - wrap.getBoundingClientRect().top + 4) + "px";
+    setTimeout(function () { document.addEventListener("click", function h() { m.remove(); document.removeEventListener("click", h); }); }, 0);
+    m.onclick = function (e) {
+      var a = e.target.getAttribute("data-a"); if (!a) return;
+      if (a === "abrir") location.hash = "projetos?p=" + p.id;
+      if (a === "matriz" || a === "mapa" || a === "cronograma") location.hash = "projetos?p=" + p.id + "&aba=" + a;
+      if (a === "editar") sb.from("projetos").select("*").eq("id", p.id).maybeSingle().then(function (r) { if (r.data) projetoForm(r.data); });
+      if (a === "excluir") excluirProjeto(p);
+    };
+  }
+  function excluirProjeto(p) {
+    openModal("Excluir projeto", "<p>Excluir o projeto <b>" + esc(p.titulo) + "</b>? O cronograma, a matriz de evidências (com os PDFs) e o mapa metodológico serão apagados. <b>Isso não pode ser desfeito.</b></p>", {
+      ok: "Excluir", onSubmit: function (form, close) {
+        sb.from("projeto_artigos").select("arquivo_path").eq("projeto_id", p.id).then(function (r) {
+          var paths = (r.data || []).map(function (x) { return x.arquivo_path; }).filter(Boolean);
+          return (paths.length ? sb.storage.from("ncc-arquivos").remove(paths) : Promise.resolve()).then(function () { return sb.from("projetos").delete().eq("id", p.id); });
+        }).then(function (r) { if (!fail(r, "Não foi possível excluir")) { close(); toast("Projeto excluído."); location.hash = "projetos"; if (state.route === "projetos") render(); } });
+      }
+    });
+  }
+
+  function projetoForm(p, depois) {
+    var novo = !p; p = p || { nivel: "mestrado", etapa: "planejamento", palavras_chave: [] };
+    var body =
+      '<div class="field"><label>Título do projeto *</label><input class="input" name="titulo" maxlength="250" required value="' + esc(p.titulo || "") + '"></div>' +
+      '<div class="form-row"><div class="field"><label>Nível</label><select class="input" name="nivel">' + NIVEIS.map(function (n) { return '<option value="' + n[0] + '"' + (p.nivel === n[0] ? " selected" : "") + ">" + n[1] + "</option>"; }).join("") + "</select></div>" +
+        '<div class="field"><label>Etapa atual</label><select class="input" name="etapa">' + ETAPAS_P.map(function (e) { return '<option value="' + e[0] + '"' + (p.etapa === e[0] ? " selected" : "") + ">" + e[1] + "</option>"; }).join("") + "</select></div></div>" +
+      '<div class="field"><label>Tema</label><input class="input" name="tema" maxlength="150" value="' + esc(p.tema || "") + '" placeholder="Ex.: Funções executivas na infância"></div>' +
+      '<div class="form-row"><div class="field"><label>Orientador(a)</label><input class="input" name="orientador" maxlength="150" value="' + esc(p.orientador || "") + '"></div>' +
+        '<div class="field"><label>Instituição / programa</label><input class="input" name="instituicao" maxlength="150" value="' + esc(p.instituicao || "") + '"></div></div>' +
+      '<div class="form-row"><div class="field"><label>Palavras-chave (separe por vírgula)</label><input class="input" name="palavras" maxlength="300" value="' + esc((p.palavras_chave || []).join(", ")) + '"></div>' +
+        '<div class="field"><label>Prazo final</label><input class="input" type="date" name="prazo" value="' + esc(p.prazo || "") + '"></div></div>';
+    openModal(novo ? "Novo projeto" : "Editar projeto", body, { lg: true, ok: novo ? "Criar projeto" : "Salvar", onSubmit: function (form, close) {
+      var titulo = fval(form, "titulo"); if (!titulo) { toast("Informe o título do projeto."); return; }
+      var row = { titulo: titulo, nivel: fval(form, "nivel"), etapa: fval(form, "etapa"), tema: fval(form, "tema") || null, orientador: fval(form, "orientador") || null, instituicao: fval(form, "instituicao") || null,
+        palavras_chave: fval(form, "palavras").split(",").map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 12), prazo: fval(form, "prazo") || null };
+      var q = novo ? sb.from("projetos").insert(Object.assign({ owner_id: state.user.id }, row)).select("id").maybeSingle() : sb.from("projetos").update(row).eq("id", p.id).select("id").maybeSingle();
+      q.then(function (r) {
+        if (fail(r)) return; close();
+        var id = (r.data && r.data.id) || p.id;
+        toast(novo ? "Projeto criado." : "Projeto atualizado.");
+        if (depois) { depois(id); return; }
+        var alvo = "projetos?p=" + id;
+        if (location.hash.replace(/^#/, "").indexOf(alvo) === 0) render(); else location.hash = alvo;
+      });
+    } });
+  }
+
+  /* ---------- página do projeto ---------- */
+  var ABAS_PJ = [["visao", "Visão geral", "doc"], ["matriz", "Matriz de evidências", "matrix"], ["mapa", "Mapa metodológico", "nodes"], ["cronograma", "Cronograma", "calendar"]];
+  function paginaProjeto(v, pid, aba) {
+    v.innerHTML = '<div class="loading">Carregando projeto…</div>';
+    Promise.all([
+      sb.from("projetos").select("*").eq("id", pid).maybeSingle(),
+      sb.from("projeto_tarefas").select("*").eq("projeto_id", pid).order("data", { ascending: true }),
+      sb.from("projeto_artigos").select("*").eq("projeto_id", pid).order("created_at", { ascending: false })
+    ]).then(function (rs) {
+      var p = rs[0].data;
+      if (!p) { v.innerHTML = '<div class="card"><div class="empty">' + icon("cap") + '<strong>Projeto não encontrado.</strong><p></p><button type="button" class="btn" onclick="location.hash=\'projetos\'">Voltar aos projetos</button></div></div>'; return; }
+      var tarefas = rs[1].data || [], artigos = rs[2].data || [];
+      $("pageTitle").textContent = p.titulo;
+      $("pageSub").textContent = nivelLabel(p.nivel) + (p.tema ? " · " + p.tema : "") + (p.orientador ? " · Orientação: " + p.orientador : "");
+      $("pageActions").innerHTML = '<button type="button" class="btn" id="pjVoltar">' + icon("arrow", "flip") + " Projetos</button><button type=\"button\" class=\"btn\" id=\"pjEditar\">" + icon("edit") + " Editar</button>";
+      $("pjVoltar").onclick = function () { location.hash = "projetos"; };
+      $("pjEditar").onclick = function () { projetoForm(p); };
+      registrarAtividade("projeto", p.id, p.titulo, nivelLabel(p.nivel) + " · " + etapaLabel(p.etapa));
+      v.innerHTML =
+        '<div class="card pj-stepper">' + ETAPAS_P.map(function (e, i) {
+          var idx = ETAPAS_P.map(function (x) { return x[0]; }).indexOf(p.etapa);
+          return '<button type="button" class="pj-step' + (i < idx ? " done" : i === idx ? " atual" : "") + '" data-etapa="' + e[0] + '" title="Mudar etapa para ' + esc(e[1]) + '"><span class="n">' + (i < idx ? icon("check") : i + 1) + "</span><span>" + esc(e[1]) + "</span></button>";
+        }).join("") + "</div>" +
+        '<div class="tabs" id="pjAbas">' + ABAS_PJ.map(function (a) { return '<button type="button" class="tab' + (aba === a[0] ? " active" : "") + '" data-aba="' + a[0] + '">' + esc(a[1]) + (a[0] === "matriz" ? " (" + artigos.length + ")" : "") + "</button>"; }).join("") + "</div>" +
+        '<div id="pjCorpo"></div>';
+      v.querySelectorAll("[data-etapa]").forEach(function (b) { b.onclick = function () {
+        var e = b.getAttribute("data-etapa"); if (e === p.etapa) return;
+        sb.from("projetos").update({ etapa: e }).eq("id", p.id).then(function (r) { if (!fail(r)) { toast("Etapa atualizada: " + etapaLabel(e) + "."); render(); } });
+      }; });
+      $("pjAbas").onclick = function (e) { var t = e.target.closest("[data-aba]"); if (!t) return; location.hash = "projetos?p=" + p.id + "&aba=" + t.getAttribute("data-aba"); };
+      var corpo = $("pjCorpo");
+      if (aba === "matriz") abaMatriz(corpo, p, artigos);
+      else if (aba === "mapa") abaMapa(corpo, p);
+      else if (aba === "cronograma") abaCronograma(corpo, p, tarefas);
+      else abaVisaoProjeto(corpo, p, tarefas, artigos);
+    });
+  }
+
+  function abaVisaoProjeto(c, p, tarefas, artigos) {
+    var mapa = p.mapa || {}, preench = CAMPOS_MAPA.filter(function (f) { return String(mapa[f[0]] || "").trim(); }).length;
+    var abertas = tarefas.filter(function (t) { return !t.concluido; });
+    var hoje = todayIso();
+    c.innerHTML = '<div class="pj-grid3">' +
+      '<div class="card"><div class="card-head"><h3 class="card-title">Dados do projeto</h3></div><div class="ac-det">' +
+        [["Nível", nivelLabel(p.nivel)], ["Etapa", etapaLabel(p.etapa)], ["Tema", p.tema], ["Orientador(a)", p.orientador], ["Instituição", p.instituicao], ["Prazo final", p.prazo ? fmtCurta(p.prazo) + (p.etapa !== "concluido" ? " (" + (diasAte(p.prazo) >= 0 ? "faltam " + diasAte(p.prazo) + " dias" : "venceu") + ")" : "") : ""], ["Palavras-chave", (p.palavras_chave || []).join(", ")]]
+          .filter(function (l) { return l[1]; }).map(function (l) { return "<div><b>" + l[0] + "</b>" + esc(l[1]) + "</div>"; }).join("") + "</div>" +
+        (mapa.pergunta ? '<div class="pq-synth" style="margin:14px 0 0"><b style="display:block;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-faint);margin-bottom:4px">Pergunta de pesquisa</b>' + esc(mapa.pergunta) + "</div>" : "") + "</div>" +
+      '<div class="card"><div class="card-head"><h3 class="card-title">Mapa metodológico</h3><button type="button" class="link-btn" data-ir="mapa">Abrir ' + icon("chevron") + "</button></div>" +
+        '<div class="pj-bar"><span style="width:' + Math.round(100 * preench / CAMPOS_MAPA.length) + '%"></span></div><p style="margin:8px 0 0;font-size:13px">' + preench + " de " + CAMPOS_MAPA.length + " itens preenchidos</p>" +
+        (mapa.tipo_estudo ? '<p class="hint" style="margin:10px 0 0">' + esc(rotulo(TIPOS_ESTUDO, mapa.tipo_estudo)) + "</p>" : "") +
+        '<div class="card-head" style="margin:18px 0 6px"><h3 class="card-title">Matriz de evidências</h3><button type="button" class="link-btn" data-ir="matriz">Abrir ' + icon("chevron") + "</button></div>" +
+        '<p style="margin:0;font-size:13px">' + artigos.length + (artigos.length === 1 ? " artigo" : " artigos") + " na matriz" + (artigos.filter(function (a) { return a.preenchido_ia; }).length ? " · " + artigos.filter(function (a) { return a.preenchido_ia; }).length + " extraídos com IA" : "") + "</p></div>" +
+      '<div class="card"><div class="card-head"><h3 class="card-title">Próximas tarefas</h3><button type="button" class="link-btn" data-ir="cronograma">Cronograma ' + icon("chevron") + "</button></div>" +
+        (abertas.length ? abertas.slice(0, 5).map(function (t) {
+          return '<div class="pj-pend"><span class="tp tp-' + t.tipo + '">' + { prazo: "Prazo", reuniao: "Reunião", pendencia: "Pendência" }[t.tipo] + '</span><div class="pj-pend-txt" style="cursor:default"><b>' + esc(t.titulo) + "</b><span" + (t.data && t.data < hoje ? ' style="color:var(--danger)"' : "") + ">" + (t.data ? fmtCurta(t.data) + (t.hora ? " · " + esc(t.hora) : "") : "Sem data") + "</span></div></div>";
+        }).join("") : '<p class="hint" style="margin:0">Nenhuma tarefa em aberto.</p>') + "</div>" +
+      "</div>" +
+      '<div style="margin-top:16px;text-align:right"><button type="button" class="btn" id="pjExcluir" style="color:var(--danger)">' + icon("trash") + " Excluir projeto</button></div>";
+    c.querySelectorAll("[data-ir]").forEach(function (b) { b.onclick = function () { location.hash = "projetos?p=" + p.id + "&aba=" + b.getAttribute("data-ir"); }; });
+    $("pjExcluir").onclick = function () { excluirProjeto(p); };
+  }
+
+  /* ---------- matriz de evidências ---------- */
+  var COLS_MATRIZ = [["autores", "Autores"], ["ano", "Ano"], ["titulo", "Título"], ["periodico", "Periódico"], ["doi", "DOI"], ["objetivo", "Objetivo"], ["desenho", "Desenho"], ["amostra", "Amostra"],
+    ["instrumentos", "Instrumentos"], ["resultados", "Principais resultados"], ["limitacoes", "Limitações"], ["conclusao", "Conclusão dos autores"], ["tipo_evidencia", "Tipo de evidência"], ["notas", "Minhas notas"]];
+  function abaMatriz(c, p, artigos) {
+    c.innerHTML = '<div class="card"><div class="card-head"><h3 class="card-title">Matriz de evidências</h3><div style="display:flex;gap:8px;flex-wrap:wrap">' +
+        (artigos.length ? '<button type="button" class="btn" id="mxCsv">' + icon("download") + " Exportar (Excel)</button>" : "") +
+        '<button type="button" class="btn btn-primary" id="mxNovo">' + icon("plus") + " Adicionar artigo</button></div></div>" +
+      '<p class="hint" style="margin:-6px 0 14px">Envie o PDF do artigo e a IA preenche a matriz <b>somente com o que está no artigo</b>. Quando uma informação não estiver no texto, aparece “não informado no artigo”. Sempre confira antes de usar.</p>' +
+      (artigos.length ? '<div class="table-wrap"><table class="tbl mx-tbl"><thead><tr><th>Autores / ano</th><th>Título</th><th class="hide-sm">Desenho</th><th class="hide-md">Amostra</th><th class="hide-md">Principais resultados</th><th>Evidência</th></tr></thead><tbody>' +
+        artigos.map(function (a) {
+          return '<tr data-art="' + a.id + '"><td><b>' + esc(primeiroAutor(a.autores)) + "</b><br><span class=\"hint\" style=\"margin:0\">" + esc(a.ano || "s.d.") + "</span></td><td>" + esc(a.titulo) + (a.preenchido_ia ? '<br><span class="tagx gold" style="margin-top:4px">Extraído com IA · confira</span>' : "") + '</td><td class="hide-sm">' + esc(curto(a.desenho, 90)) + '</td><td class="hide-md">' + esc(curto(a.amostra, 90)) + '</td><td class="hide-md">' + esc(curto(a.resultados, 140)) + "</td><td>" + (a.tipo_evidencia ? '<span class="tagx">' + esc(a.tipo_evidencia) + "</span>" : "—") + "</td></tr>";
+        }).join("") + "</tbody></table></div>" :
+        '<div class="empty">' + icon("matrix") + "<strong>A matriz está vazia.</strong><p>Adicione os artigos da sua revisão de literatura. Com o PDF, a IA extrai autores, desenho, amostra, resultados, limitações e o tipo de evidência.</p></div>") +
+      "</div>";
+    $("mxNovo").onclick = function () { artigoForm(p, null); };
+    var csv = $("mxCsv"); if (csv) csv.onclick = function () { exportarMatriz(p, artigos); };
+    c.querySelectorAll("[data-art]").forEach(function (tr) { tr.onclick = function () { artigoForm(p, artigos.filter(function (a) { return a.id === tr.getAttribute("data-art"); })[0]); }; });
+  }
+  function primeiroAutor(s) { s = String(s || "").trim(); if (!s) return "Autor não informado"; var a = s.split(/;|,\s*(?=[A-ZÀ-Ú][a-zà-ú]+,)/)[0].trim(); return a + (s.length > a.length + 2 ? " et al." : ""); }
+  function curto(s, n) { s = String(s || "—"); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+  function exportarMatriz(p, artigos) {
+    var linhas = [COLS_MATRIZ.map(function (c) { return c[1]; })].concat(artigos.map(function (a) { return COLS_MATRIZ.map(function (c) { return a[c[0]] == null ? "" : String(a[c[0]]); }); }));
+    var txt = "﻿" + linhas.map(function (l) { return l.map(function (v) { return '"' + v.replace(/"/g, '""').replace(/\r?\n/g, " ") + '"'; }).join(";"); }).join("\r\n");
+    var blob = new Blob([txt], { type: "text/csv;charset=utf-8" }), url = URL.createObjectURL(blob), aEl = document.createElement("a");
+    aEl.href = url; aEl.download = "Matriz de evidencias - " + p.titulo.replace(/[\\\/:*?"<>|]+/g, " ").slice(0, 60) + ".csv";
+    document.body.appendChild(aEl); aEl.click(); aEl.remove(); setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+
+  function artigoForm(p, a) {
+    var novo = !a; a = a || {};
+    var pdf = null, ia = !!a.preenchido_ia;
+    function campo(k, l, tipo, ph) {
+      if (tipo === "area") return '<div class="field"><label>' + l + '</label><textarea class="input" name="' + k + '" rows="2">' + esc(a[k] || "") + "</textarea></div>";
+      return '<div class="field"><label>' + l + '</label><input class="input" name="' + k + '"' + (tipo ? ' type="' + tipo + '"' : "") + ' value="' + esc(a[k] == null ? "" : a[k]) + '"' + (ph ? ' placeholder="' + esc(ph) + '"' : "") + "></div>";
+    }
+    var body =
+      '<div class="ac-file">' + icon("pdf") + '<div><b id="afNome">' + esc(a.arquivo_nome || "PDF do artigo") + '</b><span class="hint" style="margin:2px 0 0;display:block">Até 25 MB. Com o PDF, a IA preenche a matriz a partir do texto do artigo.</span></div>' +
+        '<label class="btn" style="cursor:pointer;margin-left:auto">' + (a.arquivo_nome ? "Trocar PDF" : "Escolher PDF") + '<input type="file" id="afPdf" accept="application/pdf" hidden></label></div>' +
+      '<div class="ac-cmp-cta" style="margin:0 0 16px">' + icon("sparkle") + '<div><b>Preencher com IA</b><span>Lê o PDF e extrai os campos só com o que está no artigo. Usa 1 consulta de IA.</span></div><button type="button" class="btn btn-primary" id="afIA"' + (a.arquivo_path ? "" : " disabled") + ">Preencher</button></div>" +
+      '<div id="afAviso"></div>' +
+      '<div class="form-row">' + campo("autores", "Autores") + campo("ano", "Ano", "number") + "</div>" +
+      campo("titulo", "Título *") +
+      '<div class="form-row">' + campo("periodico", "Periódico") + campo("doi", "DOI", "", "10.xxxx/…") + "</div>" +
+      campo("objetivo", "Objetivo", "area") + campo("desenho", "Desenho do estudo", "area") + campo("amostra", "Amostra", "area") + campo("instrumentos", "Instrumentos", "area") +
+      campo("resultados", "Principais resultados", "area") + campo("limitacoes", "Limitações", "area") + campo("conclusao", "Conclusão dos autores", "area") +
+      '<div class="field"><label>Tipo de evidência</label><select class="input" name="tipo_evidencia"><option value="">—</option>' +
+        ["associação", "correlação", "risco aumentado", "mecanismo experimental", "evidência causal", "síntese de evidências (revisão)", "qualitativa"].map(function (t) { return "<option" + (a.tipo_evidencia === t ? " selected" : "") + ">" + t + "</option>"; }).join("") +
+        (a.tipo_evidencia && ["associação", "correlação", "risco aumentado", "mecanismo experimental", "evidência causal", "síntese de evidências (revisão)", "qualitativa"].indexOf(a.tipo_evidencia) < 0 ? "<option selected>" + esc(a.tipo_evidencia) + "</option>" : "") + "</select></div>" +
+      campo("notas", "Minhas notas", "area");
+    var m = openModal(novo ? "Adicionar artigo" : "Artigo da matriz", body, { lg: true, ok: "Salvar na matriz", foot: (novo ? "" : '<button type="button" class="btn" id="afExcluir" style="margin-right:auto;color:var(--danger)">' + icon("trash") + " Excluir</button>" + (a.arquivo_path ? '<button type="button" class="btn" id="afAbrir">Abrir PDF</button>' : "")) + '<button type="button" class="btn" data-x>Cancelar</button><button type="submit" class="btn btn-primary">Salvar na matriz</button>', onSubmit: salvar });
+    var f = m.form;
+    if (ia) m.el.querySelector("#afAviso").innerHTML = '<div class="pq-warn">Campos extraídos com IA a partir do PDF. Confira com o artigo antes de citar.</div>';
+    m.el.querySelector("#afPdf").onchange = function () {
+      var fl = this.files[0]; if (!fl) return;
+      if (fl.size > 25 * 1048576) { toast("O PDF passa de 25 MB."); this.value = ""; return; }
+      pdf = fl; m.el.querySelector("#afNome").textContent = fl.name + " · " + tamanho(fl.size); m.el.querySelector("#afIA").disabled = false;
+    };
+    var ex = m.el.querySelector("#afExcluir"); if (ex) ex.onclick = function () {
+      if (!confirm("Excluir este artigo da matriz?")) return;
+      (a.arquivo_path ? sb.storage.from("ncc-arquivos").remove([a.arquivo_path]) : Promise.resolve()).then(function () { return sb.from("projeto_artigos").delete().eq("id", a.id); })
+        .then(function (r) { if (!fail(r)) { m.close(); toast("Artigo excluído."); render(); } });
+    };
+    var ab = m.el.querySelector("#afAbrir"); if (ab) ab.onclick = function () {
+      var w = window.open("", "_blank");
+      sb.storage.from("ncc-arquivos").createSignedUrl(a.arquivo_path, 600).then(function (r) { if (r.data && r.data.signedUrl) { if (w) w.location = r.data.signedUrl; } else { if (w) w.close(); toast("Não foi possível abrir o PDF."); } });
+    };
+    m.el.querySelector("#afIA").onclick = function () {
+      var b = this; b.disabled = true; b.textContent = "Lendo o PDF…";
+      var fonte = pdf ? pdf.arrayBuffer() : sb.storage.from("ncc-arquivos").download(a.arquivo_path).then(function (r) { if (!r.data) throw new Error("pdf"); return r.data.arrayBuffer(); });
+      Promise.all([carregarPdfJs(), fonte]).then(function (rs) { return extrairTextoPdfN(rs[0], rs[1], 40); }).then(function (txt) {
+        if (txt.length < 500) throw new Error("O PDF não tem texto selecionável (pode ser uma imagem escaneada). Preencha os campos manualmente.");
+        b.textContent = "A IA está lendo o artigo…";
+        return invokeIA({ action: "extrair_matriz", texto: txt.slice(0, 60000) });
+      }).then(function (t) {
+        var j; try { var mm = t.match(/\{[\s\S]*\}/); j = JSON.parse(mm ? mm[0] : t); } catch (e) { throw new Error("A IA não devolveu os dados no formato esperado. Tente de novo."); }
+        COLS_MATRIZ.forEach(function (c) {
+          if (c[0] === "notas") return;
+          var el = f.querySelector('[name="' + c[0] + '"]'); if (!el || j[c[0]] == null || j[c[0]] === "") return;
+          var val = String(j[c[0]]);
+          if (c[0] === "ano") { var n = parseInt(val, 10); if (n) el.value = n; return; }
+          if (c[0] === "doi") val = val.replace(/^https?:\/\/(dx\.)?doi\.org\//i, "");
+          if (el.tagName === "SELECT") { if (![].some.call(el.options, function (o) { return o.text === val; })) { var o = document.createElement("option"); o.text = val; el.add(o); } el.value = val; return; }
+          el.value = val;
+        });
+        ia = true;
+        m.el.querySelector("#afAviso").innerHTML = '<div class="pq-warn">Campos preenchidos pela IA a partir do PDF. <b>Confira com o artigo</b> e ajuste o que precisar antes de salvar.</div>';
+        toast("Matriz preenchida. Confira os campos.");
+      }).catch(function (e) { toast(e && e.message && e.message !== "pdf" ? e.message : "Não foi possível ler este PDF."); })
+        .then(function () { b.disabled = false; b.textContent = "Preencher"; });
+    };
+    function salvar(form, close) {
+      if (!fval(form, "titulo")) { toast("Informe o título do artigo."); return; }
+      var btn = m.el.querySelector('[type="submit"]'); btn.disabled = true;
+      var row = { projeto_id: p.id, preenchido_ia: ia };
+      COLS_MATRIZ.forEach(function (c) { var v2 = fval(form, c[0]); row[c[0]] = c[0] === "ano" ? (parseInt(v2, 10) || null) : (v2 || null); });
+      var q = novo ? sb.from("projeto_artigos").insert(Object.assign({ owner_id: state.user.id }, row)).select("id").maybeSingle() : sb.from("projeto_artigos").update(row).eq("id", a.id).select("id").maybeSingle();
+      q.then(function (r) {
+        if (fail(r)) throw null;
+        var id = (r.data && r.data.id) || a.id;
+        if (!pdf) return;
+        var path = state.user.id + "/projetos/" + p.id + "/" + Date.now() + "-" + pdf.name.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^\w.\-]+/g, "_").slice(-80);
+        return sb.storage.from("ncc-arquivos").upload(path, pdf, { contentType: "application/pdf" }).then(function (u) {
+          if (u.error) { toast("O artigo foi salvo, mas o PDF não subiu: " + u.error.message); return; }
+          var velho = a.arquivo_path;
+          return sb.from("projeto_artigos").update({ arquivo_path: path, arquivo_nome: pdf.name }).eq("id", id).then(function () { if (velho) sb.storage.from("ncc-arquivos").remove([velho]); });
+        });
+      }).then(function () { close(); toast("Artigo salvo na matriz."); render(); }, function () { btn.disabled = false; });
+    }
+  }
+  function extrairTextoPdfN(lib, buf, max) {
+    return lib.getDocument({ data: new Uint8Array(buf) }).promise.then(function (doc) {
+      var n = Math.min(doc.numPages, max || 20), partes = [], seq = Promise.resolve();
+      for (var i = 1; i <= n; i++) (function (k) { seq = seq.then(function () { return doc.getPage(k).then(function (pg) { return pg.getTextContent(); }).then(function (tc) { partes.push(tc.items.map(function (t) { return t.str; }).join(" ")); }); }); })(i);
+      return seq.then(function () { return partes.join("\n\n").replace(/[ \t]+/g, " ").trim(); });
+    });
+  }
+
+  function bibliotecaArtigos() {
+    var m = openModal("Artigos salvos", '<div id="bibLista"><div class="loading">Carregando…</div></div>', { lg: true, foot: '<button type="button" class="btn" data-x>Fechar</button>' });
+    sb.from("projeto_artigos").select("id,projeto_id,autores,ano,titulo,periodico,doi,tipo_evidencia,projetos(titulo)").order("created_at", { ascending: false }).limit(200).then(function (r) {
+      var rows = r.data || [], box = m.el.querySelector("#bibLista");
+      box.innerHTML = rows.length ? rows.map(function (a) {
+        return '<button type="button" class="list-item" data-go="projetos?p=' + a.projeto_id + '&aba=matriz"><span class="list-ico t-sky">' + icon("doc") + '</span><span class="list-main"><span class="list-title">' + esc(a.titulo) + '</span><span class="list-sub">' + esc(primeiroAutor(a.autores)) + " (" + esc(a.ano || "s.d.") + ")" + (a.periodico ? " · " + esc(curto(a.periodico, 60)) : "") + " · Projeto: " + esc((a.projetos && a.projetos.titulo) || "") + "</span></span>" + icon("chevron") + "</button>";
+      }).join("") : '<div class="empty">' + icon("doc") + "<strong>Nenhum artigo salvo ainda.</strong><p>Os artigos das matrizes de evidências de todos os seus projetos aparecem aqui.</p></div>";
+      box.querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { m.close(); location.hash = b.getAttribute("data-go"); }; });
+    });
+  }
+
+  /* ---------- mapa metodológico ---------- */
+  function abaMapa(c, p) {
+    var mapa = Object.assign({}, p.mapa || {});
+    function pintar() {
+      var preench = CAMPOS_MAPA.filter(function (f) { return String(mapa[f[0]] || "").trim(); }).length;
+      var alertas = coerencia(mapa);
+      var nota = rotulo(TIPOS_ESTUDO, mapa.tipo_estudo) && mapa.tipo_estudo ? TIPOS_ESTUDO.filter(function (t) { return t[0] === mapa.tipo_estudo; })[0][2] : "";
+      c.innerHTML = '<div class="layout-side"><div class="card"><div class="card-head"><h3 class="card-title">Mapa metodológico</h3><span class="hint" style="margin:0">' + preench + " de " + CAMPOS_MAPA.length + " preenchidos</span></div>" +
+        '<div class="pj-bar" style="margin-bottom:18px"><span style="width:' + Math.round(100 * preench / CAMPOS_MAPA.length) + '%"></span></div>' +
+        '<div class="mapa-flow">' + CAMPOS_MAPA.map(function (f, i) {
+          var ok = String(mapa[f[0]] || "").trim();
+          var campo = f[0] === "tipo_estudo" ?
+            '<select class="input" data-m="tipo_estudo">' + TIPOS_ESTUDO.map(function (t) { return '<option value="' + t[0] + '"' + (mapa.tipo_estudo === t[0] ? " selected" : "") + ">" + t[1] + "</option>"; }).join("") + "</select>" + (nota ? '<div class="mapa-nota">' + icon("bulb") + "<span>" + esc(nota) + "</span></div>" : "") :
+            '<textarea class="input" data-m="' + f[0] + '" rows="' + (f[0] === "pergunta" || f[0] === "objetivo_geral" ? 2 : 3) + '">' + esc(mapa[f[0]] || "") + "</textarea>";
+          return '<div class="mapa-no' + (ok ? " ok" : "") + '"><div class="mapa-num">' + (ok ? icon("check") : i + 1) + '</div><div class="mapa-corpo"><b>' + esc(f[1]) + '</b><span class="hint" style="margin:2px 0 8px;display:block">' + esc(f[2]) + "</span>" + campo + "</div></div>";
+        }).join("") + "</div>" +
+        '<div style="margin-top:16px;display:flex;gap:10px;align-items:center"><button type="button" class="btn btn-primary" id="mpSalvar">Salvar mapa</button><span class="hint" style="margin:0" id="mpStatus"></span></div></div>' +
+        '<aside><div class="card"><div class="card-head"><h3 class="card-title" style="display:flex;gap:8px;align-items:center">' + icon("shield") + " Coerência do projeto</h3></div>" +
+          (alertas.length ? alertas.map(function (a2) { return '<div class="mapa-alerta">' + icon("alert") + "<span>" + a2 + "</span></div>"; }).join("") : '<p class="hint" style="margin:0">Nenhum alerta por enquanto. Os alertas aparecem conforme você preenche: por exemplo, quando o objetivo fala em “efeito” e o desenho só permite concluir associação.</p>') +
+        "</div></aside></div>";
+      c.querySelectorAll("[data-m]").forEach(function (el) {
+        el.oninput = function () { mapa[el.getAttribute("data-m")] = el.value; $("mpStatus").textContent = "Alterações não salvas"; };
+        if (el.tagName === "SELECT") el.onchange = function () { mapa.tipo_estudo = el.value; salvarMapa(true); };
+      });
+      $("mpSalvar").onclick = function () { salvarMapa(true); };
+    }
+    function salvarMapa(repintar) {
+      sb.from("projetos").update({ mapa: mapa }).eq("id", p.id).then(function (r) {
+        if (fail(r)) return; p.mapa = mapa; toast("Mapa salvo."); if (repintar) pintar();
+      });
+    }
+    pintar();
+  }
+  function coerencia(m) {
+    var out = [], obj = ((m.objetivo_geral || "") + " " + (m.pergunta || "") + " " + (m.objetivos_especificos || "")).toLowerCase();
+    var t = m.tipo_estudo || "";
+    var obs = ["transversal", "coorte", "caso_controle"].indexOf(t) >= 0;
+    if (obs && /(efeito|impacto|causa|provoca|melhora|reduz|aumenta|influência de|influencia)/.test(obj))
+      out.push("Seu objetivo ou pergunta fala em <b>efeito, impacto ou causa</b>, mas o desenho escolhido (" + esc(rotulo(TIPOS_ESTUDO, t)) + ") permite concluir <b>associação</b>" + (t === "coorte" ? " e risco aumentado" : "") + ". Ajuste a redação (ex.: “investigar a associação entre…”) ou reveja o desenho.");
+    if (["revisao_sistematica", "meta_analise", "revisao_integrativa"].indexOf(t) >= 0 && /(crian|particip|amostra de|aplica)/.test((m.instrumentos || "") + " " + (m.procedimentos || "")))
+      out.push("Em revisões, os “participantes” são os <b>estudos</b>: descreva bases de dados, descritores, critérios de elegibilidade e a ferramenta de avaliação de qualidade/risco de viés, em vez de instrumentos aplicados em crianças.");
+    var comCriancas = /(crian|infan|escolar|bebê|bebe|adolescen|aluno)/.test(((m.populacao || "") + " " + obj).toLowerCase());
+    var revisao = ["revisao_sistematica", "meta_analise", "revisao_integrativa", "experimental_animal"].indexOf(t) >= 0;
+    if (comCriancas && !revisao && !/(cep|comit|ética|etica)/i.test(m.etica || ""))
+      out.push("Pesquisa com crianças exige aprovação do <b>Comitê de Ética em Pesquisa</b>, TCLE assinado pelos responsáveis e <b>TALE</b> (assentimento) adequado à idade. Registre isso em “Aspectos éticos”.");
+    if (m.hipoteses && ["qualitativo", "estudo_caso"].indexOf(t) >= 0)
+      out.push("Estudos qualitativos e estudos de caso em geral trabalham com <b>pressupostos</b> ou questões norteadoras, não com hipóteses a testar estatisticamente.");
+    if (t === "ensaio_clinico" && !/(random|aleat|sorteio)/i.test((m.procedimentos || "") + " " + (m.populacao || "")))
+      out.push("Em ensaio clínico randomizado, descreva como será feita a <b>randomização</b> (e, se possível, o cegamento) nos procedimentos.");
+    if (m.objetivo_geral && m.objetivos_especificos && m.objetivos_especificos.split(/\n/).filter(function (s) { return s.trim(); }).length < 2)
+      out.push("Os <b>objetivos específicos</b> costumam ser dois ou mais passos que, juntos, respondem ao objetivo geral.");
+    return out;
+  }
+
+  /* ---------- cronograma ---------- */
+  var TP = { prazo: "Prazo", reuniao: "Reunião", pendencia: "Pendência" };
+  function abaCronograma(c, p, tarefas) {
+    var hoje = todayIso();
+    var grupos = [
+      ["Atrasadas", tarefas.filter(function (t) { return !t.concluido && t.data && t.data < hoje; })],
+      ["Próximas", tarefas.filter(function (t) { return !t.concluido && t.data && t.data >= hoje; })],
+      ["Sem data", tarefas.filter(function (t) { return !t.concluido && !t.data; })],
+      ["Concluídas", tarefas.filter(function (t) { return t.concluido; })]
+    ];
+    c.innerHTML = '<div class="card"><div class="card-head"><h3 class="card-title">Cronograma</h3><button type="button" class="btn btn-primary" id="crNovo">' + icon("plus") + " Nova tarefa</button></div>" +
+      '<p class="hint" style="margin:-6px 0 14px">Você recebe um lembrete no sino 3 dias antes de cada prazo e quando ele vence.</p>' +
+      (tarefas.length ? grupos.filter(function (g) { return g[1].length; }).map(function (g) {
+        return '<div class="pq-sec" style="margin-top:12px">' + g[0] + " (" + g[1].length + ")</div>" + g[1].map(function (t) {
+          return '<div class="pj-task' + (t.concluido ? " feito" : "") + '"><input type="checkbox" data-ck="' + t.id + '"' + (t.concluido ? " checked" : "") + ' aria-label="Concluída"><span class="tp tp-' + t.tipo + '">' + TP[t.tipo] + '</span><div class="pj-task-txt"><b>' + esc(t.titulo) + "</b><span" + (g[0] === "Atrasadas" ? ' style="color:var(--danger)"' : "") + ">" + (t.data ? fmtCurta(t.data) + (t.hora ? " · " + esc(t.hora) : "") + (!t.concluido && t.data >= hoje ? " · " + (diasAte(t.data) === 0 ? "hoje" : "em " + diasAte(t.data) + (diasAte(t.data) === 1 ? " dia" : " dias")) : "") : "Sem data") + '</span></div><button type="button" class="icon-btn" data-ed="' + t.id + '" title="Editar">' + icon("edit") + '</button><button type="button" class="icon-btn" data-del="' + t.id + '" title="Excluir">' + icon("trash") + "</button></div>";
+        }).join("");
+      }).join("") : '<div class="empty">' + icon("calendar") + "<strong>Nenhuma tarefa no cronograma.</strong><p>Cadastre prazos (entrega de capítulo, qualificação, submissão), reuniões com a orientação e pendências.</p></div>") + "</div>";
+    function acha(id) { return tarefas.filter(function (t) { return t.id === id; })[0]; }
+    $("crNovo").onclick = function () { tarefaForm(p, null); };
+    c.querySelectorAll("[data-ck]").forEach(function (cb) { cb.onchange = function () { sb.from("projeto_tarefas").update({ concluido: cb.checked }).eq("id", cb.getAttribute("data-ck")).then(function (r) { if (!fail(r)) render(); }); }; });
+    c.querySelectorAll("[data-ed]").forEach(function (b) { b.onclick = function () { tarefaForm(p, acha(b.getAttribute("data-ed"))); }; });
+    c.querySelectorAll("[data-del]").forEach(function (b) { b.onclick = function () { if (!confirm("Excluir esta tarefa?")) return; sb.from("projeto_tarefas").delete().eq("id", b.getAttribute("data-del")).then(function (r) { if (!fail(r)) render(); }); }; });
+  }
+  function tarefaForm(p, t) {
+    var novo = !t; t = t || { tipo: "prazo" };
+    openModal(novo ? "Nova tarefa" : "Editar tarefa",
+      '<div class="field"><label>Descrição *</label><input class="input" name="titulo" maxlength="200" value="' + esc(t.titulo || "") + '" placeholder="Ex.: Entregar capítulo teórico à orientadora"></div>' +
+      '<div class="field"><label>Tipo</label><select class="input" name="tipo">' + Object.keys(TP).map(function (k) { return '<option value="' + k + '"' + (t.tipo === k ? " selected" : "") + ">" + TP[k] + "</option>"; }).join("") + "</select></div>" +
+      '<div class="form-row"><div class="field"><label>Data</label><input class="input" type="date" name="data" value="' + esc(t.data || "") + '"></div><div class="field"><label>Hora</label><input class="input" type="time" name="hora" value="' + esc(t.hora || "") + '"></div></div>',
+      { ok: novo ? "Adicionar" : "Salvar", onSubmit: function (form, close) {
+        var titulo = fval(form, "titulo"); if (!titulo) { toast("Descreva a tarefa."); return; }
+        var row = { projeto_id: p.id, titulo: titulo, tipo: fval(form, "tipo"), data: fval(form, "data") || null, hora: fval(form, "hora") || null };
+        if (!novo && row.data !== t.data) row.notificado = false;
+        var q = novo ? sb.from("projeto_tarefas").insert(Object.assign({ owner_id: state.user.id }, row)) : sb.from("projeto_tarefas").update(row).eq("id", t.id);
+        q.then(function (r) { if (!fail(r)) { close(); toast(novo ? "Tarefa adicionada." : "Tarefa atualizada."); render(); sincronizarPrazos(); } });
+      } });
+  }
+
+  /* ---------- lembretes no sino ---------- */
+  function sincronizarPrazos() {
+    var lim = new Date(); lim.setDate(lim.getDate() + 3);
+    var limIso = lim.getFullYear() + "-" + String(lim.getMonth() + 1).padStart(2, "0") + "-" + String(lim.getDate()).padStart(2, "0");
+    sb.from("projeto_tarefas").select("id,projeto_id,titulo,tipo,data,hora,projetos(titulo)").eq("concluido", false).eq("notificado", false).lte("data", limIso).then(function (r) {
+      var rows = (r.data || []).filter(function (t) { return t.data; });
+      if (!rows.length) return;
+      var novas = rows.map(function (t) {
+        var d = diasAte(t.data);
+        return { owner_id: state.user.id, titulo: (d < 0 ? "Prazo vencido: " : d === 0 ? "Hoje: " : "Em " + d + (d === 1 ? " dia: " : " dias: ")) + t.titulo,
+          texto: "Projeto: " + ((t.projetos && t.projetos.titulo) || "") + " · " + fmtCurta(t.data) + (t.hora ? " às " + t.hora : ""), link: "projetos?p=" + t.projeto_id + "&aba=cronograma" };
+      });
+      sb.from("notificacoes").insert(novas).then(function (x) {
+        if (x.error) return;
+        sb.from("projeto_tarefas").update({ notificado: true }).in("id", rows.map(function (t) { return t.id; })).then(loadNotifs);
+      });
+    });
+  }
+
   function stat(tint, ic, label, num, sub, btnLabel, btnIcon, go) {
     return '<div class="stat ' + tint + '"><div class="stat-head">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + num + '</div><div class="stat-sub">' + sub + '</div><button type="button" class="btn btn-block" data-go="' + go + '">' + (btnIcon ? icon(btnIcon) : "") + esc(btnLabel) + "</button></div>";
   }
@@ -2710,6 +3313,7 @@
     loadProfile().then(function () { render(); });
     loadNotifs();
     sincronizarAlertas();
+    sincronizarPrazos();
   }
 
   if (!sb) {
