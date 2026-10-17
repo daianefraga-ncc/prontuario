@@ -744,6 +744,7 @@
   .cred-vazio b { display: block; color: var(--ink); margin-bottom: 2px; }
   .cred-lim { width: 110px; padding: 7px 9px; }
   @media (max-width: 820px) { .cred-uso { grid-template-columns: 1fr 60px 30px; } }
+.esc-chips { display:flex; gap:4px; flex-wrap:wrap } .esc-chips .chip { padding:3px 9px; font-size:11px }
 </style>
 </head>
 <body>
@@ -922,6 +923,7 @@
   var NAV = [
     { id: "inicio", label: "Início", icon: "home", title: "Início", sub: "Bem-vindo(a) de volta. A ciência ao seu lado na prática com crianças." },
     { id: "pesquisa", label: "Pesquisa NCC", icon: "search", title: "Pesquisa NCC", sub: "Descreva um comportamento, faça uma pergunta ou explore um tema." },
+    { id: "vida", label: "Neurociência para todas as idades", icon: "brain", title: "Neurociência para todas as idades", sub: "Pesquise o material de neurociência da gestação ao envelhecimento." },
     { id: "casos", label: "Meus casos", icon: "users", title: "Meus casos", sub: "Acompanhe, organize e integre as informações das crianças que você atende." },
     { id: "mapa", label: "Mapa de acompanhamento", icon: "map", title: "Mapa de Acompanhamento", sub: "Visão integrada do desenvolvimento, do comportamento e dos contextos da criança." },
     { id: "acervo", label: "Meu acervo profissional", icon: "folder", title: "Meu Acervo Profissional", sub: "Organize seus instrumentos, avaliações, protocolos e materiais técnicos com acesso privado e seguro.", locked: true },
@@ -1182,10 +1184,10 @@
           pesquisa: ["Nenhuma pesquisa ainda.", "Suas buscas na Pesquisa NCC aparecerão aqui.", "Pesquisar no NCC", "pesquisa"],
           projeto: ["Nenhum projeto em andamento.", "Seus projetos acadêmicos aparecerão aqui.", "Ver projetos", "projetos"]
         }[contTipo];
-        sb.from("atividade_recente").select("*").eq("tipo", contTipo).order("created_at", { ascending: false }).limit(5).then(function (res) {
+        (contTipo === "pesquisa" ? sb.from("atividade_recente").select("*").in("tipo", ["pesquisa", "pesquisa_vida"]) : sb.from("atividade_recente").select("*").eq("tipo", contTipo)).order("created_at", { ascending: false }).limit(5).then(function (res) {
           var rows = res.data || [];
           $("contList").innerHTML = rows.length ? rows.map(function (r) {
-            return '<button type="button" class="list-item" data-go="' + esc(contTipo === "caso" ? "mapa?caso=" + r.ref_id : contTipo === "pesquisa" ? "pesquisa?q=" + encodeURIComponent(r.titulo) : "projetos?p=" + r.ref_id) + '"><span class="list-ico t-green">' + icon(contTipo === "caso" ? "users" : contTipo === "pesquisa" ? "search" : "cap") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo) + '</span><span class="list-sub">' + esc(r.subtitulo || "") + "</span></span>" + icon("arrow") + "</button>";
+            return '<button type="button" class="list-item" data-go="' + esc(contTipo === "caso" ? "mapa?caso=" + r.ref_id : contTipo === "pesquisa" ? (r.tipo === "pesquisa_vida" ? "vida" : "pesquisa") + "?q=" + encodeURIComponent(r.titulo) : "projetos?p=" + r.ref_id) + '"><span class="list-ico t-green">' + icon(contTipo === "caso" ? "users" : contTipo === "pesquisa" ? "search" : "cap") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo) + '</span><span class="list-sub">' + esc(r.subtitulo || "") + "</span></span>" + icon("arrow") + "</button>";
           }).join("") : '<div class="empty">' + icon("stack") + "<strong>" + empt[0] + "</strong><p>" + empt[1] + '</p><button type="button" class="btn" data-go="' + empt[3] + '">' + empt[2] + "</button></div>";
           $("contList").querySelectorAll("[data-go]").forEach(function (b) { b.onclick = function () { location.hash = b.getAttribute("data-go"); }; });
         });
@@ -1198,7 +1200,7 @@
         $("stCasos").textContent = rows.length;
         $("stCasosSub").textContent = rows.length ? ativos + (ativos === 1 ? " em andamento." : " em andamento.") : "Nenhuma criança cadastrada.";
       });
-      sb.from("atividade_recente").select("id", { count: "exact", head: true }).eq("tipo", "pesquisa").then(function (res) { $("stPesq").textContent = res.count || 0; });
+      sb.from("atividade_recente").select("id", { count: "exact", head: true }).in("tipo", ["pesquisa", "pesquisa_vida"]).then(function (res) { $("stPesq").textContent = res.count || 0; });
       sb.from("projetos").select("id", { count: "exact", head: true }).then(function (res) { if ($("stProj")) $("stProj").textContent = res.count || 0; });
       if (isVerified()) sb.from("acervo_itens").select("id", { count: "exact", head: true }).then(function (res) { if ($("stAcervo")) $("stAcervo").textContent = res.count || 0; });
 
@@ -1900,7 +1902,7 @@
     resp: null, erro: null, carregando: false, pergunta: "", salvaId: null, contagens: null, maisAreas: false, token: 0 };
   var pqCache = {};
 
-  function pqChave(p) { return JSON.stringify([p, pq.filtros, pq.profissao || ""]); }
+  function pqChave(p) { return JSON.stringify([pqCtxKey, p, pq.filtros, pq.profissao || ""]); }
   function filtrosAtivos() { return pq.filtros.tipos.length + pq.filtros.faixas.length + pq.filtros.areas.length; }
 
   function invokePesquisa(body) {
@@ -1917,9 +1919,10 @@
 
   function carregarContagens() {
     if (pq.contagens) return Promise.resolve(pq.contagens);
-    return sb.from("ncc_conteudos").select("tipo,faixas,areas").eq("publicado", true).then(function (res) {
+    return sb.from("ncc_conteudos").select("tipo,faixas,areas,escopo").eq("publicado", true).then(function (res) {
       var c = { total: 0, tipo: {}, faixa: {}, area: {} };
-      (res.data || []).forEach(function (r) {
+      (res.data || []).filter(function (r) { return (r.escopo || ["infancia"]).indexOf(pqCtxKey) >= 0; }).forEach(function (r) {
+        if (pqCtxKey === "vida" && (r.faixas || []).some(function (f) { return ["0-2", "3-5", "6-10", "11-14"].indexOf(f) >= 0; }) && (r.faixas || []).indexOf("infancia") < 0) r.faixas = (r.faixas || []).concat(["infancia"]);
         c.total++;
         c.tipo[r.tipo] = (c.tipo[r.tipo] || 0) + 1;
         (r.faixas || []).forEach(function (f) { c.faixa[f] = (c.faixa[f] || 0) + 1; });
@@ -1948,7 +1951,7 @@
   function dispararPesquisa(p) {
     p = String(p || "").trim();
     if (p.length < 3) { toast("Escreva uma pergunta um pouco maior."); return; }
-    var alvo = "pesquisa?q=" + encodeURIComponent(p);
+    var alvo = (pqCtxKey === "vida" ? "vida" : "pesquisa") + "?q=" + encodeURIComponent(p);
     if (location.hash.replace(/^#/, "") === alvo) executarPesquisa(p, true); else location.hash = alvo;
   }
 
@@ -1961,11 +1964,11 @@
     var meu = ++pq.token;
     pintarResultado();
     var prof = pq.profissao || (state.profile && state.profile.profissao) || "";
-    invokePesquisa({ pergunta: p, filtros: pq.filtros, profissao: prof ? profLabel(prof) || prof : "" }).then(function (r) {
+    invokePesquisa({ pergunta: p, filtros: filtrosParaEnvio(), escopo: pqCtxKey, profissao: prof ? profLabel(prof) || prof : "" }).then(function (r) {
       if (meu !== pq.token) return;
       pq.carregando = false; pq.resp = r; pqCache[k] = r;
       pintarResultado();
-      if (!r.sem_resultado) sb.from("atividade_recente").insert({ owner_id: state.user.id, tipo: "pesquisa", titulo: p.slice(0, 200), subtitulo: r.titulo || "" }).then(function () {});
+      if (!r.sem_resultado) sb.from("atividade_recente").insert({ owner_id: state.user.id, tipo: pqCtxKey === "vida" ? "pesquisa_vida" : "pesquisa", titulo: p.slice(0, 200), subtitulo: (pqCtxKey === "vida" ? "Todas as idades · " : "") + (r.titulo || "") }).then(function () {});
     }, function (e) {
       if (meu !== pq.token) return;
       pq.carregando = false; pq.erro = e.message; pintarResultado();
@@ -1981,7 +1984,7 @@
     v.innerHTML =
       '<div class="pq-layout"><div class="pq-main">' +
         '<div class="card"><div class="pq-modes" id="pqModes">' +
-          [["geral", "Busca geral"], ["tema", "Buscar por tema"], ["faixa", "Explorar por faixa etária"], ["area", "Explorar por área profissional"]].map(function (m) {
+          [["geral", "Busca geral"], ["tema", "Buscar por tema"], ["faixa", pqCtxKey === "vida" ? "Explorar por fase da vida" : "Explorar por faixa etária"], ["area", "Explorar por área profissional"]].map(function (m) {
             return '<button type="button" class="pq-mode' + (pq.modo === m[0] ? " active" : "") + '" data-modo="' + m[0] + '">' + m[1] + "</button>";
           }).join("") + "</div>" +
           '<form class="searchbar" id="pqForm">' + icon("search") + '<input id="pqQ" placeholder="Descreva o comportamento ou faça uma pergunta…" maxlength="1000" value="' + esc(q || (salva ? "" : pq.pergunta)) + '"><button class="btn btn-primary" type="submit">Pesquisar</button></form>' +
@@ -2017,12 +2020,12 @@
     if (pq.modo === "geral") {
       h = '<div class="chips-label">Exemplos de busca</div><div class="chips">' + EXEMPLOS_PQ.map(function (c) { return '<button type="button" class="chip" data-q="' + esc(c) + '">“' + esc(c) + "”</button>"; }).join("") + "</div>";
     } else if (pq.modo === "tema") {
-      h = '<div class="pq-extra-title">Temas do material NCC</div><div class="theme-grid">' + TEMAS_NCC.map(function (t) {
+      h = '<div class="pq-extra-title">' + (pqCtxKey === "vida" ? "Temas de neurociência ao longo da vida" : "Temas do material NCC") + '</div><div class="theme-grid">' + TEMAS_NCC.map(function (t) {
         return '<button type="button" class="theme-card" data-q="' + esc(t[1]) + '">' + icon(t[2]) + "<span>" + esc(t[0]) + "</span></button>";
       }).join("") + "</div>";
     } else if (pq.modo === "faixa") {
       var f = pq.filtros.faixas.length === 1 ? pq.filtros.faixas[0] : "";
-      h = '<div class="pq-extra-title">Escolha a faixa etária — a pesquisa usará só o material marcado para ela</div><div class="chips">' +
+      h = '<div class="pq-extra-title">' + (pqCtxKey === "vida" ? "Escolha a fase da vida" : "Escolha a faixa etária") + ' — a pesquisa usará só o material marcado para ela</div><div class="chips">' +
         FAIXAS.map(function (x) { return '<button type="button" class="chip' + (f === x[0] ? " on" : "") + '" data-faixa="' + x[0] + '">' + esc(x[1]) + "</button>"; }).join("") + "</div>" +
         (f ? '<div class="pq-extra-title" style="margin-top:12px">Perguntas para ' + esc(rotulo(FAIXAS, f)) + '</div><div class="chips">' +
           (PERGUNTAS_FAIXA[f] || []).map(function (c) { return '<button type="button" class="chip" data-q="' + esc(c) + '">“' + esc(c) + "”</button>"; }).join("") + "</div>" : "");
@@ -2060,7 +2063,7 @@
         '<div class="card-head" style="margin-bottom:0"><button type="button" class="pq-ftoggle" id="pqFToggle">' + icon("filter") + "<h3>Filtros" + (filtrosAtivos() ? " (" + filtrosAtivos() + ")" : "") + '</h3></button><button type="button" class="link-btn" id="pqLimpar">Limpar filtros</button></div>' +
         (c.total ? "" : '<p class="hint" style="margin:8px 0 0">A base NCC ainda está sendo alimentada.</p>') +
         grupo("Tipo de conteúdo", "tipos", TIPOS_CONT, c.tipo) +
-        grupo("Faixa etária", "faixas", FAIXAS, c.faixa) +
+        grupo(pqCtxKey === "vida" ? "Fase da vida" : "Faixa etária", "faixas", FAIXAS, c.faixa) +
         grupo("Área de interesse", "areas", AREAS, c.area, 8) +
         '<div class="fgroup"><b>Ordenar estudos por</b><select class="input" id="pqOrdem"><option value="relevancia">Mais relevantes</option><option value="recentes">Mais recentes</option></select></div>' +
         '<button type="button" class="btn btn-primary btn-block" id="pqAplicar" style="margin-top:14px"' + (mudou && pq.pergunta ? "" : " hidden") + ">Aplicar filtros à pesquisa</button>";
@@ -2213,19 +2216,19 @@
   function salvarPesquisa() {
     var r = pq.resp; if (!r) return;
     var b = $("pqSalvar"); if (b) b.disabled = true;
-    sb.from("pesquisas_salvas").insert({ owner_id: state.user.id, pergunta: pq.pergunta, filtros: { tipos: pq.filtros.tipos, faixas: pq.filtros.faixas, areas: pq.filtros.areas, profissao: pq.profissao || null }, resposta: r }).select("id").maybeSingle().then(function (res) {
+    sb.from("pesquisas_salvas").insert({ owner_id: state.user.id, pergunta: pq.pergunta, filtros: { tipos: pq.filtros.tipos, faixas: pq.filtros.faixas, areas: pq.filtros.areas, profissao: pq.profissao || null, escopo: pqCtxKey }, resposta: r }).select("id").maybeSingle().then(function (res) {
       if (fail(res, "Não foi possível salvar a pesquisa")) { if (b) b.disabled = false; return; }
       pq.salvaId = res.data && res.data.id; toast("Pesquisa salva."); pintarResultado();
     });
   }
   function abrirSalvas() {
     var m = openModal("Pesquisas salvas", '<div id="pqListaSalvas"><div class="loading">Carregando…</div></div>', { lg: true, foot: '<button type="button" class="btn" data-x>Fechar</button>' });
-    sb.from("pesquisas_salvas").select("id,pergunta,created_at,resposta->>titulo").order("created_at", { ascending: false }).limit(50).then(function (res) {
+    sb.from("pesquisas_salvas").select("id,pergunta,created_at,resposta->>titulo,filtros->>escopo").order("created_at", { ascending: false }).limit(50).then(function (res) {
       var rows = res.data || [], box = m.el.querySelector("#pqListaSalvas");
       box.innerHTML = rows.length ? rows.map(function (r) {
-        return '<div class="list-item" style="cursor:default"><span class="list-ico t-green">' + icon("bookmark") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo || r.pergunta) + '</span><span class="list-sub">“' + esc(r.pergunta) + "” · " + fmtDataHora(r.created_at) + '</span></span><button type="button" class="btn" data-abre="' + r.id + '">Abrir</button><button type="button" class="icon-btn" data-apaga="' + r.id + '" title="Excluir">' + icon("trash") + "</button></div>";
+        return '<div class="list-item" style="cursor:default"><span class="list-ico t-green">' + icon("bookmark") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo || r.pergunta) + '</span><span class="list-sub">' + (r.escopo === "vida" ? "Todas as idades · " : "Pesquisa NCC · ") + "“" + esc(r.pergunta) + "” · " + fmtDataHora(r.created_at) + '</span></span><button type="button" class="btn" data-abre="' + r.id + '" data-esc="' + esc(r.escopo || "") + '">Abrir</button><button type="button" class="icon-btn" data-apaga="' + r.id + '" title="Excluir">' + icon("trash") + "</button></div>";
       }).join("") : '<div class="empty">' + icon("bookmark") + "<strong>Nenhuma pesquisa salva.</strong><p>Use “Salvar pesquisa” em um resultado para guardá-lo aqui, sem gastar nova consulta.</p></div>";
-      box.querySelectorAll("[data-abre]").forEach(function (b) { b.onclick = function () { m.close(); location.hash = "pesquisa?salva=" + b.getAttribute("data-abre"); }; });
+      box.querySelectorAll("[data-abre]").forEach(function (b) { b.onclick = function () { m.close(); location.hash = (b.getAttribute("data-esc") === "vida" ? "vida" : "pesquisa") + "?salva=" + b.getAttribute("data-abre"); }; });
       box.querySelectorAll("[data-apaga]").forEach(function (b) { b.onclick = function () {
         if (!confirm("Excluir esta pesquisa salva?")) return;
         sb.from("pesquisas_salvas").delete().eq("id", b.getAttribute("data-apaga")).then(function (r2) { if (!fail(r2, "Não foi possível excluir")) b.closest(".list-item").remove(); });
@@ -2296,14 +2299,21 @@
         return '<div class="stat ' + s[0] + '"><div class="stat-head">' + icon(s[1]) + "<span>" + s[2] + '</span></div><div class="stat-num">' + s[3] + "</div></div>";
       }).join("");
     });
-    sb.from("ncc_conteudos").select("id,chave,titulo,tipo,modulo,aula,publicado,created_at,ncc_trechos(count),ncc_figuras(count)").order("modulo").order("titulo").then(function (res) {
+    sb.from("ncc_conteudos").select("id,chave,titulo,tipo,modulo,aula,publicado,escopo,created_at,ncc_trechos(count),ncc_figuras(count)").order("modulo").order("titulo").then(function (res) {
       if (!$("baseLista")) return;
       var rows = res.data || [];
-      $("baseLista").innerHTML = rows.length ? '<div style="overflow-x:auto"><table class="base-table"><thead><tr><th>Conteúdo</th><th class="hide-m">Tipo</th><th class="hide-m">Módulo / aula</th><th>Trechos</th><th class="hide-m">Imagens</th><th>Publicado</th><th></th></tr></thead><tbody>' +
+      $("baseLista").innerHTML = rows.length ? '<div style="overflow-x:auto"><table class="base-table"><thead><tr><th>Conteúdo</th><th class="hide-m">Tipo</th><th class="hide-m">Módulo / aula</th><th>Trechos</th><th class="hide-m">Imagens</th><th>Aparece em</th><th>Publicado</th><th></th></tr></thead><tbody>' +
         rows.map(function (r) {
           var nt = r.ncc_trechos && r.ncc_trechos[0] ? r.ncc_trechos[0].count : 0, nf = r.ncc_figuras && r.ncc_figuras[0] ? r.ncc_figuras[0].count : 0;
-          return "<tr><td><b>" + esc(r.titulo) + '</b><div class="hint" style="margin:2px 0 0">' + esc(r.chave) + '</div></td><td class="hide-m">' + esc(rotulo(TIPOS_CONT, r.tipo)) + '</td><td class="hide-m">' + esc([r.modulo, r.aula].filter(Boolean).join(" · ")) + "</td><td>" + nt + '</td><td class="hide-m">' + nf + '</td><td><button type="button" class="switch' + (r.publicado ? " on" : "") + '" data-pub="' + r.id + '" aria-label="Publicado"></button></td><td><button type="button" class="icon-btn" data-del="' + r.id + '" title="Excluir">' + icon("trash") + "</button></td></tr>";
+          return "<tr><td><b>" + esc(r.titulo) + '</b><div class="hint" style="margin:2px 0 0">' + esc(r.chave) + '</div></td><td class="hide-m">' + esc(rotulo(TIPOS_CONT, r.tipo)) + '</td><td class="hide-m">' + esc([r.modulo, r.aula].filter(Boolean).join(" · ")) + "</td><td>" + nt + '</td><td class="hide-m">' + nf + '</td><td><div class="esc-chips">' + [["infancia", "Infância"], ["vida", "Todas as idades"]].map(function (e2) { var on = (r.escopo || ["infancia"]).indexOf(e2[0]) >= 0; return '<button type="button" class="chip' + (on ? " on" : "") + '" data-esc-id="' + r.id + '" data-esc="' + e2[0] + '">' + e2[1] + "</button>"; }).join("") + '</div></td><td><button type="button" class="switch' + (r.publicado ? " on" : "") + '" data-pub="' + r.id + '" aria-label="Publicado"></button></td><td><button type="button" class="icon-btn" data-del="' + r.id + '" title="Excluir">' + icon("trash") + "</button></td></tr>";
         }).join("") + "</tbody></table></div>" : '<div class="empty">' + icon("db") + "<strong>A base está vazia.</strong><p>Importe o primeiro pacote acima.</p></div>";
+      $("baseLista").querySelectorAll("[data-esc-id]").forEach(function (b) { b.onclick = function () {
+        var id = b.getAttribute("data-esc-id"), linha = rows.filter(function (x) { return x.id === id; })[0];
+        var atual = (linha.escopo || ["infancia"]).slice(), k = b.getAttribute("data-esc"), i = atual.indexOf(k);
+        if (i >= 0) atual.splice(i, 1); else atual.push(k);
+        if (!atual.length) { toast("O conteúdo precisa aparecer em pelo menos uma área."); return; }
+        sb.from("ncc_conteudos").update({ escopo: atual }).eq("id", id).then(function (r) { if (!fail(r)) { linha.escopo = atual; b.classList.toggle("on", i < 0); pqStates.infancia.contagens = null; pqStates.vida.contagens = null; toast("Áreas atualizadas."); } });
+      }; });
       $("baseLista").querySelectorAll("[data-pub]").forEach(function (b) { b.onclick = function () {
         var on = !b.classList.contains("on");
         sb.from("ncc_conteudos").update({ publicado: on }).eq("id", b.getAttribute("data-pub")).then(function (r) { if (!fail(r)) { b.classList.toggle("on", on); pq.contagens = null; toast(on ? "Conteúdo publicado." : "Conteúdo ocultado da Pesquisa NCC."); } });
@@ -2337,7 +2347,7 @@
     L("Pacote: " + (pac.pacote || "sem nome") + " · " + pac.conteudos.length + " conteúdos, " + (pac.figuras || []).length + " imagens, " + (pac.estudos || []).length + " estudos.");
     pac.conteudos.forEach(function (c) {
       seq = seq.then(function () {
-        var row = { chave: c.chave, titulo: c.titulo, tipo: c.tipo, modulo: c.modulo || null, aula: c.aula || null, fonte: c.fonte || null, descricao: c.descricao || null, faixas: c.faixas || [], areas: c.areas || [], publicado: c.publicado !== false };
+        var row = { escopo: Array.isArray(c.escopo) && c.escopo.length ? c.escopo : ["infancia"], chave: c.chave, titulo: c.titulo, tipo: c.tipo, modulo: c.modulo || null, aula: c.aula || null, fonte: c.fonte || null, descricao: c.descricao || null, faixas: c.faixas || [], areas: c.areas || [], publicado: c.publicado !== false };
         return sb.from("ncc_conteudos").upsert(row, { onConflict: "chave" }).select("id").maybeSingle().then(function (res) {
           chk(res, "Conteúdo " + c.chave);
           var id = res.data.id; ids[c.chave] = id;
@@ -3471,11 +3481,11 @@
         pesquisa: ["Nenhuma pesquisa ainda.", "Suas buscas na Pesquisa NCC aparecerão aqui.", "Pesquisar no NCC", "pesquisa"],
         projeto: ["Nenhum projeto em andamento.", "Seus projetos acadêmicos aparecerão aqui.", "Ver projetos", "projetos"]
       }[contTipo];
-      sb.from("atividade_recente").select("*").eq("tipo", contTipo).order("created_at", { ascending: false }).limit(5).then(function (res) {
+      (contTipo === "pesquisa" ? sb.from("atividade_recente").select("*").in("tipo", ["pesquisa", "pesquisa_vida"]) : sb.from("atividade_recente").select("*").eq("tipo", contTipo)).order("created_at", { ascending: false }).limit(5).then(function (res) {
         var rows = res.data || [];
         if (!$("contList")) return;
         $("contList").innerHTML = rows.length ? rows.map(function (r) {
-          var go = contTipo === "caso" ? "mapa?caso=" + r.ref_id : contTipo === "pesquisa" ? "pesquisa?q=" + encodeURIComponent(r.titulo) : "projetos?p=" + r.ref_id;
+          var go = contTipo === "caso" ? "mapa?caso=" + r.ref_id : contTipo === "pesquisa" ? (r.tipo === "pesquisa_vida" ? "vida" : "pesquisa") + "?q=" + encodeURIComponent(r.titulo) : "projetos?p=" + r.ref_id;
           return '<button type="button" class="list-item" data-go="' + esc(go) + '"><span class="list-ico ' + (contTipo === "caso" ? "t-green" : contTipo === "pesquisa" ? "t-sky" : "t-lilac") + '">' + icon(contTipo === "caso" ? "users" : contTipo === "pesquisa" ? "search" : "cap") + '</span><span class="list-main"><span class="list-title">' + esc(r.titulo) + '</span><span class="list-sub">' + esc(r.subtitulo || "") + "</span></span>" + icon("arrow") + "</button>";
         }).join("") : '<div class="empty">' + icon("stack") + "<strong>" + empt[0] + "</strong><p>" + empt[1] + '</p><button type="button" class="btn" data-go="' + empt[3] + '">' + empt[2] + "</button></div>";
       });
@@ -3488,7 +3498,7 @@
       $("stCasos").textContent = rows.length;
       $("stCasosSub").textContent = rows.length ? ativos + " em andamento." : "Nenhuma criança cadastrada.";
     });
-    sb.from("atividade_recente").select("id", { count: "exact", head: true }).eq("tipo", "pesquisa").then(function (res) { if ($("stPesq")) $("stPesq").textContent = res.count || 0; });
+    sb.from("atividade_recente").select("id", { count: "exact", head: true }).in("tipo", ["pesquisa", "pesquisa_vida"]).then(function (res) { if ($("stPesq")) $("stPesq").textContent = res.count || 0; });
     sb.from("projetos").select("id,etapa").then(function (res) {
       var rows = res.data || [], ativos = rows.filter(function (p) { return p.etapa !== "concluido"; }).length;
       if (!$("stProj")) return;
@@ -3623,7 +3633,7 @@
     var p = state.profile || {};
     Promise.all([
       sb.from("casos").select("id", { count: "exact", head: true }),
-      sb.from("atividade_recente").select("id", { count: "exact", head: true }).eq("tipo", "pesquisa"),
+      sb.from("atividade_recente").select("id", { count: "exact", head: true }).in("tipo", ["pesquisa", "pesquisa_vida"]),
       sb.from("projetos").select("id", { count: "exact", head: true }),
       sb.from("ai_generations").select("id", { count: "exact", head: true }).gte("created_at", ini.toISOString())
     ]).then(function (rs) {
@@ -4252,6 +4262,54 @@
       return _invokeOrig(nome, opt).then(function (r) { setTimeout(function () { if (state.user) carregarCreditos(); }, 300); return r; });
     };
   }
+
+  /* ===== Neurociência para todas as idades (contexto da pesquisa) ===== */
+  var pqCtxKey = "infancia";
+  var pqStates = { infancia: pq, vida: { modo: "geral", filtros: { tipos: [], faixas: [], areas: [] }, profissao: null, ordem: "relevancia", aba: "visao",
+    resp: null, erro: null, carregando: false, pergunta: "", salvaId: null, contagens: null, maisAreas: false, token: 0 } };
+  var CTX_PQ = {
+    infancia: { faixas: FAIXAS, temas: TEMAS_NCC, perguntas: PERGUNTAS_FAIXA, exemplos: EXEMPLOS_PQ, areas: AREAS },
+    vida: {
+      faixas: [["gestacao", "Gestação"], ["infancia", "Infância"], ["adolescencia", "Adolescência"], ["adulto", "Vida adulta"], ["idoso", "Envelhecimento"]],
+      temas: [
+        ["Neuroplasticidade ao longo da vida", "Como a neuroplasticidade muda da infância ao envelhecimento?", "sprout"],
+        ["Cérebro adolescente", "O que muda no cérebro durante a adolescência?", "bolt"],
+        ["Estresse crônico no adulto", "Como o estresse crônico afeta o cérebro e o corpo do adulto?", "alert"],
+        ["Sono em todas as idades", "Qual o papel do sono no cérebro em cada fase da vida?", "moon"],
+        ["Memória e envelhecimento", "O que acontece com a memória no envelhecimento?", "brain"],
+        ["Regulação emocional no adulto", "Como o adulto regula as emoções e o que o cérebro tem a ver com isso?", "heart"],
+        ["Gestação e cérebro materno", "Como a gestação modifica o cérebro materno?", "family"],
+        ["Hábitos e recompensa", "Como o cérebro forma hábitos e responde à recompensa ao longo da vida?", "target"],
+        ["Experiências precoces e vida adulta", "Como as experiências da infância repercutem na vida adulta?", "chart"],
+        ["Funções executivas ao longo da vida", "Como as funções executivas se desenvolvem e mudam com a idade?", "map"],
+        ["Sistema nervoso autônomo", "Como o sistema nervoso autônomo regula as respostas ao estresse no adulto?", "wave"],
+        ["Relações sociais e cérebro", "Como as relações sociais influenciam o cérebro em todas as idades?", "social"]
+      ],
+      perguntas: {
+        gestacao: ["Como o estresse materno na gestação se relaciona ao desenvolvimento do bebê?", "Como a gestação modifica o cérebro materno?", "Sono e saúde mental na gestação"],
+        infancia: ["Como o cérebro se desenvolve nos primeiros anos?", "O que é corregulação?", "Como o estresse aparece no corpo da criança?"],
+        adolescencia: ["Por que o adolescente busca mais riscos e recompensas?", "Sono e ritmo circadiano na adolescência", "Pertencimento e autoestima na adolescência"],
+        adulto: ["Estresse crônico e saúde mental no adulto", "Como mudar hábitos na vida adulta?", "Regulação emocional e relações no adulto"],
+        idoso: ["O que muda na memória com o envelhecimento?", "Atividade física e cognição no idoso", "Isolamento social e cérebro no envelhecimento"]
+      },
+      exemplos: ["Neuroplasticidade no adulto", "Estresse crônico e memória", "Cérebro adolescente e risco", "Sono e envelhecimento", "Gestação e cérebro materno"],
+      areas: AREAS.concat([["memoria", "Memória"], ["saude_mental", "Saúde mental"], ["neuroplasticidade", "Neuroplasticidade"]])
+    }
+  };
+  function filtrosParaEnvio() {
+    var fx = pq.filtros.faixas.slice();
+    if (pqCtxKey === "vida" && fx.indexOf("infancia") >= 0) fx = fx.concat(["0-2", "3-5", "6-10", "11-14"]);
+    return { tipos: pq.filtros.tipos, faixas: fx, areas: pq.filtros.areas };
+  }
+  var _renderPq = render;
+  render = function () {
+    var h = (location.hash || "").replace(/^#/, "").split("?")[0];
+    var k = h === "vida" ? "vida" : "infancia";
+    pqCtxKey = k; pq = pqStates[k];
+    FAIXAS = CTX_PQ[k].faixas; TEMAS_NCC = CTX_PQ[k].temas; PERGUNTAS_FAIXA = CTX_PQ[k].perguntas; EXEMPLOS_PQ = CTX_PQ[k].exemplos; AREAS = CTX_PQ[k].areas;
+    _renderPq();
+  };
+  PAGES.vida = function (v) { PAGES.pesquisa(v); };
 
   function stat(tint, ic, label, num, sub, btnLabel, btnIcon, go) {
     return '<div class="stat ' + tint + '"><div class="stat-head">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + num + '</div><div class="stat-sub">' + sub + '</div><button type="button" class="btn btn-block" data-go="' + go + '">' + (btnIcon ? icon(btnIcon) : "") + esc(btnLabel) + "</button></div>";
