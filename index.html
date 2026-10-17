@@ -2091,7 +2091,7 @@
   function artigoCard(x, completo) {
     var doi = x.doi ? '<a href="https://doi.org/' + esc(x.doi) + '" target="_blank" rel="noopener">' + esc(x.doi) + "</a>" : (x.link ? '<a href="' + esc(x.link) + '" target="_blank" rel="noopener">abrir</a>' : "");
     return '<div class="est-card art-card"><div class="est-badges"><span class="tagx sky">' + esc(x.tipo || "Artigo") + "</span>" +
-      (completo && x.tipo_evidencia ? '<span class="tagx">' + esc(x.tipo_evidencia) + "</span>" : "") + '<span class="tagx green">' + esc(x.ano || "") + "</span></div>" +
+      (completo && x.tipo_evidencia ? '<span class="tagx">' + esc(x.tipo_evidencia) + "</span>" : "") + (x.ano && x.ano < 2023 ? '<span class="tagx gold">' + esc(x.ano) + " · anterior a 2023</span>" : '<span class="tagx green">' + esc(x.ano || "") + "</span>") + "</div>" +
       "<h4>" + esc(x.titulo) + '</h4><div class="est-meta">' + esc(x.autores || "") + " (" + esc(x.ano || "s.d.") + "). <i>" + esc(x.periodico || "") + "</i>" + (doi ? " · DOI: " + doi : "") + "</div>" +
       (completo && x.relacao ? '<p style="margin:10px 0 0;line-height:1.6">' + esc(x.relacao) + "</p>" : "") +
       (completo && (x.desenho || x.achado) ? '<div class="est-grid"><div><b>Desenho (segundo o resumo)</b>' + esc(x.desenho || "—") + "</div><div><b>Principal achado (segundo o resumo)</b>" + esc(x.achado || "—") + "</div></div>" : "") + "</div>";
@@ -2104,7 +2104,7 @@
       if (fail(res)) return;
       var grupos = {}, ordemG = [];
       (res.data || []).forEach(function (r) { if (!grupos[r.area]) { grupos[r.area] = []; ordemG.push(r.area); } grupos[r.area].push(r.nome); });
-      $("revBox").innerHTML = '<p class="hint" style="margin:0 0 12px">A pesquisa busca artigos e revisões publicados de 2023 em diante nestas revistas (índice aberto OpenAlex). Eles aparecem separados do material NCC.</p>' +
+      $("revBox").innerHTML = '<p class="hint" style="margin:0 0 12px">A pesquisa busca artigos e revisões publicados de 2020 em diante nestas revistas (índice aberto OpenAlex). Eles aparecem separados do material NCC.</p>' +
         ordemG.map(function (g) { return '<div class="pq-sec">' + esc(g) + '</div><ul class="rev-ul">' + grupos[g].map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>"; }).join("");
     });
   }
@@ -2113,7 +2113,7 @@
     sb.from("revistas_cientificas").select("id,nome,area,ordem,issn,ativa").order("ordem").then(function (res) {
       if (fail(res) || !$("baseRevistas")) return;
       var rows = res.data || [];
-      box.innerHTML = '<p style="color:var(--ink-soft);margin:0 0 12px;line-height:1.6">A Pesquisa NCC e a Neurociência para todas as idades buscam artigos de 2023 em diante nestas revistas e mostram os resultados separados do material do curso. Desligue uma revista para tirá-la da busca. ' + rows.filter(function (r) { return r.ativa; }).length + " de " + rows.length + " ativas.</p>" +
+      box.innerHTML = '<p style="color:var(--ink-soft);margin:0 0 12px;line-height:1.6">A Pesquisa NCC e a Neurociência para todas as idades buscam artigos de 2020 em diante nestas revistas e mostram os resultados separados do material do curso. Desligue uma revista para tirá-la da busca. ' + rows.filter(function (r) { return r.ativa; }).length + " de " + rows.length + " ativas.</p>" +
         '<div style="overflow-x:auto"><table class="base-table"><thead><tr><th>Revista</th><th class="hide-m">Área</th><th class="hide-m">ISSN</th><th>Na busca</th><th></th></tr></thead><tbody>' +
         rows.map(function (r) { return "<tr><td><b>" + esc(r.nome) + '</b></td><td class="hide-m">' + esc(r.area) + '</td><td class="hide-m">' + esc(r.issn || "") + '</td><td><button type="button" class="switch' + (r.ativa ? " on" : "") + '" data-rev-on="' + r.id + '" aria-label="Na busca"></button></td><td><button type="button" class="icon-btn" data-rev-del="' + r.id + '" title="Excluir">' + icon("trash") + "</button></td></tr>"; }).join("") +
         '</tbody></table></div><button type="button" class="btn" id="revNova" style="margin-top:12px">' + icon("plus") + " Adicionar revista</button>";
@@ -2176,7 +2176,7 @@
     if (r.sem_resultado) {
       out.innerHTML = '<div class="card"><div class="empty">' + icon("search") + "<strong>" + esc(r.mensagem || "Nada encontrado na base NCC.") + '</strong><p>A Pesquisa NCC responde apenas com o material do curso. Experimente um destes temas:</p><div class="chips" style="justify-content:center">' +
         TEMAS_NCC.slice(0, 6).map(function (t) { return '<button type="button" class="chip" data-q="' + esc(t[1]) + '">' + esc(t[0]) + "</button>"; }).join("") + "</div></div>" +
-        ((r.artigos || []).length ? '<div class="pq-sec" style="margin-top:8px">Artigos recentes encontrados nas revistas científicas selecionadas</div><p class="hint" style="margin:0 0 10px">Literatura externa (2023 em diante), sem análise da IA porque não há material NCC sobre o tema. Leia o artigo completo antes de citar.</p>' + r.artigos.map(function (x) { return artigoCard(x, false); }).join("") + revistasLink() : "") + "</div>";
+        ((r.artigos || []).length ? '<div class="pq-sec" style="margin-top:8px">Artigos recentes encontrados nas revistas científicas selecionadas</div><p class="hint" style="margin:0 0 10px">Literatura externa (2020 em diante), sem análise da IA porque não há material NCC sobre o tema. Leia o artigo completo antes de citar.</p>' + r.artigos.map(function (x) { return artigoCard(x, false); }).join("") + revistasLink() : "") + "</div>";
       out.querySelectorAll("[data-q]").forEach(function (b) { b.onclick = function () { $("pqQ").value = b.getAttribute("data-q"); dispararPesquisa(b.getAttribute("data-q")); }; });
       ligarRevistasLink(out);
       return;
@@ -2220,8 +2220,8 @@
       if (pq.ordem === "recentes") arts.sort(function (x, y) { return (y.ano || 0) - (x.ano || 0); });
       body = (est.length ? '<div class="pq-sec">Estudos do material NCC</div>' : "") + body +
         '<div class="pq-sec" style="margin-top:18px">Literatura recente das revistas científicas selecionadas</div>' +
-        (arts.length ? '<p class="hint" style="margin:0 0 10px">Artigos de 2023 em diante encontrados automaticamente nas revistas selecionadas. A descrição foi feita somente a partir do título e do resumo — leia o artigo completo antes de citar.</p>' + arts.map(function (x) { return artigoCard(x, true); }).join("") :
-          '<p class="hint" style="margin:0 0 10px">' + (r.artigos_encontrados ? "A busca encontrou " + r.artigos_encontrados + (r.artigos_encontrados === 1 ? " artigo" : " artigos") + " recentes nas revistas selecionadas, mas nenhum trata diretamente desta pergunta. Tente uma pergunta mais específica ou com outros termos." : "A busca não encontrou artigos de 2023 em diante nas revistas selecionadas sobre esta pergunta. Tente outros termos.") + "</p>") + revistasLink() +
+        (arts.length ? '<p class="hint" style="margin:0 0 10px">Artigos de 2020 em diante encontrados automaticamente nas revistas selecionadas. A descrição foi feita somente a partir do título e do resumo — leia o artigo completo antes de citar.</p>' + arts.map(function (x) { return artigoCard(x, true); }).join("") :
+          '<p class="hint" style="margin:0 0 10px">' + (r.artigos_encontrados ? "A busca encontrou " + r.artigos_encontrados + (r.artigos_encontrados === 1 ? " artigo" : " artigos") + " recentes nas revistas selecionadas, mas nenhum trata diretamente desta pergunta. Tente uma pergunta mais específica ou com outros termos." : "A busca não encontrou artigos de 2020 em diante nas revistas selecionadas sobre esta pergunta. Tente outros termos.") + "</p>") + revistasLink() +
         '<p class="pq-foot">Associação e correlação não significam causa: cada estudo informa o tipo de evidência que oferece.</p>';
     } else if (a === "conteudos") {
       body = '<p class="hint" style="margin:0 0 12px">Trechos do material NCC usados para montar a resposta. Os números correspondem às citações do texto.</p>' +
