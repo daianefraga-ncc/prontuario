@@ -2221,7 +2221,7 @@
       body = (est.length ? '<div class="pq-sec">Estudos do material NCC</div>' : "") + body +
         '<div class="pq-sec" style="margin-top:18px">Literatura recente das revistas científicas selecionadas</div>' +
         (arts.length ? '<p class="hint" style="margin:0 0 10px">Artigos de 2023 em diante encontrados automaticamente nas revistas selecionadas. A descrição foi feita somente a partir do título e do resumo — leia o artigo completo antes de citar.</p>' + arts.map(function (x) { return artigoCard(x, true); }).join("") :
-          '<p class="hint" style="margin:0 0 10px">Nenhum artigo recente das revistas selecionadas se relacionou diretamente com esta pergunta.</p>') + revistasLink() +
+          '<p class="hint" style="margin:0 0 10px">' + (r.artigos_encontrados ? "A busca encontrou " + r.artigos_encontrados + (r.artigos_encontrados === 1 ? " artigo" : " artigos") + " recentes nas revistas selecionadas, mas nenhum trata diretamente desta pergunta. Tente uma pergunta mais específica ou com outros termos." : "A busca não encontrou artigos de 2023 em diante nas revistas selecionadas sobre esta pergunta. Tente outros termos.") + "</p>") + revistasLink() +
         '<p class="pq-foot">Associação e correlação não significam causa: cada estudo informa o tipo de evidência que oferece.</p>';
     } else if (a === "conteudos") {
       body = '<p class="hint" style="margin:0 0 12px">Trechos do material NCC usados para montar a resposta. Os números correspondem às citações do texto.</p>' +
