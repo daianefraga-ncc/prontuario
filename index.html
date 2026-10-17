@@ -427,7 +427,7 @@
   .pq-rhead { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 14px; flex-wrap: wrap; }
   .pq-rhead h3 { font-size: 19px; }
   .pq-rhead .sub { color: var(--ink-faint); font-size: 12.5px; margin: 4px 0 0; }
-  .pq-rhead .acts { display: flex; gap: 8px; }
+  .pq-rhead .acts { display: flex; gap: 8px; flex-wrap: wrap; min-width: 0; }
   .pq-grid2 { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 18px; align-items: start; }
   .pq-synth { background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; line-height: 1.65; margin-bottom: 16px; }
   .pq-sec { font-size: 13.5px; font-weight: 700; margin: 4px 0 10px; }
@@ -746,6 +746,31 @@
   @media (max-width: 820px) { .cred-uso { grid-template-columns: 1fr 60px 30px; } }
 .esc-chips { display:flex; gap:4px; flex-wrap:wrap } .esc-chips .chip { padding:3px 9px; font-size:11px }
 .rev-ul { margin:0 0 12px; padding-left:18px; line-height:1.7; font-size:13.5px } .art-card { border-left:3px solid #9DB8C8 } .tagx.sky { background: var(--tint-sky); color: var(--ink-soft); }
+.doc-tipos { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-bottom:16px }
+.doc-tipo { display:grid; grid-template-columns:auto 1fr; gap:2px 10px; text-align:left; padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:transparent; color:var(--ink); cursor:pointer; font:inherit }
+.doc-tipo .icon { grid-row:span 2; width:20px; height:20px; margin-top:2px; color:var(--accent-strong) }
+.doc-tipo b { font-size:14px } .doc-tipo span { font-size:12px; color:var(--ink-soft); line-height:1.45 }
+.doc-tipo.on { border-color:var(--accent-strong); background:var(--tint-green) }
+.doc-roteiro { display:grid; grid-template-columns:2fr 1fr; gap:12px }
+.doc-view { max-width:880px; margin:0 auto; padding:34px 40px }
+.doc-kicker { display:flex; align-items:center; gap:8px; font-size:12px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:var(--gold-ink) }
+.doc-kicker .icon { width:16px; height:16px }
+.doc-h1 { font-size:28px; line-height:1.2; margin:10px 0 6px } .doc-subt { font-size:16px; color:var(--ink-soft); margin:0 0 10px }
+.doc-meta { font-size:12px; color:var(--ink-faint); margin:0 0 20px; padding-bottom:16px; border-bottom:1px solid var(--line) }
+.doc-view p { line-height:1.75; margin:0 0 12px } .doc-view ul { line-height:1.7 }
+.doc-resumo { background:var(--tint-green); border-radius:14px; padding:14px 18px; margin:0 0 18px } .doc-resumo b { display:block; margin-bottom:4px } .doc-resumo p { margin:0 }
+.doc-h2 { font-size:19px; margin:26px 0 10px; display:flex; align-items:center; gap:10px; flex-wrap:wrap } .doc-h3 { font-size:16px; margin:18px 0 8px }
+.doc-min { font-size:12px; font-weight:600; background:var(--tint-sand); color:var(--gold-ink); padding:3px 9px; border-radius:99px }
+.doc-obj { font-size:14px; color:var(--ink-soft) } .doc-ponto { padding-left:14px; border-left:2px solid var(--line) }
+.doc-box { border-radius:12px; padding:10px 14px; margin:8px 0 12px; font-size:13.5px } .doc-box b { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.04em; margin-bottom:2px } .doc-box p { margin:0; line-height:1.6 }
+.doc-cond { background:var(--tint-sky) } .doc-slide { background:var(--tint-lilac) } .doc-lac { background:var(--tint-sand); margin-top:20px }
+.doc-figs { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; margin:10px 0 }
+.doc-fig { margin:0; border:1px solid var(--line); border-radius:12px; overflow:hidden } .doc-fig img { width:100%; display:block; background:#fff } .doc-fig figcaption { font-size:12px; padding:8px 10px; color:var(--ink-soft) } .doc-fig figcaption b { display:block; color:var(--ink) }
+.doc-q { padding:10px 14px; border:1px solid var(--line); border-radius:12px }
+.dcite { font-size:10.5px; margin-left:2px } .dcite a { color:var(--accent-strong); text-decoration:none; font-weight:600 }
+.doc-refs { padding-left:22px; font-size:13px; line-height:1.6 } .doc-refs li { margin-bottom:8px; border-radius:8px; transition:background .3s } .doc-refs li.flash { background:var(--tint-green) }
+.doc-row { display:flex; align-items:center; gap:10px }
+@media (max-width: 720px) { .doc-tipos { grid-template-columns:1fr } .doc-roteiro { grid-template-columns:1fr } .doc-view { padding:22px 18px } .doc-h1 { font-size:22px } }
 </style>
 </head>
 <body>
@@ -925,6 +950,7 @@
     { id: "inicio", label: "Início", icon: "home", title: "Início", sub: "Bem-vindo(a) de volta. A ciência ao seu lado na prática com crianças." },
     { id: "pesquisa", label: "Pesquisa NCC", icon: "search", title: "Pesquisa NCC", sub: "Descreva um comportamento, faça uma pergunta ou explore um tema." },
     { id: "vida", label: "Neurociência para todas as idades", icon: "brain", title: "Neurociência para todas as idades", sub: "Pesquise o material de neurociência da gestação ao envelhecimento." },
+    { id: "documentos", label: "Meus documentos", icon: "doc", title: "Meus documentos", sub: "Relatórios, pesquisas completas e roteiros de aula ou palestra gerados a partir dos seus temas." },
     { id: "casos", label: "Meus casos", icon: "users", title: "Meus casos", sub: "Acompanhe, organize e integre as informações das crianças que você atende." },
     { id: "mapa", label: "Mapa de acompanhamento", icon: "map", title: "Mapa de Acompanhamento", sub: "Visão integrada do desenvolvimento, do comportamento e dos contextos da criança." },
     { id: "acervo", label: "Meu acervo profissional", icon: "folder", title: "Meu Acervo Profissional", sub: "Organize seus instrumentos, avaliações, protocolos e materiais técnicos com acesso privado e seguro.", locked: true },
@@ -2183,6 +2209,7 @@
     }
 
     var head = '<div class="pq-rhead"><div><h3>' + esc(r.titulo) + '</h3><p class="sub">Síntese baseada em conteúdos NCC e evidências científicas' + (pq.salvaId ? " · pesquisa salva" : "") + '.</p></div><div class="acts">' +
+      '<button type="button" class="btn btn-primary" id="pqGerarDoc">' + icon("sparkle") + " Gerar documento</button>" +
       (pq.salvaId ? "" : '<button type="button" class="btn" id="pqSalvar">' + icon("bookmark") + " Salvar pesquisa</button>") +
       '<button type="button" class="btn" id="pqConteudo" title="Transformar em conteúdo para Instagram">' + icon("megaphone") + " Criar conteúdo</button>" + '<button type="button" class="icon-btn" id="pqShare" title="Compartilhar resumo" style="border-color:var(--line)">' + icon("share") + "</button></div></div>";
     var disc = '<div class="pq-disc" style="margin-top:16px">' + icon("bulb") + "<span>Esta é uma explicação científica geral, baseada no material NCC. Não substitui a avaliação profissional nem permite concluir sobre um caso específico.</span></div>";
@@ -2243,6 +2270,7 @@
     }
     out.innerHTML = '<div class="card">' + head + body + (r.limit ? '<p class="pq-foot">Consultas de IA neste mês: ' + (r.used || 0) + " de " + r.limit + ".</p>" : "") + "</div>";
     ligarRevistasLink(out);
+    if ($("pqGerarDoc")) $("pqGerarDoc").onclick = function () { abrirGerarDoc(pq.pergunta, pqCtxKey, filtrosParaEnvio()); };
 
     out.querySelectorAll("[data-cite]").forEach(function (b) { b.onclick = function () {
       var i = +b.getAttribute("data-cite"); pq.aba = "conteudos"; pintarResultado();
@@ -4375,6 +4403,167 @@
     _renderPq();
   };
   PAGES.vida = function (v) { PAGES.pesquisa(v); };
+
+  /* ===================== DOCUMENTOS (relatório, pesquisa completa, roteiros) ===================== */
+  var TIPOS_DOC = [
+    ["relatorio", "Relatório técnico", "doc", "Texto técnico-científico: fundamentação NCC, evidências, implicações práticas e limitações."],
+    ["pesquisa", "Pesquisa completa", "search", "Investigação aprofundada, do fenômeno ao mecanismo, com a força de cada evidência."],
+    ["aula", "Roteiro de aula", "cap", "Aula com descoberta progressiva, objetivos, tempos, condução e verificação."],
+    ["palestra", "Roteiro de palestra", "megaphone", "Estrutura científica formal: da abertura às perguntas, com tempos e slides."]
+  ];
+  var docPoll = null;
+  function nomeTipoDoc(t) { return rotulo(TIPOS_DOC, t); }
+
+  function abrirGerarDoc(tema, escopo, filtros, tipoIni) {
+    var tipo = tipoIni || "relatorio";
+    var m = openModal("Gerar documento",
+      '<p class="hint" style="margin:0 0 12px">A IA monta o documento só com o material NCC e com artigos (2020 em diante) das revistas científicas selecionadas, citando cada fonte. Usa 1 crédito e leva de 1 a 3 minutos.</p>' +
+      '<div class="doc-tipos">' + TIPOS_DOC.map(function (t) { return '<button type="button" class="doc-tipo' + (t[0] === tipo ? " on" : "") + '" data-dt="' + t[0] + '">' + icon(t[2]) + "<b>" + esc(t[1]) + "</b><span>" + esc(t[3]) + "</span></button>"; }).join("") + "</div>" +
+      '<div class="field"><label>Tema</label><input name="tema" value="' + esc(tema || "") + '" required></div>' +
+      '<div class="doc-roteiro"><div class="field"><label>Público</label><input name="publico" placeholder="Ex.: professores da educação infantil, pais, estudantes de psicologia"></div>' +
+      '<div class="field"><label>Duração (minutos)</label><input name="duracao" type="number" min="10" max="240" placeholder="45"></div></div>' +
+      '<div class="field"><label>Ênfase (opcional)</label><input name="enfase" placeholder="Ex.: foco em estratégias para a sala de aula"></div>' +
+      '<div class="field"><label>Base</label><select name="escopo"><option value="infancia"' + (escopo !== "vida" ? " selected" : "") + '>Infância (Pesquisa NCC)</option><option value="vida"' + (escopo === "vida" ? " selected" : "") + ">Todas as idades</option></select></div>",
+      { lg: true, ok: "Gerar documento", onSubmit: function (f, close) {
+        var t = fval(f, "tema"); if (t.length < 3) { toast("Escreva o tema."); return; }
+        var btn = f.querySelector("[type=submit]"); btn.disabled = true; btn.textContent = "Iniciando…";
+        var prof = (state.profile && state.profile.profissao) || "";
+        sb.functions.invoke("ncc-documento", { body: { tipo: tipo, pergunta: t, escopo: fval(f, "escopo"), filtros: filtros || {}, opcoes: { publico: fval(f, "publico"), duracao: fval(f, "duracao"), enfase: fval(f, "enfase"), profissao: prof ? profLabel(prof) || prof : "" } } }).then(function (res) {
+          if (res.error) {
+            var ctx = res.error.context;
+            var mostrar = function (p) { btn.disabled = false; btn.textContent = "Gerar documento"; toast(aiErro(null, p)); };
+            if (ctx && typeof ctx.json === "function") ctx.json().then(mostrar, function () { mostrar(); }); else mostrar();
+            return;
+          }
+          if (!res.data || res.data.error || !res.data.id) { btn.disabled = false; btn.textContent = "Gerar documento"; toast(aiErro(null, res.data)); return; }
+          close(); location.hash = "documentos?id=" + res.data.id;
+        });
+      } });
+    function sync() {
+      m.el.querySelectorAll("[data-dt]").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-dt") === tipo); });
+      m.el.querySelector(".doc-roteiro").style.display = tipo === "aula" || tipo === "palestra" ? "" : "none";
+      m.el.querySelector("[name=duracao]").placeholder = tipo === "aula" ? "50" : "45";
+    }
+    m.el.querySelectorAll("[data-dt]").forEach(function (b) { b.onclick = function () { tipo = b.getAttribute("data-dt"); sync(); }; });
+    sync();
+  }
+
+  PAGES.documentos = function (v) {
+    if (docPoll) { clearTimeout(docPoll); docPoll = null; }
+    var id = hashParam("id");
+    if (id) { verDocumento(v, id); return; }
+    $("pageActions").innerHTML = '<button type="button" class="btn btn-primary" id="docNovo">' + icon("plus") + " Novo documento</button>";
+    $("docNovo").onclick = function () { abrirGerarDoc("", "infancia", {}); };
+    v.innerHTML = '<div class="card"><div class="tabs" id="docTabs" style="margin-bottom:14px"><button class="tab active" data-t="">Todos</button>' + TIPOS_DOC.map(function (t) { return '<button class="tab" data-t="' + t[0] + '">' + esc(t[1]) + "</button>"; }).join("") + '</div><div id="docLista"><div class="loading">Carregando…</div></div></div>';
+    var filtro = "";
+    function carregar() {
+      var q = sb.from("documentos_ncc").select("id,tipo,titulo,pergunta,escopo,status,created_at").order("created_at", { ascending: false }).limit(100);
+      if (filtro) q = q.eq("tipo", filtro);
+      q.then(function (res) {
+        if (fail(res) || !$("docLista")) return;
+        var rows = res.data || [];
+        $("docLista").innerHTML = rows.length ? rows.map(function (d) {
+          var st = d.status === "gerando" ? '<span class="tagx gold">Gerando…</span>' : d.status === "erro" ? '<span class="tagx" style="color:#b4533a">Erro</span>' : "";
+          return '<div class="list-item doc-row"><button type="button" class="list-main" data-abrir-doc="' + d.id + '" style="background:none;border:0;text-align:left;cursor:pointer;padding:0;flex:1;min-width:0;display:flex;gap:12px;align-items:center">' +
+            '<span class="list-ico t-sky">' + icon(rotulo(TIPOS_DOC.map(function (t) { return [t[0], t[2]]; }), d.tipo)) + '</span><span style="min-width:0"><span class="list-title">' + esc(d.titulo || d.pergunta) + '</span><span class="list-sub">' + esc(nomeTipoDoc(d.tipo)) + " · " + (d.escopo === "vida" ? "Todas as idades" : "Infância") + " · " + new Date(d.created_at).toLocaleDateString("pt-BR") + "</span></span></button>" + st +
+            '<button type="button" class="icon-btn" data-del-doc="' + d.id + '" title="Excluir">' + icon("trash") + "</button></div>";
+        }).join("") : '<div class="empty">' + icon("doc") + "<strong>Nenhum documento ainda.</strong><p>Faça uma pesquisa e clique em <b>Gerar documento</b>, ou comece aqui pelo botão Novo documento.</p></div>";
+        $("docLista").querySelectorAll("[data-abrir-doc]").forEach(function (b) { b.onclick = function () { location.hash = "documentos?id=" + b.getAttribute("data-abrir-doc"); }; });
+        $("docLista").querySelectorAll("[data-del-doc]").forEach(function (b) { b.onclick = function () {
+          if (!confirm("Excluir este documento?")) return;
+          sb.from("documentos_ncc").delete().eq("id", b.getAttribute("data-del-doc")).then(function (r) { if (!fail(r)) { toast("Documento excluído."); carregar(); } });
+        }; });
+      });
+    }
+    $("docTabs").onclick = function (e) { var b = e.target.closest("[data-t]"); if (!b) return; filtro = b.getAttribute("data-t"); this.querySelectorAll(".tab").forEach(function (x) { x.classList.toggle("active", x === b); }); carregar(); };
+    carregar();
+  };
+
+  function citeDoc(f) { return f && f.length ? '<sup class="dcite">' + f.map(function (n) { return '<a href="#" data-ref="' + n + '">' + n + "</a>"; }).join(",") + "</sup>" : ""; }
+  function docHtml(c, paraWord) {
+    var cite = paraWord ? function (f) { return f && f.length ? "<sup>[" + f.join(",") + "]</sup>" : ""; } : citeDoc;
+    var roteiro = c.tipo === "aula" || c.tipo === "palestra";
+    var h = "";
+    if (c.resumo) h += '<div class="doc-resumo"><b>' + (roteiro ? "Visão geral" : "Resumo") + "</b><p>" + esc(c.resumo.texto) + cite(c.resumo.fontes) + "</p></div>";
+    if (c.objetivos_aprendizagem && c.objetivos_aprendizagem.length) h += '<h3 class="doc-h3">Objetivos de aprendizagem</h3><ul>' + c.objetivos_aprendizagem.map(function (o) { return "<li>" + esc(o) + "</li>"; }).join("") + "</ul>";
+    (c.secoes || []).forEach(function (s, i) {
+      h += '<section class="doc-sec"><h2 class="doc-h2">' + (i + 1) + ". " + esc(s.titulo) + (roteiro && s.duracao_min ? ' <span class="doc-min">' + s.duracao_min + " min</span>" : "") + "</h2>";
+      if (roteiro && s.objetivo) h += '<p class="doc-obj"><b>Objetivo:</b> ' + esc(s.objetivo) + "</p>";
+      h += (s.blocos || []).map(function (b) { return (roteiro ? '<p class="doc-ponto">' : "<p>") + esc(b.texto) + cite(b.fontes) + "</p>"; }).join("");
+      if (roteiro && s.orientacao) h += '<div class="doc-box doc-cond"><b>Como conduzir</b><p>' + esc(s.orientacao) + "</p></div>";
+      if (roteiro && s.slide) h += '<div class="doc-box doc-slide"><b>Sugestão de slide</b><p>' + esc(s.slide) + "</p></div>";
+      if (s.figuras && s.figuras.length) h += '<div class="doc-figs">' + s.figuras.map(function (f) { return '<figure class="doc-fig">' + (paraWord ? "" : '<img data-figpath="' + esc(f.path) + '" alt="' + esc(f.legenda) + '">') + "<figcaption><b>" + esc(f.legenda) + "</b> Fonte: " + esc(f.fonte) + "</figcaption></figure>"; }).join("") + "</div>";
+      h += "</section>";
+    });
+    if (c.perguntas && c.perguntas.length) h += '<section class="doc-sec"><h2 class="doc-h2">' + (c.tipo === "aula" ? "Perguntas de verificação" : "Perguntas prováveis do público") + "</h2>" + c.perguntas.map(function (p) { return '<p class="doc-q"><b>' + esc(p.pergunta) + "</b>" + (p.resposta ? "<br>" + esc(p.resposta) + cite(p.fontes) : "") + "</p>"; }).join("") + "</section>";
+    if (c.lacunas) h += '<div class="doc-box doc-lac"><b>O que as fontes ainda não permitem afirmar</b><p>' + esc(c.lacunas) + "</p></div>";
+    h += '<section class="doc-sec"><h2 class="doc-h2">Referências</h2><ol class="doc-refs">' + (c.referencias || []).map(function (r, i) {
+      return '<li id="dref-' + (i + 1) + '">' + esc(r.texto) + (r.doi ? '. DOI: <a href="https://doi.org/' + esc(r.doi) + '" target="_blank" rel="noopener">' + esc(r.doi) + "</a>" : (r.link ? ' — <a href="' + esc(r.link) + '" target="_blank" rel="noopener">link</a>' : "")) +
+        (r.tipo === "ncc" ? ' <span class="tagx green">Material NCC</span>' : r.tipo === "artigo" ? ' <span class="tagx sky">Revista selecionada</span>' : ' <span class="tagx">Base NCC</span>') + (r.anterior_2023 ? ' <span class="tagx gold">anterior a 2023</span>' : "") + "</li>";
+    }).join("") + "</ol></section>";
+    return h;
+  }
+  function docTextoPlano(c) {
+    var div = document.createElement("div"); div.innerHTML = "<h1>" + esc(c.titulo) + "</h1>" + (c.subtitulo ? "<p>" + esc(c.subtitulo) + "</p>" : "") + docHtml(c, true);
+    div.querySelectorAll("h1,h2,h3,p,li,div,figure").forEach(function (e) { e.insertAdjacentText("afterend", "\n\n"); });
+    return div.textContent.replace(/\n{3,}/g, "\n\n").trim();
+  }
+  function docArquivo(c) {
+    return '<html><head><meta charset="utf-8"><title>' + esc(c.titulo) + '</title><style>body{font-family:Calibri,Arial,sans-serif;font-size:11.5pt;line-height:1.5;color:#222;max-width:760px;margin:24px auto}h1{font-size:20pt;margin:0 0 4px}h2{font-size:14pt;margin:22px 0 8px;color:#2f5d50}h3{font-size:12pt}' +
+      '.sub{color:#666;margin:0 0 16px}.doc-box{border-left:3px solid #9DB8C8;padding:6px 12px;margin:10px 0;background:#f5f7f8}.doc-min{font-size:10pt;color:#8a6d2f}.tagx{font-size:8.5pt;color:#555}sup{font-size:8pt;color:#2f5d50}ol li{margin-bottom:6px}</style></head><body>' +
+      '<p style="color:#8a6d2f;font-size:10pt;margin:0">' + esc(c.tipo_nome || "") + (c.duracao_total ? " · " + c.duracao_total + " minutos" : "") + "</p><h1>" + esc(c.titulo) + "</h1>" + (c.subtitulo ? '<p class="sub">' + esc(c.subtitulo) + "</p>" : "") + docHtml(c, true) +
+      '<p style="font-size:9pt;color:#777;margin-top:24px">Gerado na plataforma NCC Integração com base no material NCC e em artigos de revistas científicas selecionadas. Confira as fontes antes de publicar ou apresentar.</p></body></html>';
+  }
+  function slugArq(s) { return String(s || "documento").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-zA-Z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60).toLowerCase() || "documento"; }
+
+  function verDocumento(v, id) {
+    $("pageActions").innerHTML = '<button type="button" class="btn" id="docVoltar">' + icon("arrow") + " Meus documentos</button>";
+    var vb = $("docVoltar").querySelector(".icon"); if (vb) vb.style.transform = "rotate(180deg)";
+    $("docVoltar").onclick = function () { location.hash = "documentos"; };
+    v.innerHTML = '<div class="card"><div class="loading">Carregando…</div></div>';
+    sb.from("documentos_ncc").select("*").eq("id", id).maybeSingle().then(function (res) {
+      if (fail(res)) return;
+      var d = res.data;
+      if (!d) { v.innerHTML = '<div class="card"><div class="empty">' + icon("doc") + "<strong>Documento não encontrado.</strong><p></p></div></div>"; return; }
+      if (state.route !== "documentos" || hashParam("id") !== id) return;
+      var velho = d.status === "gerando" && (Date.now() - new Date(d.created_at).getTime()) > 10 * 60000;
+      if (d.status === "gerando" && !velho) {
+        v.innerHTML = '<div class="card"><div class="pq-rhead"><div><h3>' + esc(d.pergunta) + '</h3><p class="sub">' + esc(nomeTipoDoc(d.tipo)) + ' em preparação. Pode levar de 1 a 3 minutos — você pode sair desta tela e voltar depois em Meus documentos.</p></div></div><div class="pq-load">' +
+          ["Buscando trechos, imagens e estudos no material NCC", "Buscando artigos nas revistas científicas selecionadas", "Escrevendo o documento e conferindo as fontes"].map(function (s, i) {
+            var seg = (Date.now() - new Date(d.created_at).getTime()) / 1000, at = seg < 15 ? 0 : seg < 35 ? 1 : 2;
+            return '<div class="pq-step' + (i === at ? " on" : i < at ? " done" : "") + '"><span class="spin" style="visibility:' + (i === at ? "visible" : "hidden") + '"></span>' + s + "</div>";
+          }).join("") + "</div></div>";
+        docPoll = setTimeout(function () { if (state.route === "documentos" && hashParam("id") === id) verDocumento(v, id); }, 4000);
+        return;
+      }
+      if (d.status === "erro" || velho) {
+        v.innerHTML = '<div class="card"><div class="empty">' + icon("alert") + "<strong>" + esc(velho ? "A geração demorou mais do que o esperado e foi interrompida." : d.erro || "Não foi possível gerar o documento.") + '</strong><p>' + esc(d.pergunta) + '</p><button type="button" class="btn btn-primary" id="docRefazer">Tentar novamente</button></div></div>';
+        $("docRefazer").onclick = function () { abrirGerarDoc(d.pergunta, d.escopo, {}, d.tipo); };
+        return;
+      }
+      var c = d.conteudo || {};
+      $("pageActions").innerHTML += '<button type="button" class="btn" id="docWord">' + icon("download") + ' Baixar Word</button><button type="button" class="btn" id="docPrint">' + icon("printer") + ' Imprimir / PDF</button><button type="button" class="btn" id="docCopiar">' + icon("copy") + " Copiar texto</button>";
+      $("docVoltar").onclick = function () { location.hash = "documentos"; };
+      v.innerHTML = '<article class="card doc-view"><div class="doc-kicker">' + icon(rotulo(TIPOS_DOC.map(function (t) { return [t[0], t[2]]; }), d.tipo)) + esc(c.tipo_nome || nomeTipoDoc(d.tipo)) + (c.duracao_total ? " · " + c.duracao_total + " minutos" : "") + " · " + (d.escopo === "vida" ? "Todas as idades" : "Infância") + "</div>" +
+        '<h1 class="doc-h1">' + esc(c.titulo || d.titulo) + "</h1>" + (c.subtitulo ? '<p class="doc-subt">' + esc(c.subtitulo) + "</p>" : "") +
+        '<p class="doc-meta">Tema: ' + esc(d.pergunta) + " · " + new Date(d.created_at).toLocaleDateString("pt-BR") + (c.base ? " · Fontes consultadas: " + c.base.trechos + " trechos NCC, " + c.base.estudos + " estudos da base, " + c.base.artigos + " artigos das revistas" : "") + "</p>" +
+        docHtml(c, false) + '<div class="pq-disc" style="margin-top:18px">' + icon("bulb") + "<span>Documento gerado com base no material NCC e em artigos das revistas científicas selecionadas (descritos a partir do resumo). Confira as fontes antes de publicar ou apresentar.</span></div></article>";
+      v.querySelectorAll("[data-ref]").forEach(function (a) { a.onclick = function (e) { e.preventDefault(); var t = $("dref-" + a.getAttribute("data-ref")); if (t) { t.scrollIntoView({ behavior: "smooth", block: "center" }); t.classList.add("flash"); setTimeout(function () { t.classList.remove("flash"); }, 1500); } }; });
+      v.querySelectorAll("[data-figpath]").forEach(function (img) { sb.storage.from("ncc-base").createSignedUrl(img.getAttribute("data-figpath"), 3600).then(function (r) { if (r && r.data) img.src = r.data.signedUrl; else img.remove(); }, function () { img.remove(); }); });
+      $("docWord").onclick = function () {
+        var blob = new Blob(["﻿" + docArquivo(c)], { type: "application/msword" });
+        var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = slugArq(c.titulo) + ".doc"; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+      };
+      $("docPrint").onclick = function () {
+        var w = window.open("", "_blank"); if (!w) { toast("Permita janelas pop-up para imprimir."); return; }
+        w.document.write(docArquivo(c)); w.document.close(); setTimeout(function () { w.focus(); w.print(); }, 400);
+      };
+      $("docCopiar").onclick = function () {
+        var txt = docTextoPlano(c);
+        (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(function () { toast("Texto copiado."); }, function () { toast("Não foi possível copiar."); });
+      };
+    });
+  }
 
   function stat(tint, ic, label, num, sub, btnLabel, btnIcon, go) {
     return '<div class="stat ' + tint + '"><div class="stat-head">' + icon(ic) + "<span>" + esc(label) + '</span></div><div class="stat-num">' + num + '</div><div class="stat-sub">' + sub + '</div><button type="button" class="btn btn-block" data-go="' + go + '">' + (btnIcon ? icon(btnIcon) : "") + esc(btnLabel) + "</button></div>";
