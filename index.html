@@ -745,6 +745,7 @@
   .cred-lim { width: 110px; padding: 7px 9px; }
   @media (max-width: 820px) { .cred-uso { grid-template-columns: 1fr 60px 30px; } }
 .esc-chips { display:flex; gap:4px; flex-wrap:wrap } .esc-chips .chip { padding:3px 9px; font-size:11px }
+.rev-ul { margin:0 0 12px; padding-left:18px; line-height:1.7; font-size:13.5px } .art-card { border-left:3px solid #9DB8C8 } .tagx.sky { background: var(--tint-sky); color: var(--ink-soft); }
 </style>
 </head>
 <body>
@@ -2086,10 +2087,64 @@
   var ABAS_PQ = [["visao", "Visão geral", "doc"], ["neuro", "Explicação neurocientífica", "brain"], ["estudos", "Estudos científicos", "chart"],
     ["conteudos", "Conteúdos NCC", "book"], ["ferramentas", "Ferramentas práticas", "tool"], ["aplicacao", "Aplicação profissional", "person"]];
 
+  /* ---------- literatura externa: revistas científicas selecionadas ---------- */
+  function artigoCard(x, completo) {
+    var doi = x.doi ? '<a href="https://doi.org/' + esc(x.doi) + '" target="_blank" rel="noopener">' + esc(x.doi) + "</a>" : (x.link ? '<a href="' + esc(x.link) + '" target="_blank" rel="noopener">abrir</a>' : "");
+    return '<div class="est-card art-card"><div class="est-badges"><span class="tagx sky">' + esc(x.tipo || "Artigo") + "</span>" +
+      (completo && x.tipo_evidencia ? '<span class="tagx">' + esc(x.tipo_evidencia) + "</span>" : "") + '<span class="tagx green">' + esc(x.ano || "") + "</span></div>" +
+      "<h4>" + esc(x.titulo) + '</h4><div class="est-meta">' + esc(x.autores || "") + " (" + esc(x.ano || "s.d.") + "). <i>" + esc(x.periodico || "") + "</i>" + (doi ? " · DOI: " + doi : "") + "</div>" +
+      (completo && x.relacao ? '<p style="margin:10px 0 0;line-height:1.6">' + esc(x.relacao) + "</p>" : "") +
+      (completo && (x.desenho || x.achado) ? '<div class="est-grid"><div><b>Desenho (segundo o resumo)</b>' + esc(x.desenho || "—") + "</div><div><b>Principal achado (segundo o resumo)</b>" + esc(x.achado || "—") + "</div></div>" : "") + "</div>";
+  }
+  function revistasLink() { return '<button type="button" class="link-btn" data-revistas style="margin:4px 0 0">' + icon("book") + " Ver as revistas consultadas</button>"; }
+  function ligarRevistasLink(box) { box.querySelectorAll("[data-revistas]").forEach(function (b) { b.onclick = abrirRevistas; }); }
+  function abrirRevistas() {
+    var m = openModal("Revistas científicas consultadas", '<div id="revBox"><div class="loading">Carregando…</div></div>', { lg: true, foot: '<button type="button" class="btn" data-x>Fechar</button>' });
+    sb.from("revistas_cientificas").select("nome,area,ordem,ativa").eq("ativa", true).order("ordem").then(function (res) {
+      if (fail(res)) return;
+      var grupos = {}, ordemG = [];
+      (res.data || []).forEach(function (r) { if (!grupos[r.area]) { grupos[r.area] = []; ordemG.push(r.area); } grupos[r.area].push(r.nome); });
+      $("revBox").innerHTML = '<p class="hint" style="margin:0 0 12px">A pesquisa busca artigos e revisões publicados de 2023 em diante nestas revistas (índice aberto OpenAlex). Eles aparecem separados do material NCC.</p>' +
+        ordemG.map(function (g) { return '<div class="pq-sec">' + esc(g) + '</div><ul class="rev-ul">' + grupos[g].map(function (n) { return "<li>" + esc(n) + "</li>"; }).join("") + "</ul>"; }).join("");
+    });
+  }
+  function carregarRevistasAdmin() {
+    var box = $("baseRevistas"); if (!box) return;
+    sb.from("revistas_cientificas").select("id,nome,area,ordem,issn,ativa").order("ordem").then(function (res) {
+      if (fail(res) || !$("baseRevistas")) return;
+      var rows = res.data || [];
+      box.innerHTML = '<p style="color:var(--ink-soft);margin:0 0 12px;line-height:1.6">A Pesquisa NCC e a Neurociência para todas as idades buscam artigos de 2023 em diante nestas revistas e mostram os resultados separados do material do curso. Desligue uma revista para tirá-la da busca. ' + rows.filter(function (r) { return r.ativa; }).length + " de " + rows.length + " ativas.</p>" +
+        '<div style="overflow-x:auto"><table class="base-table"><thead><tr><th>Revista</th><th class="hide-m">Área</th><th class="hide-m">ISSN</th><th>Na busca</th><th></th></tr></thead><tbody>' +
+        rows.map(function (r) { return "<tr><td><b>" + esc(r.nome) + '</b></td><td class="hide-m">' + esc(r.area) + '</td><td class="hide-m">' + esc(r.issn || "") + '</td><td><button type="button" class="switch' + (r.ativa ? " on" : "") + '" data-rev-on="' + r.id + '" aria-label="Na busca"></button></td><td><button type="button" class="icon-btn" data-rev-del="' + r.id + '" title="Excluir">' + icon("trash") + "</button></td></tr>"; }).join("") +
+        '</tbody></table></div><button type="button" class="btn" id="revNova" style="margin-top:12px">' + icon("plus") + " Adicionar revista</button>";
+      box.querySelectorAll("[data-rev-on]").forEach(function (b) { b.onclick = function () {
+        var on = !b.classList.contains("on");
+        sb.from("revistas_cientificas").update({ ativa: on }).eq("id", b.getAttribute("data-rev-on")).then(function (r) { if (!fail(r)) { carregarRevistasAdmin(); toast(on ? "Revista incluída na busca." : "Revista retirada da busca."); } });
+      }; });
+      box.querySelectorAll("[data-rev-del]").forEach(function (b) { b.onclick = function () {
+        if (!confirm("Excluir esta revista da lista?")) return;
+        sb.from("revistas_cientificas").delete().eq("id", b.getAttribute("data-rev-del")).then(function (r) { if (!fail(r)) { carregarRevistasAdmin(); toast("Revista excluída."); } });
+      }; });
+      $("revNova").onclick = function () {
+        var areas = []; rows.forEach(function (r) { if (areas.indexOf(r.area) < 0) areas.push(r.area); });
+        openModal("Adicionar revista", '<div class="field"><label>Nome da revista</label><input name="nome" required></div>' +
+          '<div class="field"><label>ISSN (impresso ou eletrônico)</label><input name="issn" placeholder="0000-0000" required></div>' +
+          '<div class="field"><label>Área</label><input name="area" list="revAreas" required></div><datalist id="revAreas">' + areas.map(function (a) { return '<option value="' + esc(a) + '">'; }).join("") + "</datalist>" +
+          '<p class="hint">O ISSN aparece no site da revista. O sistema localiza a revista no índice de artigos automaticamente na próxima pesquisa.</p>', {
+          ok: "Adicionar", onSubmit: function (f, close) {
+            var nome = fval(f, "nome"), issn = fval(f, "issn").toUpperCase().replace(/[^0-9X]/g, ""), area = fval(f, "area");
+            if (!nome || !area || issn.length !== 8) { toast("Preencha o nome, a área e um ISSN válido (8 dígitos)."); return; }
+            issn = issn.slice(0, 4) + "-" + issn.slice(4);
+            sb.from("revistas_cientificas").insert({ nome: nome, area: area, issn: issn, ordem: rows.length + 1 }).then(function (r) { if (!fail(r)) { close(); carregarRevistasAdmin(); toast("Revista adicionada."); } });
+          } });
+      };
+    });
+  }
+
   function pintarResultado() {
     var out = $("pqOut"), tabs = $("pqTabs"); if (!out || !tabs) return;
     var r = pq.resp, ok = r && !r.sem_resultado;
-    var n = ok ? { visao: 0, neuro: r.neuro.length + r.figuras.length + r.analogias.length, estudos: r.estudos.length, conteudos: r.fontes.trechos.length, ferramentas: r.ferramentas.length, aplicacao: r.aplicacao.length } : {};
+    var n = ok ? { visao: 0, neuro: r.neuro.length + r.figuras.length + r.analogias.length, estudos: r.estudos.length + (r.artigos || []).length, conteudos: r.fontes.trechos.length, ferramentas: r.ferramentas.length, aplicacao: r.aplicacao.length } : {};
     tabs.innerHTML = ABAS_PQ.map(function (a) {
       return '<button type="button" class="pq-tab' + (ok && pq.aba === a[0] ? " active" : "") + '" data-aba="' + a[0] + '"' + (ok ? "" : " disabled") + ">" + icon(a[2]) + "<span>" + esc(a[1]) + "</span>" + (ok && a[0] !== "visao" ? '<span class="n">' + n[a[0]] + "</span>" : "") + "</button>";
     }).join("");
@@ -2097,7 +2152,7 @@
 
     if (pq.carregando) {
       out.innerHTML = '<div class="card"><div class="pq-rhead"><div><h3>' + esc(pq.pergunta) + '</h3><p class="sub">Consultando o material NCC. Isso pode levar até um minuto.</p></div></div><div class="pq-load">' +
-        ['Entendendo a pergunta e buscando termos relacionados', 'Procurando trechos, imagens e estudos na base NCC', 'Organizando a resposta com base somente no material'].map(function (s, i) {
+        ['Entendendo a pergunta e buscando termos relacionados', 'Procurando no material NCC e nas revistas científicas selecionadas', 'Organizando a resposta com base somente no material'].map(function (s, i) {
           return '<div class="pq-step" data-st="' + i + '"><span class="spin"></span>' + s + "</div>";
         }).join("") + "</div></div>";
       var i = 0, meu = pq.token;
@@ -2120,8 +2175,10 @@
     }
     if (r.sem_resultado) {
       out.innerHTML = '<div class="card"><div class="empty">' + icon("search") + "<strong>" + esc(r.mensagem || "Nada encontrado na base NCC.") + '</strong><p>A Pesquisa NCC responde apenas com o material do curso. Experimente um destes temas:</p><div class="chips" style="justify-content:center">' +
-        TEMAS_NCC.slice(0, 6).map(function (t) { return '<button type="button" class="chip" data-q="' + esc(t[1]) + '">' + esc(t[0]) + "</button>"; }).join("") + "</div></div></div>";
+        TEMAS_NCC.slice(0, 6).map(function (t) { return '<button type="button" class="chip" data-q="' + esc(t[1]) + '">' + esc(t[0]) + "</button>"; }).join("") + "</div></div>" +
+        ((r.artigos || []).length ? '<div class="pq-sec" style="margin-top:8px">Artigos recentes encontrados nas revistas científicas selecionadas</div><p class="hint" style="margin:0 0 10px">Literatura externa (2023 em diante), sem análise da IA porque não há material NCC sobre o tema. Leia o artigo completo antes de citar.</p>' + r.artigos.map(function (x) { return artigoCard(x, false); }).join("") + revistasLink() : "") + "</div>";
       out.querySelectorAll("[data-q]").forEach(function (b) { b.onclick = function () { $("pqQ").value = b.getAttribute("data-q"); dispararPesquisa(b.getAttribute("data-q")); }; });
+      ligarRevistasLink(out);
       return;
     }
 
@@ -2158,7 +2215,13 @@
           (e.doi ? ' · DOI: <a href="https://doi.org/' + esc(e.doi) + '" target="_blank" rel="noopener">' + esc(e.doi) + "</a>" : "") + "</div>" +
           (e.relacao ? '<p style="margin:10px 0 0;line-height:1.6">' + esc(e.relacao) + "</p>" : "") +
           '<div class="est-grid"><div><b>Desenho</b>' + esc(e.desenho || "—") + "</div><div><b>Amostra</b>" + esc(e.amostra || "—") + "</div><div><b>Principais achados</b>" + esc(e.achados || "—") + "</div><div><b>Limitações</b>" + esc(e.limitacoes || "—") + "</div></div></div>";
-      }).join("") : '<div class="empty">' + icon("chart") + "<strong>Nenhum estudo da base NCC se relaciona diretamente com esta pergunta.</strong><p>Os estudos só aparecem quando estão cadastrados na base, com autores, ano, periódico e DOI conferidos. Nenhum estudo é inventado.</p></div>") +
+      }).join("") : '<p class="hint" style="margin:0 0 12px">Nenhum estudo cadastrado na base NCC se relaciona diretamente com esta pergunta.</p>');
+      var arts = (r.artigos || []).slice();
+      if (pq.ordem === "recentes") arts.sort(function (x, y) { return (y.ano || 0) - (x.ano || 0); });
+      body = (est.length ? '<div class="pq-sec">Estudos do material NCC</div>' : "") + body +
+        '<div class="pq-sec" style="margin-top:18px">Literatura recente das revistas científicas selecionadas</div>' +
+        (arts.length ? '<p class="hint" style="margin:0 0 10px">Artigos de 2023 em diante encontrados automaticamente nas revistas selecionadas. A descrição foi feita somente a partir do título e do resumo — leia o artigo completo antes de citar.</p>' + arts.map(function (x) { return artigoCard(x, true); }).join("") :
+          '<p class="hint" style="margin:0 0 10px">Nenhum artigo recente das revistas selecionadas se relacionou diretamente com esta pergunta.</p>') + revistasLink() +
         '<p class="pq-foot">Associação e correlação não significam causa: cada estudo informa o tipo de evidência que oferece.</p>';
     } else if (a === "conteudos") {
       body = '<p class="hint" style="margin:0 0 12px">Trechos do material NCC usados para montar a resposta. Os números correspondem às citações do texto.</p>' +
@@ -2179,6 +2242,7 @@
         (r.lacunas ? '<div class="pq-warn" style="margin-top:14px"><b>O que o material ainda não cobre: </b>' + esc(r.lacunas) + "</div>" : "") + disc;
     }
     out.innerHTML = '<div class="card">' + head + body + (r.limit ? '<p class="pq-foot">Consultas de IA neste mês: ' + (r.used || 0) + " de " + r.limit + ".</p>" : "") + "</div>";
+    ligarRevistasLink(out);
 
     out.querySelectorAll("[data-cite]").forEach(function (b) { b.onclick = function () {
       var i = +b.getAttribute("data-cite"); pq.aba = "conteudos"; pintarResultado();
@@ -2264,9 +2328,10 @@
         '<label class="btn btn-primary" style="cursor:pointer">' + icon("upload") + ' Escolher pacote (.json)<input type="file" id="baseFile" accept=".json,application/json" hidden></label>' +
         '<div class="imp-log" id="baseLog" hidden></div></div>' +
       '<div class="card" style="margin-bottom:18px"><div class="card-head"><h3 class="card-title">Conteúdos na base</h3></div><div id="baseLista"><div class="loading">Carregando…</div></div></div>' +
+      '<div class="card" style="margin-bottom:18px"><div class="card-head"><h3 class="card-title">Revistas científicas da busca</h3></div><div id="baseRevistas"><div class="loading">Carregando…</div></div></div>' +
       '<div class="card"><div class="card-head"><h3 class="card-title">Testar a busca (sem usar IA)</h3></div>' +
         '<form class="searchbar" id="baseTeste">' + icon("search") + '<input id="baseTesteQ" placeholder="Ex.: amígdala, rotina, autocontrole"><button class="btn" type="submit">Buscar</button></form><div id="baseTesteOut" style="margin-top:12px"></div></div>';
-    carregarBase();
+    carregarBase(); carregarRevistasAdmin();
     $("baseFile").onchange = function () {
       var f = this.files[0]; this.value = ""; if (!f) return;
       var log = $("baseLog"); log.hidden = false; log.textContent = "";
